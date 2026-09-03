@@ -46291,29 +46291,54 @@
         return body;
       }
 
-      const fuseKeys = [
-        "vitals.full_name",
-        "vitals.title",
-        "vitals.dob",
-        "vitals.place_of_birth",
-        "vitals.place",
-        "vitals.record_type",
-        "vitals.treaty_event",
-        "vitals.date",
-        "tier.level",
-        "source.document_name",
-        "source.notes",
-        "associations.name",
-        "associations.relationship",
-        "narrative",
-        "life_summary",
-        "citations.label",
-      ];
-      const fuse = new Fuse(masterDatabase, {
-        keys: fuseKeys,
-        threshold: 0.2,
-        ignoreLocation: true,
-      });
+      // KVSV Dynamic Data Loader v1
+const MANIFEST_URL = "https://script.google.com/macros/s/AKfycbxWS91KUYLblhdtGpfvCt8ubao_ITyUhTAuIJ2v91-JGDQpqFBdaHFI3vQxyITSgQ3p/exec?path=manifest";
+const ENTITIES_URL = "https://script.google.com/macros/s/AKfycbxWS91KUYLblhdtGpfvCt8ubao_ITyUhTAuIJ2v91-JGDQpqFBdaHFI3vQxyITSgQ3p/exec?path=entities";
+const FALLBACK_URL = "https://kvsvsearch.github.io/kvsv/snapshot.json";
+
+let masterDatabase = [];
+let fuse = null;
+let lastHash = null;
+
+async function fetchEntities() {
+  try {
+    const manifestResponse = await fetch(MANIFEST_URL + "&t=" + Date.now());
+    const manifest = await manifestResponse.json();
+    
+    if (manifest.hash === lastHash) return;
+    lastHash = manifest.hash;
+    
+    const lastUpdatedEl = document.getElementById('lastUpdated');
+    if (lastUpdatedEl) lastUpdatedEl.textContent = "Last Updated: " + manifest.lastUpdated;
+    
+    const entitiesResponse = await fetch(ENTITIES_URL);
+    const data = await entitiesResponse.json();
+    masterDatabase = data.entities || [];
+    
+    fuse = new Fuse(masterDatabase, {
+      keys: ['full_name', 'entity_id', 'vitals'],
+      threshold: 0.2,
+      ignoreLocation: true
+    });
+    
+    if (typeof renderList === 'function') renderList();
+    
+  } catch (error) {
+    console.error("Failed to fetch live data, attempting fallback:", error);
+    try {
+      const fallbackResponse = await fetch(FALLBACK_URL);
+      masterDatabase = await fallbackResponse.json();
+      fuse = new Fuse(masterDatabase, { keys: ['full_name', 'entity_id', 'vitals'], threshold: 0.2, ignoreLocation: true });
+      if (typeof renderList === 'function') renderList();
+    } catch (fallbackError) {
+      const listEl = document.getElementById('registerList');
+      if (listEl) listEl.innerHTML = "<li>Database is temporarily unavailable. Please refresh later.</li>";
+    }
+  }
+}
+
+fetchEntities();
+setInterval(fetchEntities, 300000);
 
       function tierBadgeClass(level) {
         if (!level) return "badge-type";
