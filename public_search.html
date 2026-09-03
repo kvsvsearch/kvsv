@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KVSV Public General Search</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>
+    <style>
+        body { font-family: Georgia, serif; background-color: #f4f1ea; color: #333; padding: 20px; }
+        #app { max-width: 800px; margin: 0 auto; }
+        input { width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 20px; }
+        .result { border-bottom: 1px solid #ddd; padding: 10px; }
+        .result h3 { margin: 0; }
+        .result p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>KVSV Public General Search</h1>
+        <p>Searching WikiTree for any name.</p>
+        <input type="text" id="searchInput" placeholder="Enter a name (e.g., George Washington)" />
+        <div id="resultsList"></div>
+    </div>
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbx2ECj68qvZyCmhpyLzDFpqkV5ZxNDuoZw9jdwnShHkohBztNxy0j_nKkr6wut_vh69Lg/exec";
+        const searchInput = document.getElementById('searchInput');
+        const resultsList = document.getElementById('resultsList');
+        let allResults = [];
+        async function searchPerson() {
+            const query = searchInput.value.trim();
+            if (!query) return;
+            const [first, ...rest] = query.split(' ');
+            const last = rest.join(' ') || '';
+            resultsList.innerHTML = "Searching...";
+            try {
+                const response = await fetch(${API_URL}?action=search&first=&last=);
+                const data = await response.json();
+                if (data.status === "success") { allResults = data.results; renderResults(allResults); }
+                else { resultsList.innerHTML = <p>Error: </p>; }
+            } catch (error) { resultsList.innerHTML = <p>Error fetching data: </p>; }
+        }
+        function renderResults(results) {
+            if (!results.length) { resultsList.innerHTML = "<p>No results found.</p>"; return; }
+            resultsList.innerHTML = results.map(r => <div class="result"><h3><a href="" target="_blank"> </a></h3><p><strong>Birth:</strong>  ()</p><p><strong>Death:</strong>  ()</p></div>).join('');
+        }
+        let debounceTimer;
+        searchInput.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(searchPerson, 500); });
+    </script>
+</body>
+</html>
