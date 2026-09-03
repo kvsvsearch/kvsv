@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oral History Test - Recording & Upload</title>
+    <style>
+        body { font-family: Lato, Arial, sans-serif; background-color: #ffffff; color: #000000; padding: 20px; }
+        h1 { color: #1a56db; }
+        .box { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        .btn { background-color: #c0392b; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .btn:disabled { background-color: #999; opacity: 0.5; cursor: not-allowed; }
+        #status { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Oral History Test - Step 3</h1>
+    <p>Test interface for in-browser recording and file upload.</p>
+
+    <div class="box">
+        <h3>1. Consent Gate</h3>
+        <div style="border: 2px solid #c0392b; padding: 15px; background-color: #f8d7da; border-radius: 5px; margin-bottom: 10px;">
+            <p><strong>Status: DRAFT — pending legal review and a decision on rights-transfer vs. license model.</strong></p>
+            <p><strong>Do not treat as binding.</strong> Final legal text pending.</p>
+        </div>
+        <label>
+            <input type="checkbox" id="consentCheckbox">
+            I have read and understood the DRAFT consent text above.
+        </label>
+    </div>
+
+    <div class="box">
+        <h3>2a. In-Browser Recording</h3>
+        <button id="startRecBtn">Start Recording</button>
+        <button id="stopRecBtn" disabled>Stop Recording</button>
+        <audio id="audioPlayback" controls></audio>
+    </div>
+
+    <div class="box">
+        <h3>2b. File Upload</h3>
+        <input type="file" id="fileInput" accept="audio/*">
+    </div>
+
+    <div class="box">
+        <h3>3. Submit</h3>
+        <button id="submitBtn" class="btn" disabled>Submit Story</button>
+    </div>
+
+    <div id="status"></div>
+
+    <script>
+        // Consent Gate Logic
+        const consentCheckbox = document.getElementById('consentCheckbox');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function checkConsent() {
+            if (!consentCheckbox.checked) {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = "0.5";
+                return false;
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = "1";
+                return true;
+            }
+        }
+
+        consentCheckbox.addEventListener('change', checkConsent);
+        checkConsent(); // Initial state
+
+        // Recording Logic
+        let mediaRecorder;
+        let audioChunks = [];
+
+        const startRecBtn = document.getElementById('startRecBtn');
+        const stopRecBtn = document.getElementById('stopRecBtn');
+        const audioPlayback = document.getElementById('audioPlayback');
+
+        startRecBtn.addEventListener('click', async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            audioChunks = [];
+
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioPlayback.src = audioUrl;
+                stream.getTracks().forEach(track => track.stop());
+            };
+
+            mediaRecorder.start();
+            startRecBtn.disabled = true;
+            stopRecBtn.disabled = false;
+            document.getElementById('status').textContent = "Recording...";
+        });
+
+        stopRecBtn.addEventListener('click', () => {
+            mediaRecorder.stop();
+            startRecBtn.disabled = false;
+            stopRecBtn.disabled = true;
+            document.getElementById('status').textContent = "Recording stopped.";
+        });
+
+        // Submit Logic (No Firestore - Just Simulating)
+        submitBtn.addEventListener('click', () => {
+            if (!consentCheckbox.checked) return;
+            const hasFile = document.getElementById('fileInput').files.length > 0;
+            const hasRecording = audioChunks.length > 0;
+
+            if (!hasFile && !hasRecording) {
+                document.getElementById('status').textContent = "Error: Please record audio or upload a file.";
+                return;
+            }
+
+            document.getElementById('status').textContent = "Success: Submission passed local validation. (Firestore pending rule confirmation)";
+        });
+    </script>
+</body>
+</html>
