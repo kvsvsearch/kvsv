@@ -3120,7 +3120,8 @@ async function fetchEntities() {
       ignoreLocation: true
     });
     
-    if (typeof renderList === 'function') renderList();
+    if (typeof renderRegisterList === 'function') renderRegisterList(document.getElementById('searchInput')?.value?.trim() || '');
+if (typeof renderFrameworkStats === 'function') renderFrameworkStats();
     
   } catch (error) {
     console.error("Failed to fetch live data, attempting fallback:", error);
@@ -3128,7 +3129,8 @@ async function fetchEntities() {
       const fallbackResponse = await fetch(FALLBACK_URL);
       masterDatabase = await fallbackResponse.json();
       fuse = new Fuse(masterDatabase, { keys: ['full_name', 'entity_id', 'vitals'], threshold: 0.2, ignoreLocation: true });
-      if (typeof renderList === 'function') renderList();
+      if (typeof renderRegisterList === 'function') renderRegisterList(document.getElementById('searchInput')?.value?.trim() || '');
+if (typeof renderFrameworkStats === 'function') renderFrameworkStats();
     } catch (fallbackError) {
       const listEl = document.getElementById('registerList');
       if (listEl) listEl.innerHTML = "<li>Database is temporarily unavailable. Please refresh later.</li>";
