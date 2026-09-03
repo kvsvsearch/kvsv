@@ -1,0 +1,24 @@
+﻿{
+  "collection": "stories",
+  "schema_version": 1,
+  "document_fields": {
+    "personEntityId": { "type": "string", "required": true, "description": "Link to existing KVSV Person entity" },
+    "title": { "type": "string", "required": false, "description": "Story title" },
+    "transcript": { "type": "string", "required": false, "description": "Filled by Whisper after processing" },
+    "audioUrl": { "type": "string", "required": false, "description": "URL of uploaded/recorded audio" },
+    "recordingFormat": { "type": "string", "required": false, "description": "e.g., webm, mp3" },
+    "consent": {
+      "type": "object",
+      "required": true,
+      "fields": {
+        "consentGiven": { "type": "boolean", "required": true },
+        "draftTextVersion": { "type": "string", "required": true },
+        "consentTimestamp": { "type": "timestamp", "required": true }
+      }
+    },
+    "submissionStatus": { "type": "string", "required": true, "enum": ["draft", "submitted", "approved"] },
+    "approved_public": { "type": "boolean", "required": true, "default": false, "description": "Only true if researcher manually approves public read" },
+    "createdAt": { "type": "timestamp", "required": true },
+    "updatedAt": { "type": "timestamp", "required": true }
+  }
+}

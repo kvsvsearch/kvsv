@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consent Gate Test (No Firestore)</title>
+</head>
+<body>
+    <h2>Consent Gate Validation Test</h2>
+    <div style="border: 2px solid #c0392b; padding: 15px; background-color: #f8d7da; border-radius: 5px; margin-bottom: 20px;">
+        <h3 style="color: #c0392b;">Oral History Consent (DRAFT)</h3>
+        <p><strong>Status: DRAFT — pending legal review and a decision on rights-transfer vs. license model.</strong></p>
+        <p><strong>Do not treat as binding.</strong> Final legal text pending.</p>
+    </div>
+    <label>
+        <input type="checkbox" id="consentCheckbox">
+        I have read and understood the DRAFT consent text above.
+    </label>
+    <br><br>
+    <button id="submitStoryButton" disabled style="opacity: 0.5;">Submit Story</button>
+
+    <script>
+        const consentCheckbox = document.getElementById('consentCheckbox');
+        const submitButton = document.getElementById('submitStoryButton');
+
+        function checkConsent() {
+            if (!consentCheckbox.checked) {
+                submitButton.disabled = true;
+                submitButton.style.opacity = "0.5";
+                submitButton.title = "Please read the consent text and check the box to enable submission.";
+                return false;
+            } else {
+                submitButton.disabled = false;
+                submitButton.style.opacity = "1";
+                submitButton.title = "";
+                return true;
+            }
+        }
+
+        consentCheckbox.addEventListener('change', checkConsent);
+        checkConsent();
+    </script>
+</body>
+</html>
