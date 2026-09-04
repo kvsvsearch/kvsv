@@ -1,0 +1,17 @@
+﻿# Environment variables and secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Node modules
+node_modules/
+
+# Local temporary files
+*.log
+*.tmp
