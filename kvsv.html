@@ -612,8 +612,19 @@
 </div>
 
 <label class="tab" for="tab-contact">Contact Us</label>
+<label class="tab" for="tab-private">Private Portals Beta</label>
+<input type="radio" name="kvsvtab" id="tab-private" class="tabradio" />
+
 <input type="radio" name="kvsvtab" id="tab-contact" class="tabradio" />
 <div id="tab-contact">
+<div id="tab-private">
+    <h3>Private Portals Beta – Join the Waitlist</h3>
+    <p>We're building advanced research tools for professional genealogists. Leave your email to be notified when we launch.</p>
+    <input type="email" id="privateEmail" placeholder="Enter your email">
+    <button id="privateSubmit">Notify Me</button>
+    <p id="privateMessage"></p>
+</div>
+
     <h3>Contact Us</h3>
     <p>For research inquiries, please contact the KVSV team.</p>
 </div>
@@ -3390,6 +3401,19 @@ setInterval(fetchEntities, 300000);
         } catch (e) {
             publicResults.innerHTML = '<p>Error fetching data: ' + e.message + '</p>';
         }
+    });
+</script>
+
+
+<script>
+    document.getElementById('privateSubmit').addEventListener('click', function() {
+        var email = document.getElementById('privateEmail').value;
+        if (!email) {
+            document.getElementById('privateMessage').textContent = 'Please enter an email.';
+            return;
+        }
+        // Just a placeholder for future backend integration
+        document.getElementById('privateMessage').textContent = 'Thank you! You are on the waitlist.';
     });
 </script>
 
