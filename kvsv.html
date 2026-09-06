@@ -592,8 +592,33 @@
       />
       <input type="radio" name="kvsvtab" id="tab-framework" class="tabradio" />
       <div class="tabs">
-        <label class="tab" for="tab-register">Register</label>
-        <label class="tab" for="tab-framework">Framework</label>
+        <label class="tab" for="tab-register">KVSV Research</label>
+        
+<label class="tab" for="tab-public">Public Search</label>
+<input type="radio" name="kvsvtab" id="tab-public" class="tabradio" />
+<div id="tab-public">
+    <h3>Public Search</h3>
+    <input type="text" id="publicName" placeholder="Name (e.g., George Washington)">
+    <input type="text" id="publicState" placeholder="State (optional)">
+    <button id="publicSearchBtn">Search</button>
+    <div id="publicResults"></div>
+</div>
+
+<label class="tab" for="tab-about">About</label>
+<input type="radio" name="kvsvtab" id="tab-about" class="tabradio" />
+<div id="tab-about">
+    <h3>About KVSV</h3>
+    <p>KVSV is a genealogy research platform focused on Coosa Empire / Creek Nation / Southeastern U.S. lineage research.</p>
+</div>
+
+<label class="tab" for="tab-contact">Contact Us</label>
+<input type="radio" name="kvsvtab" id="tab-contact" class="tabradio" />
+<div id="tab-contact">
+    <h3>Contact Us</h3>
+    <p>For research inquiries, please contact the KVSV team.</p>
+</div>
+
+<label class="tab" for="tab-framework">Framework</label>
       </div>
 
       <div id="view-register">
@@ -3325,5 +3350,48 @@ setInterval(fetchEntities, 300000);
         return false;
       }
     </script>
-  </body>
+  
+<script>
+    const publicApiUrl = 'https://script.google.com/macros/s/AKfycbx2ECj68qvZyCmhpyLzDFpqkV5ZxNDuoZw9jdwnShHkohBztNxy0j_nKkr6wut_vh69Lg/exec';
+    const publicName = document.getElementById('publicName');
+    const publicState = document.getElementById('publicState');
+    const publicResults = document.getElementById('publicResults');
+    const publicBtn = document.getElementById('publicSearchBtn');
+
+    publicBtn.addEventListener('click', async () => {
+        const name = publicName.value.trim();
+        if (!name) return;
+        const [first, ...rest] = name.split(' ');
+        const last = rest.join(' ') || '';
+        const state = publicState.value.trim();
+
+        publicResults.innerHTML = 'Searching...';
+        try {
+            const params = new URLSearchParams({ action: 'search', first: first, last: last });
+            if (state) params.append('state', state);
+            const response = await fetch(${publicApiUrl}?);
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                if (data.results.length === 0 && state) {
+                    publicResults.innerHTML = '<p>No matches with that name AND location.</p>';
+                } else {
+                    publicResults.innerHTML = data.results.map(r => 
+                        <div class="result">
+                            <h4><a href="" target="_blank"> </a></h4>
+                            <p>Birth:  ()</p>
+                            <p>Death:  ()</p>
+                        </div>
+                    ).join('');
+                }
+            } else {
+                publicResults.innerHTML = '<p>Error: ' + data.message + '</p>';
+            }
+        } catch (e) {
+            publicResults.innerHTML = '<p>Error fetching data: ' + e.message + '</p>';
+        }
+    });
+</script>
+
+</body>
 </html>
