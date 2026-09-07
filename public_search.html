@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -63,7 +63,11 @@
             }
 
             if (tier) {
-                results = results.filter(r => String(r.tier && r.tier.level) === tier);
+                results = results.filter(r => {
+                    let level = r.tier;
+                    if (level && typeof level === 'object') level = level.level;
+                    return String(level).toLowerCase().replace('tier ', '') === tier;
+                });
             }
 
             renderResults(results);
@@ -97,3 +101,4 @@
     </script>
 </body>
 </html>
+
