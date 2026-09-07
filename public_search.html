@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <style>
         body { font-family: Georgia, serif; background-color: #f4f1ea; color: #333; padding: 20px; }
         #app { max-width: 800px; margin: 0 auto; }
-        input { width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 20px; }
+        input, select { width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 20px; }
         .result { border-bottom: 1px solid #ddd; padding: 10px; }
         .result h3 { margin: 0; }
         .result p { margin: 5px 0; }
@@ -17,69 +17,83 @@
 <body>
     <div id="app">
         <h1>KVSV Public General Search</h1>
-        <p>Searching WikiTree for any name.</p>
-        <input type="text" id="searchInput" placeholder="Enter a name (e.g., George Washington)" />
-        <div style="display: flex; gap: 10px;">
-            <input type="text" id="countyInput" placeholder="County (optional)" />
-            <input type="text" id="stateInput" placeholder="State (optional)" />
-        </div>
+        <p>Searching the KVSV family database.</p>
+        <input type="text" id="searchInput" placeholder="Enter a name (e.g., Bradford, Glass, Kates)" />
+        <select id="tierSelect">
+            <option value="">All Tiers</option>
+            <option value="1">Tier 1</option>
+            <option value="2">Tier 2</option>
+            <option value="2-3">Tier 2-3</option>
+            <option value="3">Tier 3</option>
+            <option value="4">Tier 4</option>
+        </select>
         <div id="resultsList"></div>
     </div>
 
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbx2ECj68qvZyCmhpyLzDFpqkV5ZxNDuoZw9jdwnShHkohBztNxy0j_nKkr6wut_vh69Lg/exec";
+        const API_URL = 'snapshot.json';
         const searchInput = document.getElementById('searchInput');
-        const countyInput = document.getElementById('countyInput');
-        const stateInput = document.getElementById('stateInput');
+        const tierSelect = document.getElementById('tierSelect');
         const resultsList = document.getElementById('resultsList');
+        let masterDatabase = [];
+        let fuse = null;
 
-        async function searchPerson() {
-            const query = searchInput.value.trim();
-            if (!query) return;
-            const [first, ...rest] = query.split(' ');
-            const last = rest.join(' ') || '';
-            const county = countyInput.value.trim();
-            const state = stateInput.value.trim();
-            resultsList.innerHTML = "Searching...";
+        async function loadData() {
             try {
-                const params = new URLSearchParams({ action: 'search', first: first, last: last });
-                if (county) params.append('county', county);
-                if (state) params.append('state', state);
-                const response = await fetch(`${API_URL}?${params.toString()}`);
-                const data = await response.json();
-                if (data.status === "success") {
-                    if (data.results.length === 0 && (county || state)) {
-                        resultsList.innerHTML = "<p>No matches with that name AND location - try leaving County/State blank to see all name matches.</p>";
-                    } else {
-                        renderResults(data.results);
-                    }
-                } else {
-                    resultsList.innerHTML = `<p>Error: ${data.message}</p>`;
-                }
+                const response = await fetch(API_URL);
+                masterDatabase = await response.json();
+                fuse = new Fuse(masterDatabase, {
+                    keys: ['full_name', 'entity_id'],
+                    threshold: 0.3,
+                    ignoreLocation: true
+                });
+                renderResults(masterDatabase);
             } catch (error) {
-                resultsList.innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+                resultsList.innerHTML = '<p>Error loading data: ' + error.message + '</p>';
             }
+        }
+
+        function searchPerson() {
+            const query = searchInput.value.trim();
+            const tier = tierSelect.value;
+            let results = masterDatabase;
+
+            if (query) {
+                results = fuse.search(query).map(r => r.item);
+            }
+
+            if (tier) {
+                results = results.filter(r => String(r.tier && r.tier.level) === tier);
+            }
+
+            renderResults(results);
         }
 
         function renderResults(results) {
             if (!results.length) {
-                resultsList.innerHTML = "<p>No results found.</p>";
+                resultsList.innerHTML = '<p>No results found.</p>';
                 return;
             }
-            resultsList.innerHTML = results.map(r => `
-                <div class="result">
-                    <h3><a href="${r.profileUrl}" target="_blank">${r.firstName} ${r.lastName}</a></h3>
-                    <p><strong>Birth:</strong> ${r.birthDate || 'Unknown'} (${r.birthLocation || 'Unknown'})</p>
-                    <p><strong>Death:</strong> ${r.deathDate || 'Unknown'} (${r.deathLocation || 'Unknown'})</p>
-                </div>
-            `).join('');
+            resultsList.innerHTML = results.map(r => {
+                const vitals = r.vitals || {};
+                const tier = r.tier || {};
+                const name = r.full_name || 'Unknown';
+                const dob = vitals.dob || 'Unknown';
+                const place = vitals.place || 'Unknown';
+                const level = tier.level || 'Unknown';
+                const narrative = r.narrative || '';
+                return `<div class="result">
+                    <h3>${name}</h3>
+                    <p><strong>Tier:</strong> ${level}</p>
+                    <p><strong>Born:</strong> ${dob} (${place})</p>
+                    <p>${narrative}</p>
+                </div>`;
+            }).join('');
         }
 
-        let debounceTimer;
-        searchInput.addEventListener('input', () => {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(searchPerson, 500);
-        });
+        searchInput.addEventListener('input', searchPerson);
+        tierSelect.addEventListener('change', searchPerson);
+        loadData();
     </script>
 </body>
 </html>
