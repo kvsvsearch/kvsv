@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Portals — Coming Soon — KVSV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+    --heading: #1a56db;
+    --accent: #c0392b;
+    --info-bg: #f8d7da;
+    --rule: #d8d8d8;
+    --muted: #5a5a5a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+  }
+  .letterhead {
+    border-bottom: 3px solid var(--heading);
+    padding: 28px 24px 18px;
+    text-align: center;
+  }
+  .letterhead .mark {
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    font-size: 0.95rem;
+    color: var(--accent);
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  h1 {
+    color: var(--heading);
+    font-size: 1.9rem;
+    font-weight: 900;
+    margin: 0 0 18px;
+    line-height: 1.25;
+  }
+  p { margin: 0 0 16px; font-size: 1.05rem; }
+  .disclaimer {
+    background: var(--info-bg);
+    border-left: 4px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 2px;
+    font-style: italic;
+    font-size: 0.95rem;
+    margin: 24px 0 32px;
+  }
+  .disclaimer p { margin: 0; font-size: inherit; }
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  input[type="email"], input[type="text"] {
+    flex: 1 1 200px;
+    padding: 12px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 0.95rem;
+  }
+  button {
+    background: var(--heading);
+    color: #ffffff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 3px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  button:hover { background: #143e9e; }
+  .confirm {
+    display: none;
+    color: var(--heading);
+    font-weight: 700;
+    margin: 4px 0 0;
+  }
+  .search-embed {
+    margin-top: 48px;
+    border-top: 1px solid var(--rule);
+    padding-top: 32px;
+  }
+  .search-embed h2 {
+    color: var(--heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .search-embed .sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+  .embed-frame {
+    width: 100%;
+    height: 520px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+  }
+  .embed-fallback {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    border: 1px dashed var(--rule);
+    border-radius: 4px;
+  }
+  .embed-fallback a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ffffff;
+    background: var(--accent);
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 20px 24px 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <div class="mark">KVSV</div>
+</div>
+
+<main>
+  <h1>Your family's own research portal — coming soon</h1>
+  <p>A private, password-protected space for your own family's records — built the same way this project builds its own: sourced, tiered, and never silently overwritten. Includes the Oral History program, so your family's own voice becomes part of the record alongside the documents.</p>
+
+  <div class="disclaimer">
+    <p>This is a preview, not a live account system yet. No login credentials are being issued — leave your email below and we'll reach out when it's ready.</p>
+  </div>
+
+  <form id="notify-form" onsubmit="event.preventDefault(); document.getElementById('notify-form').style.display='none'; document.getElementById('confirm-msg').style.display='block';">
+    <input type="text" placeholder="Name (optional)" aria-label="Name (optional)">
+    <input type="email" placeholder="Email address" aria-label="Email address" required>
+    <button type="submit">Notify me</button>
+  </form>
+  <p class="confirm" id="confirm-msg">Thanks — we'll be in touch.</p>
+
+  <div class="search-embed">
+    <h2>Try Public Search now</h2>
+    <p class="sub">This page is a real, working feature today, not just a waitlist — the same live search from the Public Search tab, embedded below.</p>
+    <iframe class="embed-frame" src="public_search.html" title="KVSV Public General Search" loading="lazy"
+      onerror="this.style.display='none'; document.getElementById('embed-fallback').style.display='block';"></iframe>
+    <div class="embed-fallback" id="embed-fallback">
+      <p>The embedded search couldn't load here.</p>
+      <a href="public_search.html">Open Public Search directly →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Not connected to a live signup system yet. KVSV — research grounded in source tiers and family testimony.
+</footer>
+
+</body>
+</html>

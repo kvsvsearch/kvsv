@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — KVSV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+    --heading: #1a56db;
+    --accent: #c0392b;
+    --info-bg: #f8d7da;
+    --rule: #d8d8d8;
+    --muted: #5a5a5a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+  }
+  .letterhead {
+    border-bottom: 3px solid var(--heading);
+    padding: 28px 24px 18px;
+    text-align: center;
+  }
+  .letterhead .mark {
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    font-size: 0.95rem;
+    color: var(--accent);
+  }
+  .letterhead h1 {
+    margin: 6px 0 4px;
+    font-size: 2rem;
+    color: var(--heading);
+    font-weight: 900;
+  }
+  .letterhead p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  section {
+    margin-bottom: 44px;
+  }
+  section:last-of-type { margin-bottom: 0; }
+  h2 {
+    color: var(--heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+  p { margin: 0 0 12px; }
+  .lede {
+    font-size: 1.08rem;
+  }
+  .tier-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: tier;
+  }
+  .tier-list li {
+    counter-increment: tier;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    padding: 10px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .tier-list li:first-child { border-top: none; }
+  .tier-list li::before {
+    content: counter(tier);
+    font-weight: 900;
+    color: var(--accent);
+    font-size: 1.1rem;
+  }
+  .tier-list strong { color: var(--text); }
+  .info-box {
+    background: var(--info-bg);
+    border-left: 4px solid var(--accent);
+    padding: 16px 18px;
+    border-radius: 2px;
+  }
+  .info-box p:last-child { margin-bottom: 0; }
+  dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 8px 20px;
+  }
+  dt {
+    font-weight: 700;
+    color: var(--heading);
+  }
+  dd {
+    margin: 0;
+  }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 20px 24px 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  a { color: var(--heading); }
+  @media (max-width: 480px) {
+    dl { grid-template-columns: 1fr; }
+    dt { margin-top: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <div class="mark">KVSV</div>
+  <h1>About this research</h1>
+  <p>What you're looking at, and how it was built</p>
+</div>
+
+<main>
+
+  <section>
+    <p class="lede">KVSV is a genealogy research project centered on Coosa County, Alabama — the families connected to it, and the Creek Nation history that shaped this part of the Southeast. Every entry here is built from primary records and family testimony, not assembled from someone else's tree. This is source-first research, not a commercial ancestry database.</p>
+  </section>
+
+  <section>
+    <h2>How to read a Tier</h2>
+    <p>Every person in this database carries a Tier — a plain measure of how strong the evidence behind them is. Here's what each one means:</p>
+    <ol class="tier-list">
+      <li><span><strong>Primary record.</strong> An actual document — a census entry, a deed, a treaty, a will.</span></li>
+      <li><span><strong>Strong secondary source.</strong> Independently corroborated by more than one record or account.</span></li>
+      <li><span><strong>Published transcription or secondary source.</strong> Not yet cross-checked against the original.</span></li>
+      <li><span><strong>A lead.</strong> Often a family tree or a screenshot, logged because it might matter later — not yet verified.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>How this research is done</h2>
+    <p>Primary sources come first. No fact is stated without a source behind it. When two sources disagree, the disagreement is logged, not quietly resolved. Nothing is merged into the record without review.</p>
+  </section>
+
+  <section>
+    <h2>What's public vs. private</h2>
+    <div class="info-box">
+      <p>Public Search shows only the fields cleared for public display. Full family research, restricted notes, and information about living people stay in the private portals — not here.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Terms</h2>
+    <dl>
+      <dt>Entity</dt>
+      <dd>One person tracked in this database.</dd>
+      <dt>Narrative</dt>
+      <dd>The written account of what's known about them, in plain language.</dd>
+      <dt>Citation</dt>
+      <dd>The actual source behind a fact.</dd>
+      <dt>Source Tier</dt>
+      <dd>How strong that source is — see above.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Privacy</h2>
+    <p>No living person's sensitive information is published here without their consent. Restricted genealogy research — the kind that touches people who are still alive — stays behind the private portal, not on this page.</p>
+  </section>
+
+</main>
+
+<footer>
+  KVSV — research grounded in source tiers and family testimony.
+</footer>
+
+</body>
+</html>
