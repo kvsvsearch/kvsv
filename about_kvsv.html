@@ -117,9 +117,55 @@
     font-size: 0.85rem;
   }
   a { color: var(--heading); }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+  .stat {
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+  }
+  .stat-num {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .table-scroll {
+    overflow-x: auto;
+  }
+  table.tier-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+  }
+  .tier-table th {
+    text-align: left;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
+    padding: 8px 10px;
+  }
+  .tier-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.95rem;
+    vertical-align: top;
+  }
+  .tier-table td:last-child { text-align: right; white-space: nowrap; }
+  .tier-table th:last-child { text-align: right; }
   @media (max-width: 480px) {
     dl { grid-template-columns: 1fr; }
     dt { margin-top: 8px; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -134,18 +180,7 @@
 <main>
 
   <section>
-    <p class="lede">KVSV is a genealogy research project centered on Coosa County, Alabama — the families connected to it, and the Creek Nation history that shaped this part of the Southeast. Every entry here is built from primary records and family testimony, not assembled from someone else's tree. This is source-first research, not a commercial ancestry database.</p>
-  </section>
-
-  <section>
-    <h2>How to read a Tier</h2>
-    <p>Every person in this database carries a Tier — a plain measure of how strong the evidence behind them is. Here's what each one means:</p>
-    <ol class="tier-list">
-      <li><span><strong>Primary record.</strong> An actual document — a census entry, a deed, a treaty, a will.</span></li>
-      <li><span><strong>Strong secondary source.</strong> Independently corroborated by more than one record or account.</span></li>
-      <li><span><strong>Published transcription or secondary source.</strong> Not yet cross-checked against the original.</span></li>
-      <li><span><strong>A lead.</strong> Often a family tree or a screenshot, logged because it might matter later — not yet verified.</span></li>
-    </ol>
+    <p class="lede">KVSV is a genealogy research portal and community project centered on lineages and mix-heritages that are often overlooked by mainstream genealogists and institutions — and the branches connected them. The public search portal draws from a vast array of access points, from the U.S. Census to the National Archives, WikiTree, FamilySearch, and more. The records here are public records and are not subject to the same rigorous tier-level standards or protocols as the research arm or commissioned project studies, and should be taken at face value. Every entry in the KVSV databases is built from primary records and source materials, including private and public indexes. KVSV strives to be a "source-first" portal, not a commercial ancestry database, and offers customizable genealogical research frameworks for those wanting to establish canonical trees and lineage mapping. For more on customization, please contact us for details.</p>
   </section>
 
   <section>
@@ -176,7 +211,30 @@
 
   <section>
     <h2>Privacy</h2>
-    <p>No living person's sensitive information is published here without their consent. Restricted genealogy research — the kind that touches people who are still alive — stays behind the private portal, not on this page.</p>
+    <p>No living person's sensitive information is published according to standards. Restricted genealogy research — the kind that touches people who are still alive — stays behind the private portal, not on the public search portal. All private or customized search portals, outside of the researcher's own portal, are password protected and secured in the Cloud.</p>
+  </section>
+
+  <section>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">1,322</div><div class="stat-label">Total entities in this database</div></div>
+      <div class="stat"><div class="stat-num">1,256</div><div class="stat-label">Person records</div></div>
+      <div class="stat"><div class="stat-num">285</div><div class="stat-label">Entities with at least one citation</div></div>
+      <div class="stat"><div class="stat-num">1,037</div><div class="stat-label">Entities with no citation on file yet</div></div>
+    </div>
+    <div class="table-scroll">
+      <table class="tier-table">
+        <thead>
+          <tr><th>Tier</th><th>What it means</th><th>Entities</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Tier 1</strong></td><td>An original document logged directly from the courthouse or archive — for example a deed or marriage record.</td><td>140</td></tr>
+          <tr><td><strong>Tier 2</strong></td><td>A certified transcription or index — census, land patent, or assessor data — cross-corroborated across multiple independent sources.</td><td>30</td></tr>
+          <tr><td><strong>Tier 2/3</strong></td><td>A user-maintained tree checked against a public record, but not itself a primary source.</td><td>182</td></tr>
+          <tr><td><strong>Tier 3</strong></td><td>Corroborated by a named family document (Bible record, family history) not yet independently verified against the underlying courthouse/vital record.</td><td>21</td></tr>
+          <tr><td><strong>Tier 4</strong></td><td>Researcher/family-stated — no independent document located yet. Treated as a real, sourced lead, not a confirmed fact.</td><td>949</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
 </main>
