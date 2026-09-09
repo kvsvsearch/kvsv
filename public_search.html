@@ -9,12 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" />
     <style>
+        * { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         body { font-family: 'Lato', Arial, sans-serif; background-color: #f4f1ea; color: #333; padding: 20px; }
         #app { max-width: 800px; margin: 0 auto; }
-        input, select { width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 20px; }
-        .result { border-bottom: 1px solid #ddd; padding: 10px; }
-        .result h3 { margin: 0; }
-        .result p { margin: 5px 0; }
+        input, select { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1.2em; margin-bottom: 20px; }
+        .result { border-bottom: 1px solid #ddd; padding: 10px; overflow-wrap: break-word; }
+        .result h3 { margin: 0; overflow-wrap: break-word; word-break: break-word; }
+        .result p { margin: 5px 0; overflow-wrap: break-word; word-break: break-word; }
     </style>
 </head>
 <body>

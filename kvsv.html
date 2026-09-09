@@ -49,6 +49,8 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
       }
       body {
         background: var(--paper);
@@ -138,6 +140,17 @@
           flex: 0 0 auto;
           padding: 9px 12px;
           font-size: 0.82rem;
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+        }
+        .framework {
+          padding: 20px 16px;
+        }
+        .tier-table th,
+        .tier-table td {
+          padding: 6px 6px;
+          font-size: 0.8rem;
         }
       }
       .tab.active {
@@ -401,6 +414,13 @@
       .tier-table td {
         padding: 8px 10px;
         border-bottom: 1px solid #ccc;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      .table-scroll {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
       }
       .stat-row {
         display: flex;
@@ -1293,16 +1313,18 @@
           </p>
           <br />
           <div class="stat-row" id="statRow"></div>
-          <table class="tier-table" id="tierTable">
-            <thead>
-              <tr>
-                <th>Tier</th>
-                <th>What it means</th>
-                <th>Entities</th>
-              </tr>
-            </thead>
-            <tbody id="tierTableBody"></tbody>
-          </table>
+          <div class="table-scroll">
+            <table class="tier-table" id="tierTable">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>What it means</th>
+                  <th>Entities</th>
+                </tr>
+              </thead>
+              <tbody id="tierTableBody"></tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -1423,16 +1445,18 @@
           </p>
           <br />
           <div class="stat-row" id="statRow2"></div>
-          <table class="tier-table" id="tierTable2">
-            <thead>
-              <tr>
-                <th>Tier</th>
-                <th>What it means</th>
-                <th>Entities</th>
-              </tr>
-            </thead>
-            <tbody id="tierTableBody2"></tbody>
-          </table>
+          <div class="table-scroll">
+            <table class="tier-table" id="tierTable2">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>What it means</th>
+                  <th>Entities</th>
+                </tr>
+              </thead>
+              <tbody id="tierTableBody2"></tbody>
+            </table>
+          </div>
         </div>
       </div>
 

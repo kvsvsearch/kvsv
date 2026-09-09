@@ -16,7 +16,7 @@
     --rule: #d8d8d8;
     --muted: #5a5a5a;
   }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     margin: 0;
     background: var(--bg);
@@ -109,8 +109,23 @@
   .embed-frame {
     width: 100%;
     height: 520px;
+    height: clamp(420px, 70vh, 900px);
     border: 1px solid var(--rule);
     border-radius: 4px;
+  }
+  .embed-direct-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  .embed-direct-link a {
+    color: var(--heading);
+    font-weight: 700;
+  }
+  @media (max-width: 600px) {
+    input[type="email"], input[type="text"] {
+      font-size: 1rem;
+    }
   }
   .embed-fallback {
     display: none;
@@ -164,6 +179,7 @@
     <p class="sub">This page is a real, working feature today, not just a waitlist — the same live search from the Public Search tab, embedded below.</p>
     <iframe class="embed-frame" src="public_search.html" title="KVSV Public General Search" loading="lazy"
       onerror="this.style.display='none'; document.getElementById('embed-fallback').style.display='block';"></iframe>
+    <p class="embed-direct-link"><a href="public_search.html">Open Public Search directly →</a></p>
     <div class="embed-fallback" id="embed-fallback">
       <p>The embedded search couldn't load here.</p>
       <a href="public_search.html">Open Public Search directly →</a>
