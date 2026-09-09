@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KVSV Public General Search</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" />
@@ -12,98 +11,111 @@
         * { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         body { font-family: 'Lato', Arial, sans-serif; background-color: #f4f1ea; color: #333; padding: 20px; }
         #app { max-width: 800px; margin: 0 auto; }
-        input, select { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1.2em; margin-bottom: 20px; }
+        input { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1.2em; margin-bottom: 8px; }
+        .subnote { font-size: 0.9em; color: #666; margin: 0 0 20px 0; }
         .result { border-bottom: 1px solid #ddd; padding: 10px; overflow-wrap: break-word; }
         .result h3 { margin: 0; overflow-wrap: break-word; word-break: break-word; }
         .result p { margin: 5px 0; overflow-wrap: break-word; word-break: break-word; }
+        .source-tag { display: inline-block; font-size: 0.75em; font-weight: 700; text-transform: uppercase;
+            background: #2c5f2d; color: #fff; padding: 2px 8px; border-radius: 3px; margin-bottom: 4px; }
+        .source-link { font-size: 0.85em; }
+        .status { color: #666; font-style: italic; }
+        .error { color: #a33; }
     </style>
 </head>
 <body>
     <div id="app">
         <h1>KVSV Public General Search</h1>
-        <p>Searching the KVSV family database.</p>
-        <input type="text" id="searchInput" placeholder="Enter a name (e.g., Bradford, Glass, Kates)" />
-        <select id="tierSelect">
-            <option value="">All Tiers</option>
-            <option value="1">Tier 1</option>
-            <option value="2">Tier 2</option>
-            <option value="2-3">Tier 2-3</option>
-            <option value="3">Tier 3</option>
-            <option value="4">Tier 4</option>
-        </select>
+        <p class="subnote">Searches public genealogy records from external public sources (WikiTree and the U.S. National Archives, including Dawes Rolls / Five Civilized Tribes enrollment records). This does not search KVSV's private research database — that is a separate, non-public project.</p>
+        <input type="text" id="searchInput" placeholder="Enter a last name (e.g., Rogers, Bradford, Glass)" autocomplete="off" />
         <div id="resultsList"></div>
     </div>
 
     <script>
-        const API_URL = 'snapshot.json';
+        // Public records proxy -- calls external public search APIs server-side
+        // (browsers can't call api.wikitree.com or catalog.archives.gov directly
+        // due to CORS / secret-key requirements). This proxy also applies the
+        // WikiTree region filter: Americas, Europe, and Africa only -- no
+        // Australia/Asia/Middle East. Never reads KVSV's private database.
+        const PROXY_BASE = 'https://web-production-1d0fb.up.railway.app';
+
         const searchInput = document.getElementById('searchInput');
-        const tierSelect = document.getElementById('tierSelect');
         const resultsList = document.getElementById('resultsList');
-        let masterDatabase = [];
-        let fuse = null;
+        let debounceTimer = null;
 
-        async function loadData() {
-            try {
-                const response = await fetch(API_URL);
-                masterDatabase = await response.json();
-                fuse = new Fuse(masterDatabase, {
-                    keys: ['full_name', 'entity_id'],
-                    threshold: 0.3,
-                    ignoreLocation: true
-                });
-                renderResults(masterDatabase);
-            } catch (error) {
-                resultsList.innerHTML = '<p>Error loading data: ' + error.message + '</p>';
-            }
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str == null ? '' : String(str);
+            return div.innerHTML;
         }
 
-        function searchPerson() {
+        async function searchPublicRecords() {
             const query = searchInput.value.trim();
-            const tier = tierSelect.value;
-            let results = masterDatabase;
-
-            if (query) {
-                results = fuse.search(query).map(r => r.item);
-            }
-
-            if (tier) {
-                results = results.filter(r => {
-                    let level = r.tier;
-                    if (level && typeof level === 'object') level = level.level;
-                    return String(level).toLowerCase().replace('tier ', '') === tier;
-                });
-            }
-
-            renderResults(results);
-        }
-
-        function renderResults(results) {
-            if (!results.length) {
-                resultsList.innerHTML = '<p>No results found.</p>';
+            if (!query) {
+                resultsList.innerHTML = '';
                 return;
             }
-            resultsList.innerHTML = results.map(r => {
-                const vitals = r.vitals || {};
-                const tier = r.tier || {};
-                const name = r.full_name || 'Unknown';
-                const dob = vitals.dob || 'Unknown';
-                const place = vitals.place || 'Unknown';
-                const level = tier.level || 'Unknown';
-                const narrative = r.narrative || '';
+            resultsList.innerHTML = '<p class="status">Searching public records...</p>';
+
+            const wikitreeUrl = `${PROXY_BASE}/api/wikitree-search?lastName=${encodeURIComponent(query)}`;
+            const naraUrl = `${PROXY_BASE}/api/nara-search?q=${encodeURIComponent(query)}`;
+
+            const [wikitreeOutcome, naraOutcome] = await Promise.allSettled([
+                fetch(wikitreeUrl).then(r => { if (!r.ok) throw new Error('WikiTree service returned ' + r.status); return r.json(); }),
+                fetch(naraUrl).then(r => { if (!r.ok) throw new Error('National Archives service returned ' + r.status); return r.json(); }),
+            ]);
+
+            let combined = [];
+            const errors = [];
+            if (wikitreeOutcome.status === 'fulfilled') {
+                combined = combined.concat(wikitreeOutcome.value.results || []);
+            } else {
+                errors.push('WikiTree: ' + wikitreeOutcome.reason.message);
+            }
+            if (naraOutcome.status === 'fulfilled') {
+                combined = combined.concat(naraOutcome.value.results || []);
+            } else {
+                errors.push('National Archives: ' + naraOutcome.reason.message);
+            }
+
+            renderResults(combined, errors);
+        }
+
+        function renderResults(results, errors) {
+            const errorBanner = (errors && errors.length)
+                ? `<p class="error">Some sources didn't respond: ${escapeHtml(errors.join('; '))}</p>`
+                : '';
+            if (!results.length) {
+                resultsList.innerHTML = errorBanner + '<p>No public records found for that name.</p>';
+                return;
+            }
+            resultsList.innerHTML = errorBanner + results.map(r => {
+                const name = escapeHtml(r.name || 'Unknown');
+                const birth = r.birthDate ? escapeHtml(r.birthDate) : '';
+                const birthPlace = r.birthLocation ? escapeHtml(r.birthLocation) : '';
+                const death = r.deathDate ? escapeHtml(r.deathDate) : '';
+                const deathPlace = r.deathLocation ? escapeHtml(r.deathLocation) : '';
+                const note = r.note ? escapeHtml(r.note) : '';
+                const source = escapeHtml(r.source || 'Public record');
+                const sourceUrl = r.sourceUrl || '#';
+                const bornLine = birth ? `<p><strong>Born:</strong> ${birth}${birthPlace ? ' (' + birthPlace + ')' : ''}</p>` : '';
+                const diedLine = death ? `<p><strong>Died:</strong> ${death}${deathPlace ? ' (' + deathPlace + ')' : ''}</p>` : '';
+                const noteLine = note ? `<p>${note}</p>` : '';
                 return `<div class="result">
+                    <span class="source-tag">${source}</span>
                     <h3>${name}</h3>
-                    <p><strong>Tier:</strong> ${level}</p>
-                    <p><strong>Born:</strong> ${dob} (${place})</p>
-                    <p>${narrative}</p>
+                    ${bornLine}
+                    ${diedLine}
+                    ${noteLine}
+                    <p class="source-link"><a href="${sourceUrl}" target="_blank" rel="noopener">View full record on ${source}</a></p>
                 </div>`;
             }).join('');
         }
 
-        searchInput.addEventListener('input', searchPerson);
-        tierSelect.addEventListener('change', searchPerson);
-        loadData();
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(searchPublicRecords, 400);
+        });
     </script>
 </body>
 </html>
-
-
