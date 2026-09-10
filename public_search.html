@@ -8,19 +8,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" />
     <style>
-        * { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-        body { font-family: 'Lato', Arial, sans-serif; background-color: #f4f1ea; color: #333; padding: 20px; }
+        * { box-sizing: border-box; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+        body { font-family: 'Lato', Arial, sans-serif; background-color: #ffffff; color: #000000; padding: 40px 20px; line-height: 1.6; }
         #app { max-width: 800px; margin: 0 auto; }
-        input { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1.2em; margin-bottom: 8px; }
-        .subnote { font-size: 0.9em; color: #666; margin: 0 0 20px 0; }
-        .result { border-bottom: 1px solid #ddd; padding: 10px; overflow-wrap: break-word; }
-        .result h3 { margin: 0; overflow-wrap: break-word; word-break: break-word; }
+        h1 { color: #1a56db; font-size: 1.9rem; margin: 0 0 14px; padding-bottom: 14px; border-bottom: 3px solid #1a56db; }
+        input { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1.2em; margin-bottom: 8px; border: 1px solid #d8d8d8; border-radius: 3px; }
+        input:focus { outline: none; border-color: #1a56db; }
+        .subnote { font-size: 0.9em; color: #5a5a5a; margin: 0 0 20px 0; background: #f8d7da; border-left: 4px solid #c0392b; padding: 12px 16px; border-radius: 2px; }
+        .result { border-bottom: 1px solid #d8d8d8; padding: 10px; overflow-wrap: break-word; }
+        .result h3 { margin: 0; color: #000000; overflow-wrap: break-word; word-break: break-word; }
         .result p { margin: 5px 0; overflow-wrap: break-word; word-break: break-word; }
         .source-tag { display: inline-block; font-size: 0.75em; font-weight: 700; text-transform: uppercase;
-            background: #2c5f2d; color: #fff; padding: 2px 8px; border-radius: 3px; margin-bottom: 4px; }
+            background: #1a56db; color: #fff; padding: 2px 8px; border-radius: 3px; margin-bottom: 4px; }
         .source-link { font-size: 0.85em; }
-        .status { color: #666; font-style: italic; }
-        .error { color: #a33; }
+        .source-link a { color: #1a56db; }
+        .status { color: #5a5a5a; font-style: italic; }
+        .error { color: #c0392b; }
     </style>
 </head>
 <body>
