@@ -8,46 +8,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" />
     <style>
-        * { box-sizing: border-box; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-        :root {
-            --bg: #ffffff;
-            --text: #000000;
-            --heading: #1a56db;
-            --accent: #c0392b;
-            --info-bg: #f8d7da;
-            --rule: #d8d8d8;
-            --muted: #5a5a5a;
-        }
-        body { font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 0 0 60px; }
-        #app { max-width: 720px; margin: 0 auto; padding: 40px 24px 0; }
-        .letterhead { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 3px solid var(--heading); }
-        .letterhead .mark { font-weight: 900; letter-spacing: 0.12em; font-size: 0.85rem; color: var(--accent); }
-        h1 { color: var(--heading); font-size: 1.9rem; font-weight: 900; margin: 6px 0 4px; }
-        .subnote { font-size: 0.98rem; color: var(--muted); margin: 0 0 24px 0; background: var(--info-bg); border-left: 4px solid var(--accent); padding: 14px 18px; border-radius: 2px; }
-        input { width: 100%; box-sizing: border-box; padding: 12px 14px; font-size: 1.05em; margin-bottom: 8px; border: 1px solid var(--rule); border-radius: 3px; font-family: inherit; }
-        input:focus { outline: none; border-color: var(--heading); }
-        #resultsList:empty::before {
-            content: "Start typing a last name above to search public genealogy records.";
-            display: block; color: var(--muted); font-style: italic; text-align: center;
-            padding: 32px 0; margin-top: 8px; border-top: 1px solid var(--rule);
-        }
-        .result { border-bottom: 1px solid var(--rule); padding: 14px 0; overflow-wrap: break-word; }
-        .result h3 { margin: 4px 0; color: var(--text); overflow-wrap: break-word; word-break: break-word; }
+        * { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+        body { font-family: 'Lato', Arial, sans-serif; background-color: #f4f1ea; color: #333; padding: 20px; }
+        #app { max-width: 800px; margin: 0 auto; }
+        input { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1.2em; margin-bottom: 8px; }
+        .subnote { font-size: 0.9em; color: #666; margin: 0 0 20px 0; }
+        .result { border-bottom: 1px solid #ddd; padding: 10px; overflow-wrap: break-word; }
+        .result h3 { margin: 0; overflow-wrap: break-word; word-break: break-word; }
         .result p { margin: 5px 0; overflow-wrap: break-word; word-break: break-word; }
-        .source-tag { display: inline-block; font-size: 0.72em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
-            background: var(--heading); color: #fff; padding: 2px 8px; border-radius: 3px; margin-bottom: 4px; }
+        .source-tag { display: inline-block; font-size: 0.75em; font-weight: 700; text-transform: uppercase;
+            background: #2c5f2d; color: #fff; padding: 2px 8px; border-radius: 3px; margin-bottom: 4px; }
         .source-link { font-size: 0.85em; }
-        .source-link a { color: var(--heading); font-weight: 700; }
-        .status { color: var(--muted); font-style: italic; }
-        .error { color: var(--accent); }
+        .status { color: #666; font-style: italic; }
+        .error { color: #a33; }
     </style>
 </head>
 <body>
     <div id="app">
-        <div class="letterhead">
-            <div class="mark">KVSV</div>
-            <h1>KVSV Public General Search</h1>
-        </div>
+        <h1>KVSV Public General Search</h1>
         <p class="subnote">Searches public genealogy records from external public sources (WikiTree and the U.S. National Archives, including Dawes Rolls / Five Civilized Tribes enrollment records). This does not search KVSV's private research database — that is a separate, non-public project.</p>
         <input type="text" id="searchInput" placeholder="Enter a last name (e.g., Rogers, Bradford, Glass)" autocomplete="off" />
         <div id="resultsList"></div>
