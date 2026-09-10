@@ -123,11 +123,22 @@
             if (values.includes(previous)) select.value = previous;
         }
 
+        // National Archives (NARA) records are U.S. federal records by definition,
+        // but the NARA API doesn't return a location string to parse -- without this,
+        // every NARA result was invisible to the country filter (never tagged as
+        // "United States"). Only applies when no location string exists to parse.
+        function inferCountry(loc, source) {
+            if (loc.country) return loc.country;
+            if (source === 'National Archives (NARA)') return 'United States';
+            return '';
+        }
+
         function populateFilters(results) {
             const countries = [], states = [], cities = [];
             results.forEach(r => {
                 [parseLocation(r.birthLocation), parseLocation(r.deathLocation)].forEach(loc => {
-                    if (loc.country) countries.push(loc.country);
+                    const country = inferCountry(loc, r.source);
+                    if (country) countries.push(country);
                     if (loc.state) states.push(loc.state);
                     if (loc.city) cities.push(loc.city);
                 });
@@ -141,8 +152,10 @@
         function passesFilters(r) {
             const bLoc = parseLocation(r.birthLocation);
             const dLoc = parseLocation(r.deathLocation);
+            const bCountry = inferCountry(bLoc, r.source);
+            const dCountry = inferCountry(dLoc, r.source);
             const cVal = filterCountry.value, sVal = filterState.value, tVal = filterCity.value;
-            const matchCountry = !cVal || bLoc.country === cVal || dLoc.country === cVal;
+            const matchCountry = !cVal || bCountry === cVal || dCountry === cVal;
             const matchState = !sVal || bLoc.state === sVal || dLoc.state === sVal;
             const matchCity = !tVal || bLoc.city === tVal || dLoc.city === tVal;
             return matchCountry && matchState && matchCity;
