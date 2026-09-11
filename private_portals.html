@@ -193,6 +193,17 @@ th {
   background: #fff;
 }
 .person .p-name { font-weight: 700; font-size: 0.85rem; }
+.person .p-name::before {
+  content: "";
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-right: 6px;
+  vertical-align: -2px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a56db'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 .person .p-meta { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 .chk {
   display: flex;
@@ -204,11 +215,72 @@ th {
 }
 .chk input { width: 16px; height: 16px; }
 .chk .hint { color: var(--muted); font-size: 0.78rem; margin-left: auto; }
+.people-table td:first-child {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a56db'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: 10px 50%;
+  background-size: 15px 15px;
+  padding-left: 34px;
+}
+.members-table td:first-child {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a56db'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: 10px 50%;
+  background-size: 15px 15px;
+  padding-left: 34px;
+}
+.doc-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  padding: 12px 14px;
+  background: #fff;
+  margin-bottom: 8px;
+}
+.doc-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a56db'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2l4 4h-4V4zM8 12h8v2H8v-2zm0 4h8v2H8v-2z'/></svg>");
+}
+.doc-name { font-weight: 700; font-size: 0.9rem; }
+.doc-meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+.photo-card {
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  overflow: hidden;
+  background: #fff;
+}
+.photo-thumb {
+  height: 110px;
+  background-color: var(--tint);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23aaaaaa'><path d='M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 42px 42px;
+}
+.photo-caption {
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  border-top: 1px solid var(--rule-soft);
+  color: var(--ink-soft);
+}
 .oral-card {
   background: var(--oral-bg);
   border-radius: 3px;
-  padding: 22px 24px 20px;
-  margin-top: 14px;
+  padding: 18px 22px 16px;
+  margin-top: 10px;
 }
 .oral-head {
   display: flex;
@@ -218,7 +290,7 @@ th {
 }
 .oral-name {
   font-weight: 900;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--ink);
 }
 .oral-recorded {
@@ -227,9 +299,9 @@ th {
   font-style: italic;
 }
 .oral-attest {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--ink-soft);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .oral-quote {
   font-style: italic;
@@ -284,7 +356,7 @@ th {
 .oral-tags {
   display: flex;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 14px;
 }
 .oral-tag {
   display: inline-block;
@@ -357,17 +429,18 @@ footer {
   .pane { padding: 18px 16px 30px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .tree { grid-template-columns: 1fr 1fr; }
+  .photo-grid { grid-template-columns: 1fr; }
   .oral-head { flex-direction: column; align-items: flex-start; gap: 2px; }
 }
 </style>
 </head>
 <body>
 
-<div class="demo-banner">Demo only - no real family records - no authentication - not connected to any live system</div>
+<div class="demo-banner">Demo only - no real records - no authentication - not connected to live system</div>
 
 <header class="letterhead">
   <div class="mark">KVSV</div>
-  <div class="sub">Private Family Portal - Prototype Preview</div>
+  <div class="sub">Private Family Portal Prototype Preview</div>
 </header>
 
 <input type="radio" name="p" id="p-overview" class="rad" checked>
@@ -434,8 +507,8 @@ footer {
 
       <div class="grid-4">
         <div class="stat"><div class="num">12</div><div class="lbl">People</div></div>
-        <div class="stat"><div class="num">0</div><div class="lbl">Documents</div></div>
-        <div class="stat"><div class="num">0</div><div class="lbl">Media</div></div>
+        <div class="stat"><div class="num">3</div><div class="lbl">Documents</div></div>
+        <div class="stat"><div class="num">5</div><div class="lbl">Media</div></div>
         <div class="stat"><div class="num">4</div><div class="lbl">Research Log</div></div>
       </div>
 
@@ -455,7 +528,7 @@ footer {
       <h2>People</h2>
       <p class="lede">Every person attached to this portal. All names below are fictional demo placeholders.</p>
 
-      <table>
+      <table class="people-table">
         <thead><tr><th>Name</th><th>Born</th><th>Location</th><th>Relationship</th></tr></thead>
         <tbody>
           <tr><td>Sample Person 1</td><td>1900</td><td>Demo City, Demo State</td><td>Great-grandparent</td></tr>
@@ -503,13 +576,87 @@ footer {
 
     <section id="s-docs">
       <h2>Documents &amp; Media</h2>
-      <p class="lede">A place for scanned records, photos, and family media. Upload is not enabled in this demo.</p>
+      <p class="lede">A place for scanned records, photos, and family media. All entries below are demo placeholders. Upload is not enabled in this demo.</p>
 
       <h3>Documents</h3>
-      <div class="empty">No documents yet. Upload will open when the real portal launches.</div>
 
-      <h3>Media</h3>
-      <div class="empty">No photos or media yet. Upload will open when the real portal launches.</div>
+      <div class="doc-card">
+        <div class="doc-icon"></div>
+        <div>
+          <div class="doc-name">Sample Census Record 1910.pdf</div>
+          <div class="doc-meta">PDF &middot; 2.4 MB &middot; demo placeholder</div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon"></div>
+        <div>
+          <div class="doc-name">Sample Marriage License 1900.pdf</div>
+          <div class="doc-meta">PDF &middot; 1.1 MB &middot; demo placeholder</div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon"></div>
+        <div>
+          <div class="doc-name">Sample Family Bible Transcription.docx</div>
+          <div class="doc-meta">DOCX &middot; 240 KB &middot; demo placeholder</div>
+        </div>
+      </div>
+
+      <h3>Media - Photos</h3>
+      <div class="photo-grid">
+        <div class="photo-card">
+          <div class="photo-thumb"></div>
+          <div class="photo-caption">Sample photo - portrait</div>
+        </div>
+        <div class="photo-card">
+          <div class="photo-thumb"></div>
+          <div class="photo-caption">Sample photo - homestead</div>
+        </div>
+        <div class="photo-card">
+          <div class="photo-thumb"></div>
+          <div class="photo-caption">Sample photo - family group</div>
+        </div>
+      </div>
+
+      <h3>Media - Audio</h3>
+
+      <div class="oral-card">
+        <div class="oral-head">
+          <div class="oral-name">Sample Audio Clip 1</div>
+          <div class="oral-recorded">recorded - example</div>
+        </div>
+        <div class="oral-attest">Demo audio placeholder - not a real recording</div>
+        <div class="oral-controls">
+          <button class="oral-play" type="button" onclick="var w=this.parentNode.querySelector('.oral-wave'); if(w.dataset.playing==='1'){w.dataset.playing='0'; this.textContent='\u25B6';}else{w.dataset.playing='1'; this.textContent='\u275A\u275A';}">&#9654;</button>
+          <div class="oral-wave" aria-hidden="true">
+            <span style="height:6px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:6px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:14px"></span><span style="height:24px"></span><span style="height:12px"></span>
+          </div>
+          <div class="oral-dur">1:45</div>
+        </div>
+        <div class="oral-tags">
+          <span class="oral-tag">audio</span>
+          <span class="oral-tag">demo</span>
+        </div>
+      </div>
+
+      <div class="oral-card" style="margin-top:14px;">
+        <div class="oral-head">
+          <div class="oral-name">Sample Audio Clip 2</div>
+          <div class="oral-recorded">recorded - example</div>
+        </div>
+        <div class="oral-attest">Demo audio placeholder - not a real recording</div>
+        <div class="oral-controls">
+          <button class="oral-play" type="button" onclick="var w=this.parentNode.querySelector('.oral-wave'); if(w.dataset.playing==='1'){w.dataset.playing='0'; this.textContent='\u25B6';}else{w.dataset.playing='1'; this.textContent='\u275A\u275A';}">&#9654;</button>
+          <div class="oral-wave" aria-hidden="true">
+            <span style="height:6px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:6px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:14px"></span><span style="height:24px"></span><span style="height:12px"></span>
+          </div>
+          <div class="oral-dur">2:38</div>
+        </div>
+        <div class="oral-tags">
+          <span class="oral-tag">audio</span>
+          <span class="oral-tag">demo</span>
+        </div>
+      </div>
     </section>
 
     <section id="s-oral">
@@ -564,7 +711,7 @@ footer {
       <h2>Members</h2>
       <p class="lede">Who can view or edit this portal. All members below are demo placeholders.</p>
 
-      <table>
+      <table class="members-table">
         <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td>Sample Owner</td><td>Owner</td><td><span class="tag ok">Active</span></td></tr>
