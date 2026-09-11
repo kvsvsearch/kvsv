@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KVSV - Contribute</title>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 :root {
   --paper: #ffffff;
@@ -128,7 +129,7 @@ footer {
 </head>
 <body>
 
-<div class="demo-banner">Demo Mode - No Data Submitted - Not Connected To Any Live System</div>
+<div class="demo-banner">Submissions are reviewed by KVSV. Nothing is published automatically.</div>
 
 <div class="wrap">
 
@@ -264,16 +265,20 @@ footer {
       </label>
     </fieldset>
 
+    <div class="field">
+      <div class="cf-turnstile" data-sitekey="REPLACE_WITH_TURNSTILE_SITE_KEY" data-callback="onTurnstileSuccess"></div>
+    </div>
+
     <div class="submit-row">
-      <button type="submit" class="submit-btn">Submit Contribution</button>
+      <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit Contribution</button>
     </div>
 
   </form>
 
   <div class="receipt" id="receipt">
     <h3>Thank you. Your family research submission has been received.</h3>
-    <p><strong>Case ID:</strong> KVSV-2026-0001</p>
-    <p><strong>Status:</strong> Intake review</p>
+    <p><strong>Case ID:</strong> <span id="receipt-case-id">(pending)</span></p>
+    <p><strong>Status:</strong> <span id="receipt-status">Intake review</span></p>
     <p>Your submission is not automatically published. KVSV researchers will review the information, evaluate available evidence, and may contact you for clarification or documentation.</p>
     <p style="margin-top:12px; font-size:0.82rem; color:var(--muted); font-style:italic;">DEMO MODE - no data was transmitted, stored, or emailed.</p>
   </div>
@@ -315,12 +320,81 @@ footer {
 </footer>
 
 <script>
+var CONTRIBUTE_ENDPOINT = 'https://web-production-1d0fb.up.railway.app/api/contribute';
+
+function onTurnstileSuccess() {
+  var btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = false; }
+}
+
 function handleSubmit(e) {
   e.preventDefault();
   var form = document.getElementById('contribute-form');
   if (!form.checkValidity()) { form.reportValidity(); return false; }
-  document.getElementById('receipt').classList.add('show');
-  document.getElementById('receipt').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  var submitBtn = document.getElementById('submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+
+  var turnstileEl = document.querySelector('[name="cf-turnstile-response"]');
+  var turnstileToken = turnstileEl ? turnstileEl.value : '';
+
+  if (!turnstileToken) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Contribution';
+    alert('Please complete the captcha before submitting.');
+    return false;
+  }
+
+  var payload = {
+    name: document.getElementById('f-name').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    phone: document.getElementById('f-phone').value.trim(),
+    organization: document.getElementById('f-org').value.trim(),
+    category: document.getElementById('f-category').value,
+    family: document.getElementById('f-family').value.trim(),
+    names: document.getElementById('f-names').value.trim(),
+    relationships: document.getElementById('f-rels').value.trim(),
+    locations: document.getElementById('f-locs').value.trim(),
+    dates: document.getElementById('f-dates').value.trim(),
+    narrative: document.getElementById('f-desc').value.trim(),
+    research_question: document.getElementById('f-question').value.trim(),
+    source_description: document.getElementById('f-source').value.trim(),
+    document_reference: document.getElementById('f-doc').value.trim(),
+    consent_contact: document.getElementById('c-contact').checked,
+    consent_publish: document.getElementById('c-publish').checked,
+    turnstile_token: turnstileToken
+  };
+
+  fetch(CONTRIBUTE_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function (resp) {
+    return resp.json().then(function (body) {
+      return { ok: resp.ok, status: resp.status, body: body };
+    });
+  })
+  .then(function (result) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Contribution';
+    if (!result.ok) {
+      alert('Submission failed: ' + (result.body.error || result.status));
+      return;
+    }
+    document.getElementById('receipt-case-id').textContent = result.body.case_id || '(pending)';
+    document.getElementById('receipt-status').textContent = 'Intake review';
+    var receipt = document.getElementById('receipt');
+    receipt.classList.add('show');
+    receipt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  })
+  .catch(function (err) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Contribution';
+    alert('Network error: ' + err.message);
+  });
+
   return false;
 }
 </script>
