@@ -265,6 +265,13 @@ footer {
       </label>
     </fieldset>
 
+    <div class="field" style="background:#f7f7f7;border-left:3px solid #c0392b;padding:12px 14px;font-size:0.86rem;line-height:1.55;">
+      <strong>Before you submit:</strong> Please do not include Social Security numbers, government ID numbers, passwords or credentials, living-person street addresses, parcel or assessor numbers, or divorce filings. If any of these are received, they may be restricted, removed, or handled according to KVSV's review procedures.<br><br>
+      For security and spam prevention, KVSV creates short-lived, protected, hash-derived network and email identifiers. These are used only for abuse and rate-limit protection. KVSV does not retain your raw IP address in the contribution record.<br><br>
+      Publication consent does not automatically publish a contribution. Any future use requires separate editorial, evidentiary, and privacy review.<br><br>
+      For correction or deletion requests, contact <a href="mailto:jasoneugeneb9@gmail.com">jasoneugeneb9@gmail.com</a>.
+    </div>
+
     <div class="field">
       <div class="cf-turnstile" data-sitekey="REPLACE_WITH_TURNSTILE_SITE_KEY" data-callback="onTurnstileSuccess"></div>
     </div>
@@ -321,10 +328,25 @@ footer {
 
 <script>
 var CONTRIBUTE_ENDPOINT = 'https://web-production-1d0fb.up.railway.app/api/contribute';
+var _IDEMPOTENCY_KEY = (function () {
+  if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+    return window.crypto.randomUUID();
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0;
+    var v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+})();
 
 function onTurnstileSuccess() {
   var btn = document.getElementById('submit-btn');
   if (btn) { btn.disabled = false; }
+}
+
+function _val(id) {
+  var el = document.getElementById(id);
+  return el ? el.value.trim() : '';
 }
 
 function handleSubmit(e) {
@@ -347,23 +369,26 @@ function handleSubmit(e) {
   }
 
   var payload = {
-    name: document.getElementById('f-name').value.trim(),
-    email: document.getElementById('f-email').value.trim(),
-    phone: document.getElementById('f-phone').value.trim(),
-    organization: document.getElementById('f-org').value.trim(),
-    category: document.getElementById('f-category').value,
-    family: document.getElementById('f-family').value.trim(),
-    names: document.getElementById('f-names').value.trim(),
-    relationships: document.getElementById('f-rels').value.trim(),
-    locations: document.getElementById('f-locs').value.trim(),
-    dates: document.getElementById('f-dates').value.trim(),
-    narrative: document.getElementById('f-desc').value.trim(),
-    research_question: document.getElementById('f-question').value.trim(),
-    source_description: document.getElementById('f-source').value.trim(),
-    document_reference: document.getElementById('f-doc').value.trim(),
-    consent_contact: document.getElementById('c-contact').checked,
-    consent_publish: document.getElementById('c-publish').checked,
-    turnstile_token: turnstileToken
+    idempotency_key: _IDEMPOTENCY_KEY,
+    turnstile_token: turnstileToken,
+    name: _val('f-name'),
+    email: _val('f-email'),
+    phone: _val('f-phone'),
+    organization: _val('f-org'),
+    category: _val('f-category'),
+    family: _val('f-family'),
+    names: _val('f-names'),
+    relationships: _val('f-rels'),
+    locations: _val('f-locs'),
+    dates: _val('f-dates'),
+    narrative: _val('f-desc'),
+    research_question: _val('f-question'),
+    source_description: _val('f-source'),
+    document_reference: _val('f-doc'),
+    contactConsent: document.getElementById('c-contact').checked,
+    publicationConsent: document.getElementById('c-publish').checked,
+    ackPublicRecord: document.getElementById('c-ack1').checked,
+    ackAccuracy: document.getElementById('c-ack2').checked
   };
 
   fetch(CONTRIBUTE_ENDPOINT, {
@@ -374,25 +399,27 @@ function handleSubmit(e) {
   .then(function (resp) {
     return resp.json().then(function (body) {
       return { ok: resp.ok, status: resp.status, body: body };
+    }).catch(function () {
+      return { ok: resp.ok, status: resp.status, body: {} };
     });
   })
   .then(function (result) {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Submit Contribution';
-    if (!result.ok) {
-      alert('Submission failed: ' + (result.body.error || result.status));
+    if (!result.ok || !result.body || !result.body.case_reference) {
+      alert('Your submission could not be processed. Please try again later.');
       return;
     }
-    document.getElementById('receipt-case-id').textContent = result.body.case_id || '(pending)';
+    document.getElementById('receipt-case-id').textContent = result.body.case_reference;
     document.getElementById('receipt-status').textContent = 'Intake review';
     var receipt = document.getElementById('receipt');
     receipt.classList.add('show');
     receipt.scrollIntoView({ behavior: 'smooth', block: 'start' });
   })
-  .catch(function (err) {
+  .catch(function () {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Submit Contribution';
-    alert('Network error: ' + err.message);
+    alert('Your submission could not be processed. Please try again later.');
   });
 
   return false;
