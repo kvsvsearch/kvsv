@@ -597,6 +597,8 @@
       #view-publicsearch,
       #view-about,
       #view-oralhistory,
+  #view-stories,
+  #view-contribute,
       #view-privateportal {
         display: none;
       }
@@ -610,8 +612,14 @@
         display: block;
       }
       #tab-privateportal:checked ~ #view-privateportal {
-        display: block;
-      }
+  display: block;
+}
+#tab-stories:checked ~ #view-stories {
+  display: block;
+}
+#tab-contribute:checked ~ #view-contribute {
+  display: block;
+}
       #tab-publicsearch:checked ~ .tabs label[for="tab-publicsearch"] {
         color: var(--ink);
         border-bottom: 3px solid var(--evid-red);
@@ -625,9 +633,17 @@
         border-bottom: 3px solid var(--evid-red);
       }
       #tab-privateportal:checked ~ .tabs label[for="tab-privateportal"] {
-        color: var(--ink);
-        border-bottom: 3px solid var(--evid-red);
-      }
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
+#tab-stories:checked ~ .tabs label[for="tab-stories"] {
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
+#tab-contribute:checked ~ .tabs label[for="tab-contribute"] {
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
       .site-tab-iframe {
         width: 100%;
         min-height: 1400px;
@@ -670,12 +686,16 @@
       <input type="radio" name="kvsvtab" id="tab-about" class="tabradio" />
       <input type="radio" name="kvsvtab" id="tab-oralhistory" class="tabradio" />
       <input type="radio" name="kvsvtab" id="tab-privateportal" class="tabradio" />
+<input type="radio" name="kvsvtab" id="tab-stories" class="tabradio" />
+<input type="radio" name="kvsvtab" id="tab-contribute" class="tabradio" />
       <div class="tabs">
         <label class="tab" for="tab-register">Research Database</label>
         <label class="tab" for="tab-publicsearch">Public Search</label>
+<label class="tab" for="tab-stories">Stories &amp; Reads</label>
         <label class="tab" for="tab-about">About KVSV</label>
         <label class="tab" for="tab-oralhistory">Oral History</label>
         <label class="tab" for="tab-privateportal">Private Portal</label>
+<label class="tab" for="tab-contribute">Contribute</label>
       </div>
       <!-- NOTE: the original "Framework" label was removed from this nav row so the site has exactly the 5
            requested top-level tabs. The #tab-framework radio input above and the entire #view-framework block
@@ -751,6 +771,8 @@
           </p>
         </div>
 
+</div>
+<div id="view-stories">
         <div class="card narrative-card">
           <div
             class="section-title"
@@ -1353,6 +1375,10 @@
         <iframe class="site-tab-iframe" src="private_portals.html" title="Private Portal" loading="lazy"></iframe>
       </div>
     </div>
+
+<div id="view-contribute">
+    <iframe class="site-tab-iframe" src="contribute.html" title="Contribute" loading="lazy"></iframe>
+  </div>
 
     <footer class="site-footer">
       KVSV copyright 2026. All rights reserved. This site is Human and AI
