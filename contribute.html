@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KVSV - Contribute</title>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 :root {
   --paper: #ffffff;
@@ -272,12 +271,8 @@ footer {
       For correction or deletion requests, contact <a href="mailto:jasoneugeneb9@gmail.com">jasoneugeneb9@gmail.com</a>.
     </div>
 
-    <div class="field">
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEvwVVT3MvUbXXI3m" data-callback="onTurnstileSuccess"></div>
-    </div>
-
     <div class="submit-row">
-      <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit Contribution</button>
+      <button type="submit" class="submit-btn" id="submit-btn">Submit Contribution</button>
     </div>
 
   </form>
@@ -339,11 +334,6 @@ var _IDEMPOTENCY_KEY = (function () {
   });
 })();
 
-function onTurnstileSuccess() {
-  var btn = document.getElementById('submit-btn');
-  if (btn) { btn.disabled = false; }
-}
-
 function _val(id) {
   var el = document.getElementById(id);
   return el ? el.value.trim() : '';
@@ -358,19 +348,9 @@ function handleSubmit(e) {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting...';
 
-  var turnstileEl = document.querySelector('[name="cf-turnstile-response"]');
-  var turnstileToken = turnstileEl ? turnstileEl.value : '';
-
-  if (!turnstileToken) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Contribution';
-    alert('Please complete the captcha before submitting.');
-    return false;
-  }
-
   var payload = {
     idempotency_key: _IDEMPOTENCY_KEY,
-    turnstile_token: turnstileToken,
+    turnstile_token: '',
     name: _val('f-name'),
     email: _val('f-email'),
     phone: _val('f-phone'),
