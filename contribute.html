@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KVSV - Contribute</title>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 :root {
   --paper: #ffffff;
@@ -237,11 +238,6 @@ footer {
         <label>Source or evidence description</label>
         <textarea id="f-source"></textarea>
       </div>
-      <div class="field">
-        <label>Document or media reference (optional)</label>
-        <input type="text" id="f-doc" placeholder="Filename, description, or link">
-        <div class="hint">File upload is not enabled in this demo.</div>
-      </div>
     </fieldset>
 
     <fieldset>
@@ -271,8 +267,13 @@ footer {
       For correction or deletion requests, contact <a href="mailto:jasoneugeneb9@gmail.com">jasoneugeneb9@gmail.com</a>.
     </div>
 
+    <div class="field">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAEwvVVT3MVuNXXLm" data-callback="onTurnstileSuccess" data-error-callback="onTurnstileError" data-expired-callback="onTurnstileExpired"></div>
+      <div id="turnstile-status" style="font-size:0.8rem;color:#8f6425;margin-top:6px;"></div>
+    </div>
+
     <div class="submit-row">
-      <button type="submit" class="submit-btn" id="submit-btn">Submit Contribution</button>
+      <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit Contribution</button>
     </div>
 
   </form>
@@ -334,6 +335,27 @@ var _IDEMPOTENCY_KEY = (function () {
   });
 })();
 
+function onTurnstileSuccess() {
+  var btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = false; }
+  var status = document.getElementById('turnstile-status');
+  if (status) { status.textContent = ''; }
+}
+
+function onTurnstileError(code) {
+  var btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = true; }
+  var status = document.getElementById('turnstile-status');
+  if (status) { status.textContent = 'Verification failed to load (error ' + code + '). Please refresh the page and try again.'; }
+}
+
+function onTurnstileExpired() {
+  var btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = true; }
+  var status = document.getElementById('turnstile-status');
+  if (status) { status.textContent = 'Verification expired — please complete it again.'; }
+}
+
 function _val(id) {
   var el = document.getElementById(id);
   return el ? el.value.trim() : '';
@@ -348,9 +370,19 @@ function handleSubmit(e) {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting...';
 
+  var turnstileEl = document.querySelector('[name="cf-turnstile-response"]');
+  var turnstileToken = turnstileEl ? turnstileEl.value : '';
+
+  if (!turnstileToken) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Contribution';
+    alert('Please complete the verification before submitting.');
+    return false;
+  }
+
   var payload = {
     idempotency_key: _IDEMPOTENCY_KEY,
-    turnstile_token: '',
+    turnstile_token: turnstileToken,
     name: _val('f-name'),
     email: _val('f-email'),
     phone: _val('f-phone'),
@@ -364,7 +396,6 @@ function handleSubmit(e) {
     narrative: _val('f-desc'),
     research_question: _val('f-question'),
     source_description: _val('f-source'),
-    document_reference: _val('f-doc'),
     contactConsent: document.getElementById('c-contact').checked,
     publicationConsent: document.getElementById('c-publish').checked,
     ackPublicRecord: document.getElementById('c-ack1').checked,
