@@ -1,1 +1,430 @@
-[Exact current contribute.html contents with only the Turnstile gate and submit-button blocking logic removed, preserving the rest of the page.]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KVSV - Contribute</title>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<style>
+:root {
+  --paper: #ffffff;
+  --ink: #000000;
+  --ink-soft: #333333;
+  --muted: #666666;
+  --rule: #000000;
+  --rule-soft: #dddddd;
+  --tint: #f7f7f7;
+  --heading: #1a56db;
+  --accent: #c0392b;
+  --info-bg: #eef2ff;
+  --ok: #2f7a3f;
+  --warn: #8f6425;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: "Lato", Arial, sans-serif; line-height: 1.5; }
+.demo-banner {
+  background: var(--accent); color: #fff; text-align: center;
+  font-weight: 700; letter-spacing: 0.08em; font-size: 0.78rem;
+  padding: 8px 12px; text-transform: uppercase;
+}
+.wrap { max-width: 860px; margin: 0 auto; padding: 32px 24px 60px; }
+h1 { font-size: 1.6rem; font-weight: 900; color: var(--heading); margin-bottom: 6px; }
+.lede { color: var(--muted); font-size: 0.95rem; margin-bottom: 22px; }
+h2 { font-size: 1.1rem; font-weight: 900; color: var(--heading); margin: 28px 0 10px; }
+h3 { font-size: 0.95rem; margin: 18px 0 8px; color: var(--ink); }
+p { margin-bottom: 10px; font-size: 0.92rem; }
+.principle {
+  background: var(--info-bg); border-left: 4px solid var(--heading);
+  padding: 14px 18px; border-radius: 2px; margin-bottom: 22px;
+}
+.principle strong { color: var(--heading); }
+.flow {
+  background: var(--tint); border: 1px solid var(--rule-soft);
+  border-radius: 3px; padding: 16px 20px; margin-bottom: 22px;
+}
+.flow ol { margin: 0; padding-left: 22px; font-size: 0.9rem; }
+.flow li { padding: 3px 0; }
+.statement ul { list-style: none; padding: 0; }
+.statement li { padding: 6px 0 6px 22px; position: relative; font-size: 0.9rem; }
+.statement li::before {
+  content: "\2713"; position: absolute; left: 0; top: 6px;
+  color: var(--ok); font-weight: 700;
+}
+form { background: #fff; border: 1px solid var(--rule-soft); border-radius: 3px; padding: 22px; }
+.field { margin-bottom: 14px; }
+.field label {
+  display: block; font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--ink-soft); margin-bottom: 5px;
+}
+.field input, .field select, .field textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--rule-soft);
+  border-radius: 3px; font-family: inherit; font-size: 0.92rem; background: #fff;
+}
+.field textarea { min-height: 90px; resize: vertical; }
+.field .hint { font-size: 0.76rem; color: var(--muted); margin-top: 4px; }
+fieldset { border: 1px solid var(--rule-soft); border-radius: 3px; padding: 16px 18px; margin-bottom: 16px; }
+legend {
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--heading); padding: 0 8px;
+}
+.consent-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 0; border-bottom: 1px solid var(--rule-soft); font-size: 0.9rem;
+}
+.consent-row:last-child { border-bottom: none; }
+.consent-row input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; }
+.submit-row { margin-top: 20px; }
+.submit-btn {
+  background: var(--heading); color: #fff; border: none; padding: 12px 28px;
+  border-radius: 3px; font-family: inherit; font-size: 0.95rem;
+  font-weight: 700; letter-spacing: 0.04em; cursor: pointer;
+}
+.submit-btn:hover { background: #1444b3; }
+.receipt {
+  display: none; background: #e7f1e8; border: 1px solid var(--ok);
+  border-left: 4px solid var(--ok); border-radius: 3px;
+  padding: 20px 22px; margin-top: 22px;
+}
+.receipt.show { display: block; }
+.receipt h3 { color: var(--ok); margin-top: 0; }
+.case-record {
+  background: #fff; border: 1px solid var(--rule-soft);
+  border-radius: 3px; padding: 18px 20px; margin-top: 22px;
+}
+.case-record table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.case-record th, .case-record td {
+  text-align: left; padding: 8px 10px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.case-record th {
+  background: var(--tint); font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--muted); width: 40%;
+}
+.tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 10px;
+  background: var(--info-bg); color: var(--heading);
+}
+.tag.ok { background: #e7f1e8; color: var(--ok); }
+.tag.warn { background: #f3ead9; color: var(--warn); }
+.gates { margin-top: 22px; }
+.gate {
+  border: 1px solid var(--rule-soft); border-radius: 3px;
+  padding: 12px 16px; margin-bottom: 8px; background: #fff;
+}
+.gate .gate-name { font-weight: 700; font-size: 0.88rem; color: var(--heading); }
+.gate ul { margin: 6px 0 0 0; padding-left: 20px; font-size: 0.84rem; color: var(--ink-soft); }
+.gate li { padding: 2px 0; }
+footer {
+  border-top: 1px solid var(--rule-soft); padding: 20px 24px;
+  text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 40px;
+}
+@media (max-width: 860px) {
+  .wrap { padding: 20px 14px 40px; }
+  h1 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Submissions are reviewed by KVSV. Nothing is published automatically.</div>
+
+<div class="wrap">
+
+  <h1>Contribute to KVSV</h1>
+  <p class="lede">KVSV's universal intake process for family research, corrections, professional submissions, oral history, and community archive contributions.</p>
+
+  <div class="principle">
+    <strong>Submission creates a case. Submission does not create a public record.</strong>
+    <p style="margin-top:8px;">Everything you send is reviewed by KVSV researchers before anything is published.</p>
+  </div>
+
+  <h2>How this works</h2>
+  <div class="flow">
+    <ol>
+      <li>You submit the Contribute form.</li>
+      <li>An automatic case record is created.</li>
+      <li>Consent and completeness gate.</li>
+      <li>Case type and priority assigned.</li>
+      <li>Research tier assigned.</li>
+      <li>Research and evidence workflow.</li>
+      <li>Quality review by a second researcher.</li>
+      <li>Final disposition.</li>
+    </ol>
+  </div>
+
+  <div class="statement">
+    <ul>
+      <li>Submissions are reviewed.</li>
+      <li>Nothing is published automatically.</li>
+      <li>KVSV may contact the submitter.</li>
+      <li>Public-search publication requires approval.</li>
+      <li>Unapproved information remains private.</li>
+      <li>The same evidence standards apply to every submitter.</li>
+    </ul>
+  </div>
+
+  <h2>Submit a contribution</h2>
+
+  <form id="contribute-form" onsubmit="return handleSubmit(event);">
+
+    <fieldset>
+      <legend>Submitter</legend>
+      <div class="field">
+        <label>Full name *</label>
+        <input type="text" id="f-name" required>
+      </div>
+      <div class="field">
+        <label>Email address *</label>
+        <input type="email" id="f-email" required>
+      </div>
+      <div class="field">
+        <label>Phone or preferred contact method</label>
+        <input type="text" id="f-phone">
+      </div>
+      <div class="field">
+        <label>Organization (if applicable)</label>
+        <input type="text" id="f-org">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Case</legend>
+      <div class="field">
+        <label>Case category *</label>
+        <select id="f-category" required>
+          <option value="">-- Select --</option>
+          <option>Family research request</option>
+          <option>Public genealogy submission</option>
+          <option>Professional genealogist submission</option>
+          <option>New client inquiry</option>
+          <option>Correction or evidence update</option>
+          <option>Oral-history submission</option>
+          <option>Institutional or community archive contribution</option>
+          <option>General question or referral</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Family or surname</label>
+        <input type="text" id="f-family">
+      </div>
+      <div class="field">
+        <label>Names of people involved</label>
+        <input type="text" id="f-names">
+      </div>
+      <div class="field">
+        <label>Relationships</label>
+        <input type="text" id="f-rels">
+      </div>
+      <div class="field">
+        <label>Locations</label>
+        <input type="text" id="f-locs">
+      </div>
+      <div class="field">
+        <label>Dates or date ranges</label>
+        <input type="text" id="f-dates">
+      </div>
+      <div class="field">
+        <label>Narrative description *</label>
+        <textarea id="f-desc" required></textarea>
+      </div>
+      <div class="field">
+        <label>Research question or requested outcome</label>
+        <textarea id="f-question"></textarea>
+      </div>
+      <div class="field">
+        <label>Source or evidence description</label>
+        <textarea id="f-source"></textarea>
+      </div>
+      <div class="field">
+        <label>Document or media reference (optional)</label>
+        <input type="text" id="f-doc" placeholder="Filename, description, or link">
+        <div class="hint">File upload is not enabled in this demo.</div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Consent</legend>
+      <label class="consent-row">
+        <input type="checkbox" id="c-contact">
+        <span>I consent to be contacted by KVSV about this submission.</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" id="c-publish">
+        <span>I consent to possible publication in the KVSV public search, subject to KVSV review and approval.</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" id="c-ack1" required>
+        <span>I understand this submission does not automatically create a public record.</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" id="c-ack2" required>
+        <span>I understand my information may be reviewed for accuracy and duplication.</span>
+      </label>
+    </fieldset>
+
+    <div class="field" style="background:#f7f7f7;border-left:3px solid #c0392b;padding:12px 14px;font-size:0.86rem;line-height:1.55;">
+      <strong>Before you submit:</strong> Please do not include Social Security numbers, government ID numbers, passwords or credentials, living-person street addresses, parcel or assessor numbers, or divorce filings. If any of these are received, they may be restricted, removed, or handled according to KVSV's review procedures.<br><br>
+      For security and spam prevention, KVSV creates short-lived, protected, hash-derived network and email identifiers. These are used only for abuse and rate-limit protection. KVSV does not retain your raw IP address in the contribution record.<br><br>
+      Publication consent does not automatically publish a contribution. Any future use requires separate editorial, evidentiary, and privacy review.<br><br>
+      For correction or deletion requests, contact <a href="mailto:jasoneugeneb9@gmail.com">jasoneugeneb9@gmail.com</a>.
+    </div>
+
+    <div class="field">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEvwVVT3MvUbXXI3m" data-callback="onTurnstileSuccess"></div>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit Contribution</button>
+    </div>
+
+  </form>
+
+  <div class="receipt" id="receipt">
+    <h3>Thank you. Your family research submission has been received.</h3>
+    <p><strong>Case ID:</strong> <span id="receipt-case-id">(pending)</span></p>
+    <p><strong>Status:</strong> <span id="receipt-status">Intake review</span></p>
+    <p>Your submission is not automatically published. KVSV researchers will review the information, evaluate available evidence, and may contact you for clarification or documentation.</p>
+    <p style="margin-top:12px; font-size:0.82rem; color:var(--muted); font-style:italic;">DEMO MODE - no data was transmitted, stored, or emailed.</p>
+  </div>
+
+  <div class="case-record">
+    <h3 style="margin-top:0;">Demo case record - pending intake review</h3>
+    <table>
+      <tr><th>Case ID</th><td>KVSV-2026-0001</td></tr>
+      <tr><th>Submission timestamp</th><td>Demo - not recorded</td></tr>
+      <tr><th>Submitter name</th><td>Demo Submitter</td></tr>
+      <tr><th>Submitter email</th><td>demo@example.invalid</td></tr>
+      <tr><th>Case category</th><td>Family research request</td></tr>
+      <tr><th>Family / surname</th><td>Sample</td></tr>
+      <tr><th>Current status</th><td><span class="tag">Intake review</span></td></tr>
+      <tr><th>Current gate</th><td>Gate 0 - Intake integrity</td></tr>
+      <tr><th>Assigned tier</th><td>Pending</td></tr>
+      <tr><th>Contact consent</th><td><span class="tag ok">Yes</span></td></tr>
+      <tr><th>Publication consent</th><td><span class="tag warn">Pending review</span></td></tr>
+      <tr><th>Demo research notes</th><td>Awaiting Gate 0 evaluation.</td></tr>
+      <tr><th>Final disposition</th><td>Pending</td></tr>
+    </table>
+  </div>
+
+  <div class="gates">
+    <h2>Required gates</h2>
+
+    <div class="gate"><div class="gate-name">Gate 0 - Intake integrity</div><ul><li>Submission complete enough to evaluate</li><li>Submitter contactable</li><li>Consent language accepted</li><li>Spam / malicious material flagged</li><li>Living-person and sensitive-information concerns flagged</li></ul></div>
+    <div class="gate"><div class="gate-name">Gate 1 - Case acceptance</div><ul><li>Relevant to KVSV</li><li>Duplicate check performed</li><li>Enough information exists to begin</li><li>Research tier assigned</li><li>Clarification requested if necessary</li></ul></div>
+    <div class="gate"><div class="gate-name">Gate 2 - Evidence and identity</div><ul><li>Names and alternate spellings evaluated</li><li>Dates and locations evaluated</li><li>Relationships evaluated</li><li>Source quality evaluated</li><li>Contradictions recorded</li><li>Possible identity conflation flagged</li><li>Submitted claims separated from documented facts</li></ul></div>
+    <div class="gate"><div class="gate-name">Gate 3 - Comprehensive analysis</div><ul><li>Build working family structure</li><li>Search relevant records and repositories</li><li>Compare independent sources</li><li>Track aliases and variant spellings</li><li>Record positive and negative findings</li><li>Identify unresolved questions</li><li>Record confidence levels</li><li>Preserve citations and evidence links</li><li>Maintain a research log</li></ul></div>
+    <div class="gate"><div class="gate-name">Gate 4 - Internal quality review</div><ul><li>Second reviewer checks the evidence</li><li>Relationships and dates challenged</li><li>Unsupported claims removed or labeled</li><li>Privacy and consent reviewed</li><li>Duplicate records checked</li><li>Final case classification approved</li></ul></div>
+    <div class="gate"><div class="gate-name">Gate 5 - Final disposition</div><ul><li>Approved for public search</li><li>Approved with limited fields</li><li>Returned for clarification</li><li>Held for further research</li><li>Restricted as private</li><li>Rejected</li></ul></div>
+  </div>
+
+</div>
+
+<footer>
+  KVSV - Contribute prototype. Demo only. Not connected to any live system.
+</footer>
+
+<script>
+var CONTRIBUTE_ENDPOINT = 'https://web-production-1d0fb.up.railway.app/api/contribute';
+var _IDEMPOTENCY_KEY = (function () {
+  if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+    return window.crypto.randomUUID();
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0;
+    var v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+})();
+
+function onTurnstileSuccess() {
+  var btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = false; }
+}
+
+function _val(id) {
+  var el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  var form = document.getElementById('contribute-form');
+  if (!form.checkValidity()) { form.reportValidity(); return false; }
+
+  var submitBtn = document.getElementById('submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+
+  var turnstileEl = document.querySelector('[name="cf-turnstile-response"]');
+  var turnstileToken = turnstileEl ? turnstileEl.value : '';
+
+  if (!turnstileToken) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Contribution';
+    alert('Please complete the captcha before submitting.');
+    return false;
+  }
+
+  var payload = {
+    idempotency_key: _IDEMPOTENCY_KEY,
+    turnstile_token: turnstileToken,
+    name: _val('f-name'),
+    email: _val('f-email'),
+    phone: _val('f-phone'),
+    organization: _val('f-org'),
+    category: _val('f-category'),
+    family: _val('f-family'),
+    names: _val('f-names'),
+    relationships: _val('f-rels'),
+    locations: _val('f-locs'),
+    dates: _val('f-dates'),
+    narrative: _val('f-desc'),
+    research_question: _val('f-question'),
+    source_description: _val('f-source'),
+    document_reference: _val('f-doc'),
+    contactConsent: document.getElementById('c-contact').checked,
+    publicationConsent: document.getElementById('c-publish').checked,
+    ackPublicRecord: document.getElementById('c-ack1').checked,
+    ackAccuracy: document.getElementById('c-ack2').checked
+  };
+
+  fetch(CONTRIBUTE_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function (resp) {
+    return resp.json().then(function (body) {
+      return { ok: resp.ok, status: resp.status, body: body };
+    }).catch(function () {
+      return { ok: resp.ok, status: resp.status, body: {} };
+    });
+  })
+  .then(function (result) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Contribution';
+    if (!result.ok || !result.body || !result.body.case_reference) {
+      alert('Your submission could not be processed. Please try again later.');
+      return;
+    }
+    document.getElementById('receipt-case-id').textContent = result.body.case_reference;
+    document.getElementById('receipt-status').textContent = 'Intake review';
+    var receipt = document.getElementById('receipt');
+    receipt.classList.add('show');
+    receipt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  })
+  .catch(function () {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Contribution';
+    alert('Your submission could not be processed. Please try again later.');
+  });
+
+  return false;
+}
+</script>
+
+</body>
+</html>
