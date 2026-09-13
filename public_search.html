@@ -136,6 +136,62 @@
             if (parts.length >= 2) return { city: parts.slice(0, -1).join(', '), state: parts[parts.length - 1], country: '' };
             return { city: parts[0], state: '', country: '' };
         }
+        // Added 2026-09-13: NARA and Dawes Rolls records frequently don't carry a
+        // structured "City, State, Country" location string at all -- their state
+        // information, if present, is often buried in free text (a record title,
+        // regiment name, or note field) instead. parseLocation() alone can't find
+        // a state in that case, which is why "United States" as a Country filter
+        // was showing zero states even though the underlying records genuinely
+        // are U.S. records. This dictionary + scanner is a best-effort fallback:
+        // it looks for a recognizable state name (or two-letter abbreviation right
+        // after a comma) anywhere in a given text, not just in a strict trailing
+        // comma-separated position. "Indian Territory" is included explicitly
+        // since Dawes Rolls predate Oklahoma statehood and use that term, not
+        // "Oklahoma," in period records.
+        const US_STATE_NAMES = {
+            'alabama':'Alabama','alaska':'Alaska','arizona':'Arizona','arkansas':'Arkansas',
+            'california':'California','colorado':'Colorado','connecticut':'Connecticut',
+            'delaware':'Delaware','florida':'Florida','georgia':'Georgia','hawaii':'Hawaii',
+            'idaho':'Idaho','illinois':'Illinois','indiana':'Indiana','iowa':'Iowa',
+            'kansas':'Kansas','kentucky':'Kentucky','louisiana':'Louisiana','maine':'Maine',
+            'maryland':'Maryland','massachusetts':'Massachusetts','michigan':'Michigan',
+            'minnesota':'Minnesota','mississippi':'Mississippi','missouri':'Missouri',
+            'montana':'Montana','nebraska':'Nebraska','nevada':'Nevada',
+            'new hampshire':'New Hampshire','new jersey':'New Jersey','new mexico':'New Mexico',
+            'new york':'New York','north carolina':'North Carolina','north dakota':'North Dakota',
+            'ohio':'Ohio','oklahoma':'Oklahoma','oregon':'Oregon','pennsylvania':'Pennsylvania',
+            'rhode island':'Rhode Island','south carolina':'South Carolina',
+            'south dakota':'South Dakota','tennessee':'Tennessee','texas':'Texas','utah':'Utah',
+            'vermont':'Vermont','virginia':'Virginia','washington':'Washington',
+            'west virginia':'West Virginia','wisconsin':'Wisconsin','wyoming':'Wyoming',
+            'district of columbia':'District of Columbia',
+            'indian territory':'Indian Territory (pre-statehood)',
+        };
+        const US_STATE_ABBR = new Set(['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI',
+            'ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE',
+            'NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX',
+            'UT','VT','VA','WA','WV','WI','WY','DC']);
+        function findUSStateInText(text) {
+            if (!text) return '';
+            for (const key in US_STATE_NAMES) {
+                const pattern = '\\b' + key.replace(/ /g, '\\s+') + '\\b';
+                if (new RegExp(pattern, 'i').test(text)) return US_STATE_NAMES[key];
+            }
+            const abbrMatch = text.match(/,\s*([A-Z]{2})\b/);
+            if (abbrMatch && US_STATE_ABBR.has(abbrMatch[1])) return abbrMatch[1];
+            return '';
+        }
+        // Wraps parseLocation() with the text-scanning fallback above. fallbackText
+        // is whatever free-text fields a record actually has (note, title) to scan
+        // when the structured location string itself has no state in it.
+        function resolveLocation(locationStr, fallbackText) {
+            const loc = parseLocation(locationStr);
+            if (!loc.state) {
+                const found = findUSStateInText(locationStr) || findUSStateInText(fallbackText);
+                if (found) loc.state = found;
+            }
+            return loc;
+        }
         function uniqueSorted(values) {
             return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b));
         }
@@ -159,24 +215,57 @@
             if (source !== 'WikiTree') return 'United States';
             return '';
         }
-        function populateFilters(results) {
+        // Rewritten 2026-09-13. The old version built all three dropdowns once,
+        // from the full unfiltered result set, and never touched them again --
+        // so picking "United States" in Country never actually changed what the
+        // State dropdown offered; it just kept showing whatever states existed
+        // across every country in the results, unfiltered. That's the reported
+        // bug ("hit United States, doesn't show a fucking thing" -- the state
+        // list wasn't narrowed to US states at all; it was never narrowed to
+        // anything). This version recomputes the State list from only the
+        // records matching the current Country selection, and the City list
+        // from only the records matching the current Country+State selection --
+        // real cascading filters, and it's called again every time any filter
+        // changes, not just once after a search.
+        function locationsMatchingFilters(includeState) {
+            return lastResults.filter(r => {
+                const bLoc = resolveLocation(r.birthLocation, r.note || r.name);
+                const dLoc = resolveLocation(r.deathLocation, r.note || r.name);
+                const bCountry = inferCountry(bLoc, r.source);
+                const dCountry = inferCountry(dLoc, r.source);
+                const cVal = filterCountry.value, sVal = filterState.value;
+                const matchCountry = !cVal || bCountry === cVal || dCountry === cVal;
+                if (!matchCountry) return false;
+                if (!includeState) return true;
+                return !sVal || bLoc.state === sVal || dLoc.state === sVal;
+            });
+        }
+        function refreshDropdowns() {
             const countries = [], states = [], cities = [];
-            results.forEach(r => {
-                [parseLocation(r.birthLocation), parseLocation(r.deathLocation)].forEach(loc => {
+            lastResults.forEach(r => {
+                [resolveLocation(r.birthLocation, r.note || r.name), resolveLocation(r.deathLocation, r.note || r.name)].forEach(loc => {
                     const country = inferCountry(loc, r.source);
                     if (country) countries.push(country);
+                });
+            });
+            locationsMatchingFilters(false).forEach(r => {
+                [resolveLocation(r.birthLocation, r.note || r.name), resolveLocation(r.deathLocation, r.note || r.name)].forEach(loc => {
                     if (loc.state) states.push(loc.state);
+                });
+            });
+            locationsMatchingFilters(true).forEach(r => {
+                [resolveLocation(r.birthLocation, r.note || r.name), resolveLocation(r.deathLocation, r.note || r.name)].forEach(loc => {
                     if (loc.city) cities.push(loc.city);
                 });
             });
             fillSelect(filterCountry, uniqueSorted(countries), 'All countries');
             fillSelect(filterState, uniqueSorted(states), 'All states/regions');
             fillSelect(filterCity, uniqueSorted(cities), 'All cities/counties');
-            filterBar.style.display = results.length ? 'flex' : 'none';
+            filterBar.style.display = lastResults.length ? 'flex' : 'none';
         }
         function passesFilters(r) {
-            const bLoc = parseLocation(r.birthLocation);
-            const dLoc = parseLocation(r.deathLocation);
+            const bLoc = resolveLocation(r.birthLocation, r.note || r.name);
+            const dLoc = resolveLocation(r.deathLocation, r.note || r.name);
             const bCountry = inferCountry(bLoc, r.source);
             const dCountry = inferCountry(dLoc, r.source);
             const cVal = filterCountry.value, sVal = filterState.value, tVal = filterCity.value;
@@ -198,14 +287,17 @@
             }
             renderResults(filtered, lastErrors);
         }
-        [filterCountry, filterState, filterCity].forEach(sel => sel.addEventListener('change', applyFiltersAndRender));
+        [filterCountry, filterState, filterCity].forEach(sel => sel.addEventListener('change', () => {
+            refreshDropdowns();
+            applyFiltersAndRender();
+        }));
         async function searchPublicRecords() {
             const query = searchInput.value.trim();
             if (!query) {
                 resultsList.innerHTML = '';
                 lastResults = [];
                 lastErrors = [];
-                populateFilters([]);
+                refreshDropdowns();
                 filterCount.style.display = 'none';
                 return;
             }
@@ -215,10 +307,12 @@
             const wikitreeUrl = `${PROXY_BASE}/api/wikitree-search?lastName=${encodeURIComponent(query)}`;
             const naraUrl = `${PROXY_BASE}/api/nara-search?q=${encodeURIComponent(query)}`;
             const dawesUrl = `${PROXY_BASE}/api/dawes-search?lastName=${encodeURIComponent(query)}`;
-            const [wikitreeOutcome, naraOutcome, dawesOutcome] = await Promise.allSettled([
+            const ukArchivesUrl = `${PROXY_BASE}/api/uk-archives-search?lastName=${encodeURIComponent(query)}`;
+            const [wikitreeOutcome, naraOutcome, dawesOutcome, ukArchivesOutcome] = await Promise.allSettled([
                 fetch(wikitreeUrl).then(r => { if (!r.ok) throw new Error('WikiTree service returned ' + r.status); return r.json(); }),
                 fetch(naraUrl).then(r => { if (!r.ok) throw new Error('National Archives service returned ' + r.status); return r.json(); }),
                 fetch(dawesUrl).then(r => { if (!r.ok) throw new Error('Dawes Rolls service returned ' + r.status); return r.json(); }),
+                fetch(ukArchivesUrl).then(r => { if (!r.ok) throw new Error('UK National Archives service returned ' + r.status); return r.json(); }),
             ]);
             let combined = [];
             const errors = [];
@@ -237,9 +331,14 @@
             } else {
                 errors.push('Dawes Rolls (Five Civilized Tribes): ' + dawesOutcome.reason.message);
             }
+            if (ukArchivesOutcome.status === 'fulfilled') {
+                combined = combined.concat(ukArchivesOutcome.value.results || []);
+            } else {
+                errors.push('UK National Archives: ' + ukArchivesOutcome.reason.message);
+            }
             lastResults = combined;
             lastErrors = errors;
-            populateFilters(combined);
+            refreshDropdowns();
             applyFiltersAndRender();
         }
         function renderResults(results, errors) {
