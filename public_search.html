@@ -21,7 +21,7 @@
           --ease:cubic-bezier(.2,.7,.3,1);
           --font-display:'Source Serif 4', Georgia, 'Times New Roman', serif;
           --font-ui:'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
+}
         * { box-sizing: border-box; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         body {
           font-family: var(--font-ui);
@@ -31,41 +31,41 @@
             var(--bg);
           background-attachment: fixed;
           color: var(--text); padding: 40px 20px; line-height: 1.6;
-        }
+}
         #app { max-width: 800px; margin: 0 auto; }
         h1 { font-family: var(--font-display); color: var(--blue); font-size: 46px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; margin: 0 0 20px; }
         input { width: 100%; box-sizing: border-box; padding: 12px 15px; font-size: 1.05em; margin-bottom: 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: var(--font-ui); }
         input::placeholder { color: var(--faint); }
         input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); }
-        .subnote { font-size: 0.9em; color: var(--warn-text); margin: 0 0 20px 0; background: var(--warn-bg); border: 1px solid var(--warn-border); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); line-height: 1.7; }
-        .result { border-bottom: 1px solid var(--border-soft); padding: 18px 4px; overflow-wrap: break-word; border-radius: var(--radius-sm); transition: background 0.15s var(--ease); }
-        .result:hover { background: var(--surface); }
-        .result h3 { margin: 0 0 7px; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--text); overflow-wrap: break-word; word-break: break-word; }
-        .result p { margin: 4px 0; font-size: 14px; color: var(--muted); overflow-wrap: break-word; word-break: break-word; }
-        .result p strong { color: var(--text); }
-        .source-tag { display: inline-block; font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+.subnote { font-size: 0.9em; color: var(--warn-text); margin: 0 0 20px 0; background: var(--warn-bg); border: 1px solid var(--warn-border); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); line-height: 1.7; }
+.result { border-bottom: 1px solid var(--border-soft); padding: 18px 4px; overflow-wrap: break-word; border-radius: var(--radius-sm); transition: background 0.15s var(--ease); }
+.result:hover { background: var(--surface); }
+.result h3 { margin: 0 0 7px; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--text); overflow-wrap: break-word; word-break: break-word; }
+.result p { margin: 4px 0; font-size: 14px; color: var(--muted); overflow-wrap: break-word; word-break: break-word; }
+.result p strong { color: var(--text); }
+.source-tag { display: inline-block; font-family: var(--font-ui); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
             background: var(--blue); color: #fff; padding: 4px 10px; border-radius: 20px; margin-bottom: 10px; }
-        .source-link { font-size: 0.85em; margin-top: 8px !important; }
-        .source-link a { color: var(--blue); text-decoration: none; }
-        .source-link a:hover { color: #8ec2e2; text-decoration: underline; }
-        .status { color: var(--faint); font-style: italic; }
-        .error { color: var(--warn-text); background: var(--warn-bg); border: 1px solid var(--warn-border); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: var(--radius-sm); margin: 0 0 16px 0; font-weight: 700; }
-        .filter-bar { display: none; flex-wrap: wrap; gap: 16px; margin: 20px 0; align-items: flex-end; }
-        .filter-field { display: flex; flex-direction: column; gap: 7px; min-width: 160px; flex: 1; }
-        .filter-field label { font-family: var(--font-ui); font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
-        .filter-field select { padding: 11px; font-size: 13.5px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-ui); background: var(--surface2); color: var(--text); }
-        .filter-field select:focus { outline: none; border-color: var(--blue); }
-        .filter-count { font-family: var(--font-ui); font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; color: var(--faint); margin: 0 0 20px 0; text-transform: uppercase; }
+.source-link { font-size: 0.85em; margin-top: 8px !important; }
+.source-link a { color: var(--blue); text-decoration: none; }
+.source-link a:hover { color: #8ec2e2; text-decoration: underline; }
+.status { color: var(--faint); font-style: italic; }
+.error { color: var(--warn-text); background: var(--warn-bg); border: 1px solid var(--warn-border); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: var(--radius-sm); margin: 0 0 16px 0; font-weight: 700; }
+.filter-bar { display: none; flex-wrap: wrap; gap: 16px; margin: 20px 0; align-items: flex-end; }
+.filter-field { display: flex; flex-direction: column; gap: 7px; min-width: 160px; flex: 1; }
+.filter-field label { font-family: var(--font-ui); font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.filter-field select { padding: 11px; font-size: 13.5px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-ui); background: var(--surface2); color: var(--text); }
+.filter-field select:focus { outline: none; border-color: var(--blue); }
+.filter-count { font-family: var(--font-ui); font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; color: var(--faint); margin: 0 0 20px 0; text-transform: uppercase; }
         a { color: var(--blue); }
         @media (max-width: 480px) {
-          .filters, .filter-bar { flex-direction: column; }
-        }
+.filters, .filter-bar { flex-direction: column; }
+}
     </style>
 </head>
 <body>
     <div id="app">
         <h1 class="page-title">KVSV Public General Search</h1>
-        <p class="subnote">Searches public genealogy records from external public sources and accesspoint, including public and private archives.  Geographic zones include, but not limited to: North and South America, Europe, Africa, and including North American Tribal Rolls / Five Civilized Tribes. This does not search KVSV's private research database project or private search portals or customized family indexes — those are separate, non-public indexes. </p>
+        <p class="subnote">Searches public genealogy records from external public sources and accesspoint, including public and private archives. Geographic zones include, but not limited to: North and South America, Europe, Africa, and including North American Tribal Rolls / Five Civilized Tribes. This does not search KVSV's private research database project or private search portals or customized family indexes — those are separate, non-public indexes. </p>
         <input type="text" id="searchInput" placeholder="Enter a last name (e.g., Rogers, Bradford, Glass)" autocomplete="off" />
         <div id="filterBar" class="filter-bar">
             <div class="filter-field">
@@ -84,7 +84,6 @@
         <p id="filterCount" class="filter-count" style="display:none;"></p>
         <div id="resultsList"></div>
     </div>
-
     <script>
         // Public records proxy -- calls external public search APIs server-side
         // (browsers can't call api.wikitree.com or catalog.archives.gov directly
@@ -92,7 +91,6 @@
         // WikiTree region filter: Americas, Europe, and Africa only -- no
         // Australia/Asia/Middle East. Never reads KVSV's private database.
         const PROXY_BASE = 'https://web-production-1d0fb.up.railway.app';
-
         const searchInput = document.getElementById('searchInput');
         const resultsList = document.getElementById('resultsList');
         const filterBar = document.getElementById('filterBar');
@@ -103,13 +101,11 @@
         let debounceTimer = null;
         let lastResults = [];
         let lastErrors = [];
-
         function escapeHtml(str) {
             const div = document.createElement('div');
             div.textContent = str == null ? '' : String(str);
             return div.innerHTML;
         }
-
         // Best-effort parsing of freeform genealogy location strings like
         // "Ivyton, Magoffin, Kentucky, United States" into city/state/country.
         // Not authoritative -- source data formatting varies -- but good enough
@@ -125,7 +121,6 @@
             'dominican republic', 'south africa', 'egypt', 'nigeria', 'kenya', 'ghana', 'morocco',
             'algeria', 'tunisia', 'ethiopia',
         ]);
-
         function parseLocation(str) {
             if (!str) return { city: '', state: '', country: '' };
             const parts = str.split(',').map(s => s.trim()).filter(Boolean);
@@ -141,28 +136,29 @@
             if (parts.length >= 2) return { city: parts.slice(0, -1).join(', '), state: parts[parts.length - 1], country: '' };
             return { city: parts[0], state: '', country: '' };
         }
-
         function uniqueSorted(values) {
             return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b));
         }
-
         function fillSelect(select, values, placeholder) {
             const previous = select.value;
             select.innerHTML = `<option value="">${placeholder}</option>` +
                 values.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
             if (values.includes(previous)) select.value = previous;
         }
-
-        // National Archives (NARA) records are U.S. federal records by definition,
-        // but the NARA API doesn't return a location string to parse -- without this,
-        // every NARA result was invisible to the country filter (never tagged as
-        // "United States"). Only applies when no location string exists to parse.
+        // National Archives (NARA) and Dawes Rolls records are both U.S. federal/
+        // tribal record sets by definition, but neither API returns a "City, State,
+        // Country" location string to parse -- without this fallback, every NARA
+        // and every Dawes Rolls result was invisible to the country filter (never
+        // tagged as "United States"), which silently hid all Dawes Rolls hits
+        // whenever a country filter was applied. FIXED 2026-09-13: only WikiTree
+        // returns genuinely international location strings, so anything that
+        // ISN'T WikiTree defaults to "United States" instead of naming NARA
+        // specifically. Only applies when no location string exists to parse.
         function inferCountry(loc, source) {
             if (loc.country) return loc.country;
-            if (source === 'National Archives (NARA)') return 'United States';
+            if (source !== 'WikiTree') return 'United States';
             return '';
         }
-
         function populateFilters(results) {
             const countries = [], states = [], cities = [];
             results.forEach(r => {
@@ -178,7 +174,6 @@
             fillSelect(filterCity, uniqueSorted(cities), 'All cities/counties');
             filterBar.style.display = results.length ? 'flex' : 'none';
         }
-
         function passesFilters(r) {
             const bLoc = parseLocation(r.birthLocation);
             const dLoc = parseLocation(r.deathLocation);
@@ -190,23 +185,20 @@
             const matchCity = !tVal || bLoc.city === tVal || dLoc.city === tVal;
             return matchCountry && matchState && matchCity;
         }
-
         function applyFiltersAndRender() {
             const filtered = lastResults.filter(passesFilters);
             const anyFilterActive = filterCountry.value || filterState.value || filterCity.value;
             if (lastResults.length) {
                 filterCount.style.display = 'block';
                 filterCount.textContent = anyFilterActive
-                    ? `Showing ${filtered.length} of ${lastResults.length} results`
-                    : `${lastResults.length} result${lastResults.length === 1 ? '' : 's'}`;
+? `Showing ${filtered.length} of ${lastResults.length} results`
+: `${lastResults.length} result${lastResults.length === 1 ? '' : 's'}`;
             } else {
                 filterCount.style.display = 'none';
             }
             renderResults(filtered, lastErrors);
         }
-
         [filterCountry, filterState, filterCity].forEach(sel => sel.addEventListener('change', applyFiltersAndRender));
-
         async function searchPublicRecords() {
             const query = searchInput.value.trim();
             if (!query) {
@@ -220,17 +212,14 @@
             resultsList.innerHTML = '<p class="status">Searching public records...</p>';
             filterBar.style.display = 'none';
             filterCount.style.display = 'none';
-
             const wikitreeUrl = `${PROXY_BASE}/api/wikitree-search?lastName=${encodeURIComponent(query)}`;
             const naraUrl = `${PROXY_BASE}/api/nara-search?q=${encodeURIComponent(query)}`;
             const dawesUrl = `${PROXY_BASE}/api/dawes-search?lastName=${encodeURIComponent(query)}`;
-
             const [wikitreeOutcome, naraOutcome, dawesOutcome] = await Promise.allSettled([
                 fetch(wikitreeUrl).then(r => { if (!r.ok) throw new Error('WikiTree service returned ' + r.status); return r.json(); }),
                 fetch(naraUrl).then(r => { if (!r.ok) throw new Error('National Archives service returned ' + r.status); return r.json(); }),
                 fetch(dawesUrl).then(r => { if (!r.ok) throw new Error('Dawes Rolls service returned ' + r.status); return r.json(); }),
             ]);
-
             let combined = [];
             const errors = [];
             if (wikitreeOutcome.status === 'fulfilled') {
@@ -248,17 +237,15 @@
             } else {
                 errors.push('Dawes Rolls (Five Civilized Tribes): ' + dawesOutcome.reason.message);
             }
-
             lastResults = combined;
             lastErrors = errors;
             populateFilters(combined);
             applyFiltersAndRender();
         }
-
         function renderResults(results, errors) {
             const errorBanner = (errors && errors.length)
-                ? `<p class="error">Some sources didn't respond: ${escapeHtml(errors.join('; '))}</p>`
-                : '';
+? `<p class="error">Some sources didn't respond: ${escapeHtml(errors.join('; '))}</p>`
+: '';
             if (!results.length) {
                 resultsList.innerHTML = errorBanner + '<p>No public records found for that name.</p>';
                 return;
@@ -276,16 +263,15 @@
                 const diedLine = death ? `<p><strong>Died:</strong> ${death}${deathPlace ? ' (' + deathPlace + ')' : ''}</p>` : '';
                 const noteLine = note ? `<p>${note}</p>` : '';
                 return `<div class="result">
-                    <span class="source-tag">${source}</span>
-                    <h3>${name}</h3>
+<span class="source-tag">${source}</span>
+<h3>${name}</h3>
                     ${bornLine}
                     ${diedLine}
                     ${noteLine}
-                    <p class="source-link"><a href="${sourceUrl}" target="_blank" rel="noopener">View full record on ${source}</a></p>
-                </div>`;
+<p class="source-link"><a href="${sourceUrl}" target="_blank" rel="noopener">View full record on ${source}</a></p>
+</div>`;
             }).join('');
         }
-
         searchInput.addEventListener('input', () => {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(searchPublicRecords, 400);
