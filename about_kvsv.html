@@ -5,243 +5,135 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — KVSV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #ffffff;
-    --text: #000000;
-    --heading: #1a56db;
-    --accent: #c0392b;
-    --info-bg: #f8d7da;
-    --rule: #d8d8d8;
-    --muted: #5a5a5a;
-  }
-  * { box-sizing: border-box; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.6;
-  }
-  .letterhead {
-    border-bottom: 3px solid var(--heading);
-    padding: 28px 24px 18px;
-    text-align: center;
-  }
-  .letterhead .mark {
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    font-size: 0.95rem;
-    color: var(--accent);
-  }
-  .letterhead h1 {
-    margin: 6px 0 4px;
-    font-size: 2rem;
-    color: var(--heading);
-    font-weight: 900;
-  }
-  .letterhead p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
-  main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-  }
-  section {
-    margin-bottom: 44px;
-  }
-  section:last-of-type { margin-bottom: 0; }
-  h2 {
-    color: var(--heading);
-    font-size: 1.3rem;
-    font-weight: 700;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 8px;
-    margin-bottom: 14px;
-  }
-  p { margin: 0 0 12px; }
-  .lede {
-    font-size: 1.08rem;
-  }
-  .tier-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    counter-reset: tier;
-  }
-  .tier-list li {
-    counter-increment: tier;
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 14px;
-    padding: 10px 0;
-    border-top: 1px solid var(--rule);
-  }
-  .tier-list li:first-child { border-top: none; }
-  .tier-list li::before {
-    content: counter(tier);
-    font-weight: 900;
-    color: var(--accent);
-    font-size: 1.1rem;
-  }
-  .tier-list strong { color: var(--text); }
-  .info-box {
-    background: var(--info-bg);
-    border-left: 4px solid var(--accent);
-    padding: 16px 18px;
-    border-radius: 2px;
-  }
-  .info-box p:last-child { margin-bottom: 0; }
-  dl {
-    margin: 0;
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 8px 20px;
-  }
-  dt {
-    font-weight: 700;
-    color: var(--heading);
-  }
-  dd {
-    margin: 0;
-  }
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 20px 24px 40px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  a { color: var(--heading); }
-  .stat-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 22px;
-  }
-  .stat {
-    border-left: 3px solid var(--accent);
-    padding-left: 12px;
-  }
-  .stat-num {
-    font-size: 1.7rem;
-    font-weight: 900;
-    color: var(--text);
-    line-height: 1.2;
-  }
-  .stat-label {
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-  .table-scroll {
-    overflow-x: auto;
-  }
-  table.tier-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 480px;
-  }
-  .tier-table th {
-    text-align: left;
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--muted);
-    border-bottom: 1px solid var(--rule);
-    padding: 8px 10px;
-  }
-  .tier-table td {
-    padding: 10px;
-    border-bottom: 1px solid var(--rule);
-    font-size: 0.95rem;
-    vertical-align: top;
-  }
-  .tier-table td:last-child { text-align: right; white-space: nowrap; }
-  .tier-table th:last-child { text-align: right; }
-  @media (max-width: 480px) {
-    dl { grid-template-columns: 1fr; }
-    dt { margin-top: 8px; }
-    .stat-row { grid-template-columns: repeat(2, 1fr); }
-  }
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a;
+  --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b; --accent-soft:#2c1917;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --warn-bg:#2c1a17; --warn-border:#5a2320; --warn-text:#e9d6d2;
+  --radius-sm:6px; --radius-md:10px; --radius-lg:16px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.55);
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --font-display:'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-body:Georgia, 'Times New Roman', serif;
+  --font-ui:'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+*{box-sizing:border-box;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{
+  margin:0;color:var(--text);font-family:var(--font-body);line-height:1.6;
+  background:
+    radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%),
+    radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%),
+    var(--bg);
+  background-attachment:fixed;
+}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+.letterhead{border-bottom:1px solid var(--border);padding:32px 24px 22px;text-align:center;}
+.letterhead .mark{font-family:var(--font-ui);font-weight:700;letter-spacing:0.12em;font-size:0.95rem;color:var(--accent);}
+.letterhead h1{margin:10px 0 6px;font-family:var(--font-display);font-size:46px;color:var(--blue);font-weight:700;letter-spacing:-0.015em;line-height:1.15;}
+.letterhead p{margin:0;color:var(--muted);font-family:var(--font-ui);font-size:0.95rem;}
+main{max-width:720px;margin:0 auto;padding:40px 24px 80px;}
+.intro-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:28px 30px;font-size:15px;line-height:1.8;color:var(--text);margin-bottom:28px;box-shadow:var(--shadow-card);}
+.intro-box p{margin:0;}
+.section-block{margin-bottom:32px;}
+.section-block h2{font-family:var(--font-display);font-size:20px;color:var(--blue);margin:0 0 12px;font-weight:600;border-bottom:1px solid var(--border);padding-bottom:8px;}
+.section-block p{font-size:14.5px;line-height:1.8;color:var(--text);margin:0 0 12px;}
+.notice-red{background:var(--warn-bg);border:1px solid var(--warn-border);border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:20px 24px;font-size:14.5px;line-height:1.7;color:var(--warn-text);box-shadow:var(--shadow-card);}
+dl{margin:0;}
+.terms-row{display:flex;gap:24px;padding:12px 4px;border-bottom:1px solid var(--border-soft);font-size:14px;}
+.terms-row:last-child{border-bottom:none;}
+.terms-row dt{width:120px;flex-shrink:0;font-family:var(--font-ui);color:var(--blue);font-weight:700;margin:0;}
+.terms-row dd{margin:0;color:var(--text);}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;margin:26px 0;box-shadow:var(--shadow-card);}
+.stat-cell{background:var(--surface);padding:20px 22px;transition:background 0.15s var(--ease);}
+.stat-cell b{font-family:var(--font-display);font-size:28px;display:block;color:var(--text);font-weight:700;}
+.stat-cell span{font-family:var(--font-ui);font-size:12.5px;color:var(--faint);}
+.table-scroll{overflow-x:auto;}
+table.tiers{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px;min-width:480px;}
+table.tiers th{text-align:left;font-family:var(--font-ui);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;color:var(--blue);padding:10px 12px;border-bottom:1px solid var(--border);}
+table.tiers th:last-child{text-align:right;}
+table.tiers td{padding:13px 12px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+table.tiers tr:hover td{background:var(--surface);}
+table.tiers td.tiername{font-family:var(--font-ui);color:var(--accent);font-weight:700;white-space:nowrap;}
+table.tiers td.count{text-align:right;font-weight:700;font-family:var(--font-display);white-space:nowrap;}
+.page-footer-note{text-align:center;font-family:var(--font-ui);font-size:13px;color:var(--faint);margin-top:30px;padding-top:22px;border-top:1px solid var(--border);}
+@media (max-width:480px){
+  .terms-row{gap:14px;}
+  .terms-row dt{width:100px;}
+  .stat-row{grid-template-columns:repeat(2,1fr);}
+}
 </style>
 </head>
 <body>
 
 <div class="letterhead">
   <div class="mark">KVSV</div>
-  <h1>About this research</h1>
+  <h1 class="page-title">About this research</h1>
   <p>What you're looking at, and how it was built</p>
 </div>
 
 <main>
 
-  <section>
-    <p class="lede">KVSV is a genealogy research portal and community project centered on lineages and mix-heritages that are often overlooked by mainstream genealogists and institutions — and the branches connected them. The public search portal draws from a vast array of access points, from the U.S. Census to the National Archives, WikiTree, FamilySearch, and more. The records here are public records and are not subject to the same rigorous tier-level standards or protocols as the research arm or commissioned project studies, and should be taken at face value. Every entry in the KVSV databases is built from primary records and source materials, including private and public indexes. KVSV strives to be a "source-first" portal, not a commercial ancestry database, and offers customizable genealogical research frameworks for those wanting to establish canonical trees and lineage mapping. For more on customization, please contact us for details.</p>
-  </section>
+  <div class="intro-box">
+    <p>KVSV is a genealogy research portal and community project centered on lineages and mix-heritages that are often overlooked by mainstream genealogists and institutions — and the branches connected them. The public search portal draws from a vast array of access points, from the U.S. Census to the National Archives, WikiTree, FamilySearch, and more. The records here are public records and are not subject to the same rigorous tier-level standards or protocols as the research arm or commissioned project studies, and should be taken at face value. Every entry in the KVSV databases is built from primary records and source materials, including private and public indexes. KVSV strives to be a &ldquo;source-first&rdquo; portal, not a commercial ancestry database, and offers customizable genealogical research frameworks for those wanting to establish canonical trees and lineage mapping. For more on customization, please contact us for details.</p>
+  </div>
 
-  <section>
+  <div class="section-block">
     <h2>How this research is done</h2>
     <p>Primary sources come first. No fact is stated without a source behind it. When two sources disagree, the disagreement is logged, not quietly resolved. Nothing is merged into the record without review.</p>
-  </section>
+  </div>
 
-  <section>
+  <div class="section-block">
     <h2>What's public vs. private</h2>
-    <div class="info-box">
-      <p>Public Search shows only the fields cleared for public display. Full family research, restricted notes, and information about living people stay in the private portals — not here.</p>
-    </div>
-  </section>
+    <div class="notice-red">Public Search shows only the fields cleared for public display. Full family research, restricted notes, and information about living people stay in the private portals — not here.</div>
+  </div>
 
-  <section>
+  <div class="section-block">
     <h2>Terms</h2>
     <dl>
-      <dt>Entity</dt>
-      <dd>One person tracked in this database.</dd>
-      <dt>Narrative</dt>
-      <dd>The written account of what's known about them, in plain language.</dd>
-      <dt>Citation</dt>
-      <dd>The actual source behind a fact.</dd>
-      <dt>Source Tier</dt>
-      <dd>How strong that source is — see above.</dd>
+      <div class="terms-row"><dt>Entity</dt><dd>One person tracked in this database.</dd></div>
+      <div class="terms-row"><dt>Narrative</dt><dd>The written account of what's known about them, in plain language.</dd></div>
+      <div class="terms-row"><dt>Citation</dt><dd>The actual source behind a fact.</dd></div>
+      <div class="terms-row"><dt>Source Tier</dt><dd>How strong that source is — see above.</dd></div>
     </dl>
-  </section>
+  </div>
 
-  <section>
+  <div class="section-block">
     <h2>Privacy</h2>
     <p>No living person's sensitive information is published according to standards. Restricted genealogy research — the kind that touches people who are still alive — stays behind the private portal, not on the public search portal. All private or customized search portals, outside of the researcher's own portal, are password protected and secured in the Cloud.</p>
-  </section>
+  </div>
 
-  <section>
-    <div class="stat-row">
-      <div class="stat"><div class="stat-num">1,322</div><div class="stat-label">Total entities in this database</div></div>
-      <div class="stat"><div class="stat-num">1,256</div><div class="stat-label">Person records</div></div>
-      <div class="stat"><div class="stat-num">285</div><div class="stat-label">Entities with at least one citation</div></div>
-      <div class="stat"><div class="stat-num">1,037</div><div class="stat-label">Entities with no citation on file yet</div></div>
-    </div>
-    <div class="table-scroll">
-      <table class="tier-table">
-        <thead>
-          <tr><th>Tier</th><th>What it means</th><th>Entities</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Tier 1</strong></td><td>An original document logged directly from the courthouse or archive — for example a deed or marriage record.</td><td>140</td></tr>
-          <tr><td><strong>Tier 2</strong></td><td>A certified transcription or index — census, land patent, or assessor data — cross-corroborated across multiple independent sources.</td><td>30</td></tr>
-          <tr><td><strong>Tier 2/3</strong></td><td>A user-maintained tree checked against a public record, but not itself a primary source.</td><td>182</td></tr>
-          <tr><td><strong>Tier 3</strong></td><td>Corroborated by a named family document (Bible record, family history) not yet independently verified against the underlying courthouse/vital record.</td><td>21</td></tr>
-          <tr><td><strong>Tier 4</strong></td><td>Researcher/family-stated — no independent document located yet. Treated as a real, sourced lead, not a confirmed fact.</td><td>949</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <div class="stat-row">
+    <div class="stat-cell"><b>1,322</b><span>Total entities in this database</span></div>
+    <div class="stat-cell"><b>1,256</b><span>Person records</span></div>
+    <div class="stat-cell"><b>285</b><span>Entities with at least one citation</span></div>
+    <div class="stat-cell"><b>1,037</b><span>Entities with no citation on file yet</span></div>
+  </div>
+
+  <div class="table-scroll">
+    <table class="tiers">
+      <thead>
+        <tr><th>Tier</th><th>What it means</th><th>Entities</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="tiername">Tier 1</td><td>An original document logged directly from the courthouse or archive — for example a deed or marriage record.</td><td class="count">140</td></tr>
+        <tr><td class="tiername">Tier 2</td><td>A certified transcription or index — census, land patent, or assessor data — cross-corroborated across multiple independent sources.</td><td class="count">30</td></tr>
+        <tr><td class="tiername">Tier 2/3</td><td>A user-maintained tree checked against a public record, but not itself a primary source.</td><td class="count">182</td></tr>
+        <tr><td class="tiername">Tier 3</td><td>Corroborated by a named family document (Bible record, family history) not yet independently verified against the underlying courthouse/vital record.</td><td class="count">21</td></tr>
+        <tr><td class="tiername">Tier 4</td><td>Researcher/family-stated — no independent document located yet. Treated as a real, sourced lead, not a confirmed fact.</td><td class="count">949</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer-note">KVSV — research grounded in source tiers and family testimony.</div>
 
 </main>
-
-<footer>
-  KVSV — research grounded in source tiers and family testimony.
-</footer>
 
 </body>
 </html>
