@@ -1,179 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KVSV - Contribute</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contribute to KVSV</title>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #111013; --surface: #1a191d; --surface2: #211f24; --border: #34323a;
-  --border-soft: #2a2830;
-  --text: #f5f2ec; --muted: #a7a3ab; --faint: #77737c;
-  --accent: #c1453d; --accent2: #8f322b;
-  --blue: #5b9bc0; --blue2: #3f7593; --blue-soft: #182228;
-  --warn-bg: #2c1a17; --warn-border: #5a2320; --warn-text: #e9d6d2;
-  --ok-bg: #16241b; --ok-border: #2f5a3d; --ok: #6fae7f;
-  --warn-amber: #d8b46a;
-  --radius-sm: 6px; --radius-md: 10px;
-  --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.55);
-  --ease: cubic-bezier(.2,.7,.3,1);
-  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --font-ui: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background:
-    radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%),
-    radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%),
-    var(--bg);
-  background-attachment: fixed;
-  color: var(--text); font-family: var(--font-ui); line-height: 1.6;
-}
-.demo-banner {
-  background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #fff; text-align: center;
-  font-weight: 700; letter-spacing: 0.08em; font-size: 0.78rem;
-  padding: 10px 12px; text-transform: uppercase;
-}
-.wrap { max-width: 860px; margin: 0 auto; padding: 32px 24px 60px; }
-h1 { font-family: var(--font-display); font-size: 46px; font-weight: 700; color: var(--blue); margin-bottom: 8px; letter-spacing: -0.015em; line-height: 1.15; }
-.lede { color: var(--muted); font-size: 0.98rem; margin-bottom: 24px; }
-h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--blue); margin: 30px 0 12px; }
-h3 { font-family: var(--font-ui); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 20px 0 10px; color: var(--blue); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-p { margin-bottom: 10px; font-size: 0.95rem; color: var(--text); }
-.principle {
-  background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--blue);
-  padding: 18px 22px; border-radius: var(--radius-sm); margin-bottom: 24px; box-shadow: var(--shadow-card);
-}
-.principle strong { color: var(--text); }
-.flow {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); padding: 18px 22px; margin-bottom: 24px; box-shadow: var(--shadow-card);
-}
-.flow ol { margin: 0; padding-left: 22px; font-size: 0.92rem; color: var(--text); }
-.flow li { padding: 4px 0; }
-.statement ul { list-style: none; padding: 0; margin: 20px 0; }
-.statement li { padding: 6px 0 6px 24px; position: relative; font-size: 0.92rem; color: var(--text); }
-.statement li::before {
-  content: "\2713"; position: absolute; left: 0; top: 6px;
-  color: var(--blue); font-weight: 700;
-}
-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 26px; box-shadow: var(--shadow-card); }
-.field { margin-bottom: 16px; }
-.field label {
-  display: block; font-family: var(--font-ui); font-size: 0.82rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--text); margin-bottom: 7px;
-}
-.field input, .field select, .field textarea {
-  width: 100%; padding: 12px 14px; border: 1px solid var(--border);
-  border-radius: var(--radius-sm); font-family: var(--font-ui); font-size: 0.95rem;
-  background: var(--surface2); color: var(--text); transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
-}
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); }
-.field textarea { min-height: 90px; resize: vertical; }
-.field .hint { font-size: 0.76rem; color: var(--faint); margin-top: 5px; }
-fieldset { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 20px; margin-bottom: 18px; }
-legend {
-  font-family: var(--font-ui); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.06em; color: var(--blue); padding: 0 8px;
-}
-.consent-row {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 10px 0; border-bottom: 1px solid var(--border-soft); font-size: 0.92rem; color: var(--text);
-}
-.consent-row:last-child { border-bottom: none; }
-.consent-row input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; accent-color: var(--blue); }
-.submit-row { margin-top: 22px; }
-.submit-btn {
-  background: var(--blue); color: #fff; border: none; padding: 14px 30px;
-  border-radius: var(--radius-sm); font-family: var(--font-ui); font-size: 0.95rem;
-  font-weight: 700; letter-spacing: 0.04em; cursor: pointer; box-shadow: var(--shadow-card);
-  transition: background 0.15s var(--ease), transform 0.15s var(--ease);
-}
-.submit-btn:hover { background: var(--blue2); transform: translateY(-1px); }
-.submit-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-.receipt {
-  display: none; background: var(--ok-bg); border: 1px solid var(--ok-border);
-  border-left: 3px solid var(--ok); border-radius: var(--radius-sm);
-  padding: 22px 24px; margin-top: 24px;
-}
-.receipt.show { display: block; }
-.receipt h3 { color: var(--ok); margin-top: 0; border-bottom: none; padding-bottom: 0; text-transform: none; font-family: var(--font-display); font-size: 1.15rem; letter-spacing: normal; }
-.case-record {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: 20px 22px; margin-top: 24px; box-shadow: var(--shadow-card);
-}
-.case-record table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.case-record th, .case-record td {
-  text-align: left; padding: 10px 12px;
-  border-bottom: 1px solid var(--border-soft); color: var(--text);
-}
-.case-record th {
-  background: var(--surface2); font-family: var(--font-ui); font-size: 0.75rem; text-transform: uppercase;
-  letter-spacing: 0.05em; color: var(--faint); width: 40%;
-}
-.tag {
-  display: inline-block; font-family: var(--font-ui); font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 3px 10px; border-radius: 20px;
-  background: var(--blue-soft); color: var(--blue);
-}
-.tag.ok { background: var(--ok-bg); color: var(--ok); }
-.tag.warn { background: var(--warn-bg); color: var(--warn-amber); }
-.gates { margin-top: 24px; }
-.gate {
-  border: 1px solid var(--border); border-radius: var(--radius-md);
-  padding: 18px 22px; margin-bottom: 12px; background: var(--surface);
-  transition: border-color 0.15s var(--ease);
-}
-.gate .gate-name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--blue); }
-.gate ul { margin: 10px 0 0 0; padding-left: 20px; font-size: 0.86rem; color: var(--text); line-height: 1.9; }
-.gate li { padding: 2px 0; }
-footer {
-  border-top: 1px solid var(--border); padding: 22px 24px;
-  text-align: center; color: var(--faint); font-size: 0.82rem; margin-top: 44px;
-}
-a { color: var(--blue); }
-a:hover { color: #8ec2e2; }
-@media (max-width: 860px) {
-  .wrap { padding: 20px 14px 40px; }
-}
+  :root{
+    --bg:#0a0a0d;
+    --panel:#131318;
+    --border:#2a2a33;
+    --text:#e8e8ea;
+    --muted:#a8a8b0;
+    --heading:#6fa8dc;
+    --red-banner:#c0392b;
+    --red-text:#e07a70;
+    --warn-bg:#2a1010;
+    --warn-border:#5c1f1f;
+    --btn:#4a7fc9;
+    --btn-hover:#3a67ab;
+    --font:'Lato', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; }
+  .banner{ background:var(--red-banner); color:#fff; text-align:center; font-weight:700; font-size:13px; letter-spacing:0.03em; padding:10px 16px; }
+  .wrap{ max-width:760px; margin:0 auto; padding:40px 24px 96px; }
+  h1{ font-size:34px; font-weight:700; color:var(--heading); margin-bottom:16px; }
+  h2{ font-size:22px; font-weight:700; color:var(--heading); margin:40px 0 16px; }
+  p.lede{ color:var(--muted); font-size:16px; margin-bottom:28px; max-width:64ch; }
+  .info-box{ background:var(--panel); border:1px solid var(--border); border-left:4px solid var(--heading); border-radius:4px; padding:20px 24px; margin-bottom:12px; }
+  .info-box p{ font-size:15px; margin-bottom:8px; }
+  .info-box p:last-child{ margin-bottom:0; color:var(--muted); }
+  .howworks{ background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:24px 28px; }
+  .howworks ol{ padding-left:20px; }
+  .howworks li{ margin-bottom:10px; font-size:15px; }
+  .checks{ list-style:none; margin-top:24px; }
+  .checks li{ font-size:15px; margin-bottom:8px; padding-left:24px; position:relative; }
+  .checks li::before{ content:"✓"; color:var(--heading); position:absolute; left:0; font-weight:700; }
+  fieldset{ border:1px solid var(--border); border-radius:4px; padding:24px; margin-bottom:24px; }
+  legend{ color:var(--heading); font-weight:700; font-size:13px; letter-spacing:0.05em; text-transform:uppercase; padding:0 8px; }
+  label{ display:block; font-weight:700; font-size:13px; letter-spacing:0.03em; margin:16px 0 6px; text-transform:uppercase; }
+  label:first-of-type{ margin-top:0; }
+  label .req{ color:var(--red-text); }
+  input[type=text], input[type=email], input[type=tel], select, textarea{
+    width:100%; background:#1a1a20; border:1px solid var(--border); border-radius:4px;
+    color:var(--text); font-family:var(--font); font-size:15px; padding:12px 14px;
+  }
+  textarea{ min-height:100px; resize:vertical; }
+  input:focus, select:focus, textarea:focus{ outline:2px solid var(--heading); outline-offset:1px; }
+  .consent-item{ display:flex; align-items:flex-start; gap:10px; padding:12px 0; border-bottom:1px solid var(--border); font-size:15px; font-weight:400; text-transform:none; }
+  .consent-item:last-child{ border-bottom:none; }
+  .consent-item input{ width:auto; margin-top:3px; flex-shrink:0; }
+  .required-label{ color:var(--red-text); font-weight:700; font-size:13px; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:12px; display:block; }
+  .warn-box{ background:var(--warn-bg); border:1px solid var(--warn-border); border-radius:4px; padding:20px 24px; margin:24px 0; font-size:14px; color:#d8b8b8; }
+  .warn-box p{ margin-bottom:14px; }
+  .warn-box p:last-child{ margin-bottom:0; }
+  .warn-box a{ color:var(--heading); }
+  .turnstile-wrap{ margin:24px 0; }
+  button.submit-btn{
+    background:var(--btn); color:#fff; border:none; border-radius:4px;
+    font-family:var(--font); font-size:16px; font-weight:700; padding:16px 32px;
+    cursor:pointer; width:100%;
+  }
+  button.submit-btn:hover{ background:var(--btn-hover); }
+  button.submit-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .gate{ background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:20px 24px; margin-bottom:16px; }
+  .gate h3{ color:var(--heading); font-size:17px; margin-bottom:12px; }
+  .gate ul{ padding-left:20px; font-size:14px; color:var(--muted); }
+  .gate li{ margin-bottom:6px; }
+  #form-status{ margin-top:16px; font-size:14px; padding:12px; border-radius:4px; display:none; }
+  #form-status.success{ display:block; background:#0f2a15; border:1px solid #2a5c1f; color:#a8e8b0; }
+  #form-status.error{ display:block; background:var(--warn-bg); border:1px solid var(--warn-border); color:#e8a8a8; }
 </style>
 </head>
 <body>
+  <div class="banner">SUBMISSIONS ARE REVIEWED BY KVSV. NOTHING IS PUBLISHED AUTOMATICALLY.</div>
 
-<div class="demo-banner">SUBMISSIONS ARE REVIEWED BY KVSV. NOTHING IS PUBLISHED AUTOMATICALLY.</div>
+  <div class="wrap">
+    <h1>Contribute to KVSV</h1>
+    <p class="lede">KVSV's universal intake process for family research, corrections, professional submissions, oral history, and community archive contributions.</p>
 
-<div class="wrap">
+    <div class="info-box">
+      <p><strong>Submission creates a case. Submission does not create a public record.</strong></p>
+      <p>Everything you send is reviewed by KVSV researchers before anything is published.</p>
+    </div>
 
-  <h1 class="page-title">Contribute to KVSV</h1>
-  <p class="lede">KVSV's universal intake process for family research, corrections, professional submissions, oral history, and community archive contributions.</p>
+    <h2>How this works</h2>
+    <div class="howworks">
+      <ol>
+        <li>You submit the Contribute form.</li>
+        <li>An automatic case record is created.</li>
+        <li>Consent and completeness gate.</li>
+        <li>Case type and priority assigned.</li>
+        <li>Research tier assigned.</li>
+        <li>Research and evidence workflow.</li>
+        <li>Quality review by a second researcher.</li>
+        <li>Final disposition.</li>
+      </ol>
+    </div>
 
-  <div class="principle">
-    <strong>Submission creates a case. Submission does not create a public record.</strong>
-    <p style="margin-top:8px;">Everything you send is reviewed by KVSV researchers before anything is published.</p>
-  </div>
-
-  <h2>How this works</h2>
-  <div class="flow">
-    <ol>
-      <li>You submit the Contribute form.</li>
-      <li>An automatic case record is created.</li>
-      <li>Consent and completeness gate.</li>
-      <li>Case type and priority assigned.</li>
-      <li>Research tier assigned.</li>
-      <li>Research and evidence workflow.</li>
-      <li>Quality review by a second researcher.</li>
-      <li>Final disposition.</li>
-    </ol>
-  </div>
-
-  <div class="statement">
-    <ul>
+    <ul class="checks">
       <li>Submissions are reviewed.</li>
       <li>Nothing is published automatically.</li>
       <li>KVSV may contact the submitter.</li>
@@ -181,260 +107,226 @@ a:hover { color: #8ec2e2; }
       <li>Unapproved information remains private.</li>
       <li>The same evidence standards apply to every submitter.</li>
     </ul>
-  </div>
 
-  <h2>Submit a contribution</h2>
+    <h2>Submit a contribution</h2>
+    <form id="contribute-form">
 
-  <form id="contribute-form" onsubmit="return handleSubmit(event);">
+      <fieldset>
+        <legend>Submitter</legend>
+        <label>Full Name <span class="req">*</span></label>
+        <input type="text" id="fullName" required>
 
-    <fieldset>
-      <legend>Submitter</legend>
-      <div class="field">
-        <label>Full name *</label>
-        <input type="text" id="f-name" required>
-      </div>
-      <div class="field">
-        <label>Email address *</label>
-        <input type="email" id="f-email" required>
-      </div>
-      <div class="field">
-        <label>Phone or preferred contact method</label>
-        <input type="text" id="f-phone">
-      </div>
-      <div class="field">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" id="email" required>
+
+        <label>Phone or Preferred Contact Method</label>
+        <input type="text" id="contactMethod">
+
         <label>Organization (if applicable)</label>
-        <input type="text" id="f-org">
-      </div>
-    </fieldset>
+        <input type="text" id="organization">
+      </fieldset>
 
-    <fieldset>
-      <legend>Case</legend>
-      <div class="field">
-        <label>Case category *</label>
-        <select id="f-category" required>
+      <fieldset>
+        <legend>Case</legend>
+        <label>Case Category <span class="req">*</span></label>
+        <select id="caseCategory" required>
           <option value="">-- Select --</option>
-          <option>Family research request</option>
-          <option>Public genealogy submission</option>
-          <option>Professional genealogist submission</option>
-          <option>New client inquiry</option>
-          <option>Correction or evidence update</option>
-          <option>Oral-history submission</option>
-          <option>Institutional or community archive contribution</option>
-          <option>General question or referral</option>
+          <option value="Family Research">Family Research</option>
+          <option value="Correction">Correction</option>
+          <option value="Professional Submission">Professional Submission</option>
+          <option value="Oral History">Oral History</option>
+          <option value="Community Archive Contribution">Community Archive Contribution</option>
+          <option value="Other">Other</option>
         </select>
-      </div>
-      <div class="field">
-        <label>Family or surname</label>
-        <input type="text" id="f-family">
-      </div>
-      <div class="field">
-        <label>Names of people involved</label>
-        <input type="text" id="f-names">
-      </div>
-      <div class="field">
+
+        <label>Family or Surname</label>
+        <input type="text" id="surname">
+
+        <label>Names of People Involved</label>
+        <input type="text" id="peopleInvolved">
+
         <label>Relationships</label>
-        <input type="text" id="f-rels">
-      </div>
-      <div class="field">
+        <input type="text" id="relationships">
+
         <label>Locations</label>
-        <input type="text" id="f-locs">
+        <input type="text" id="locations">
+
+        <label>Dates or Date Ranges</label>
+        <input type="text" id="dates">
+
+        <label>Narrative Description <span class="req">*</span></label>
+        <textarea id="narrative" required></textarea>
+
+        <label>Research Question or Requested Outcome</label>
+        <textarea id="researchQuestion"></textarea>
+
+        <label>Source or Evidence Description</label>
+        <textarea id="sourceDescription"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Consent</legend>
+        <span class="required-label">Required Consent Form</span>
+        <div class="consent-item"><input type="checkbox" id="consent1" required><label style="margin:0;text-transform:none;font-weight:400;">I consent to be contacted by KVSV about this submission.</label></div>
+        <div class="consent-item"><input type="checkbox" id="consent2" required><label style="margin:0;text-transform:none;font-weight:400;">I consent to possible publication in the KVSV public search, subject to KVSV review and approval.</label></div>
+        <div class="consent-item"><input type="checkbox" id="consent3" required><label style="margin:0;text-transform:none;font-weight:400;">I understand this submission does not automatically create a public record.</label></div>
+        <div class="consent-item"><input type="checkbox" id="consent4" required><label style="margin:0;text-transform:none;font-weight:400;">I understand my information may be reviewed for accuracy and duplication.</label></div>
+      </fieldset>
+
+      <div class="warn-box">
+        <p><strong>Before you submit:</strong> Please do not include Social Security numbers, government ID numbers, passwords or credentials, living-person street addresses, parcel or assessor numbers, or divorce filings. If any of these are received, they may be restricted, removed, or handled according to KVSV's review procedures.</p>
+        <p>For security and spam prevention, KVSV creates short-lived, protected, hash-derived network and email identifiers. These are used only for abuse and rate-limit protection. KVSV does not retain your raw IP address in the contribution record.</p>
+        <p>Publication consent does not automatically publish a contribution. Any future use requires separate editorial, evidentiary, and privacy review.</p>
+        <p>For correction or deletion requests, use the <a href="contact.html">Contact</a> page.</p>
       </div>
-      <div class="field">
-        <label>Dates or date ranges</label>
-        <input type="text" id="f-dates">
+
+      <div class="turnstile-wrap">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEwvVVT3MVuNXXLm" data-callback="onTurnstileSuccess" data-error-callback="onTurnstileError" data-expired-callback="onTurnstileExpired"></div>
       </div>
-      <div class="field">
-        <label>Narrative description *</label>
-        <textarea id="f-desc" required></textarea>
-      </div>
-      <div class="field">
-        <label>Research question or requested outcome</label>
-        <textarea id="f-question"></textarea>
-      </div>
-      <div class="field">
-        <label>Source or evidence description</label>
-        <textarea id="f-source"></textarea>
-      </div>
-    </fieldset>
 
-    <fieldset>
-      <legend>Consent</legend>
-      <div style="color:#c1453d;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px;">Required consent form</div>
-      <label class="consent-row">
-        <input type="checkbox" id="c-contact">
-        <span>I consent to be contacted by KVSV about this submission.</span>
-      </label>
-      <label class="consent-row">
-        <input type="checkbox" id="c-publish">
-        <span>I consent to possible publication in the KVSV public search, subject to KVSV review and approval.</span>
-      </label>
-      <label class="consent-row">
-        <input type="checkbox" id="c-ack1" required>
-        <span>I understand this submission does not automatically create a public record.</span>
-      </label>
-      <label class="consent-row">
-        <input type="checkbox" id="c-ack2" required>
-        <span>I understand my information may be reviewed for accuracy and duplication.</span>
-      </label>
-    </fieldset>
+      <button type="submit" class="submit-btn" id="submitBtn" disabled>Submit Contribution</button>
+      <div id="form-status"></div>
+    </form>
 
-    <div class="field" style="background:var(--warn-bg);border:1px solid var(--warn-border);border-left:3px solid var(--accent);color:var(--warn-text);padding:16px 18px;border-radius:var(--radius-sm);font-size:0.86rem;line-height:1.65;">
-      <strong>Before you submit:</strong> Please do not include Social Security numbers, government ID numbers, passwords or credentials, living-person street addresses, parcel or assessor numbers, or divorce filings. If any of these are received, they may be restricted, removed, or handled according to KVSV's review procedures.<br><br>
-      For security and spam prevention, KVSV creates short-lived, protected, hash-derived network and email identifiers. These are used only for abuse and rate-limit protection. KVSV does not retain your raw IP address in the contribution record.<br><br>
-      Publication consent does not automatically publish a contribution. Any future use requires separate editorial, evidentiary, and privacy review.<br><br>
-      For correction or deletion requests, use the <a href="contact.html">Contact</a> page.
-    </div>
-
-    <div class="field">
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAEwvVVT3MVuNXXLm" data-callback="onTurnstileSuccess" data-error-callback="onTurnstileError" data-expired-callback="onTurnstileExpired"></div>
-      <div id="turnstile-status" style="font-size:0.8rem;color:#8f6425;margin-top:6px;"></div>
-    </div>
-
-    <div class="submit-row">
-      <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit Contribution</button>
-    </div>
-
-  </form>
-
-  <div class="receipt" id="receipt">
-    <h3>Thank you. Your family research submission has been received.</h3>
-    <p><strong>Case ID:</strong> <span id="receipt-case-id">(pending)</span></p>
-    <p><strong>Status:</strong> <span id="receipt-status">Intake review</span></p>
-    <p>Your submission is not automatically published. KVSV researchers will review the information, evaluate available evidence, and may contact you for clarification or documentation.</p>
-    <p style="margin-top:12px;"><a href="kvsv.html">Return to homepage</a></p>
-  </div>
-
-  <div class="gates">
     <h2>Required gates</h2>
 
-    <div class="gate"><div class="gate-name">Gate 0 - Intake integrity</div><ul><li>Submission complete enough to evaluate</li><li>Submitter contactable</li><li>Consent language accepted</li><li>Spam / malicious material flagged</li><li>Living-person and sensitive-information concerns flagged</li></ul></div>
-    <div class="gate"><div class="gate-name">Gate 1 - Case acceptance</div><ul><li>Relevant to KVSV</li><li>Duplicate check performed</li><li>Enough information exists to begin</li><li>Research tier assigned</li><li>Clarification requested if necessary</li></ul></div>
-    <div class="gate"><div class="gate-name">Gate 2 - Evidence and identity</div><ul><li>Names and alternate spellings evaluated</li><li>Dates and locations evaluated</li><li>Relationships evaluated</li><li>Source quality evaluated</li><li>Contradictions recorded</li><li>Possible identity conflation flagged</li><li>Submitted claims separated from documented facts</li></ul></div>
-    <div class="gate"><div class="gate-name">Gate 3 - Comprehensive analysis</div><ul><li>Build working family structure</li><li>Search relevant records and repositories</li><li>Compare independent sources</li><li>Track aliases and variant spellings</li><li>Record positive and negative findings</li><li>Identify unresolved questions</li><li>Record confidence levels</li><li>Preserve citations and evidence links</li><li>Maintain a research log</li></ul></div>
-    <div class="gate"><div class="gate-name">Gate 4 - Internal quality review</div><ul><li>Second reviewer checks the evidence</li><li>Relationships and dates challenged</li><li>Unsupported claims removed or labeled</li><li>Privacy and consent reviewed</li><li>Duplicate records checked</li><li>Final case classification approved</li></ul></div>
-    <div class="gate"><div class="gate-name">Gate 5 - Final disposition</div><ul><li>Approved for public search</li><li>Approved with limited fields</li><li>Returned for clarification</li><li>Held for further research</li><li>Restricted as private</li><li>Rejected</li></ul></div>
+    <div class="gate">
+      <h3>Gate 0 &mdash; Intake integrity</h3>
+      <ul>
+        <li>Submission complete enough to evaluate</li>
+        <li>Submitter contactable</li>
+        <li>Consent language accepted</li>
+        <li>Spam / malicious material flagged</li>
+        <li>Living-person and sensitive-information concerns flagged</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h3>Gate 1 &mdash; Case acceptance</h3>
+      <ul>
+        <li>Relevant to KVSV</li>
+        <li>Duplicate check performed</li>
+        <li>Enough information exists to begin</li>
+        <li>Research tier assigned</li>
+        <li>Clarification requested if necessary</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h3>Gate 2 &mdash; Evidence and identity</h3>
+      <ul>
+        <li>Names and alternate spellings evaluated</li>
+        <li>Dates and locations evaluated</li>
+        <li>Relationships evaluated</li>
+        <li>Source quality evaluated</li>
+        <li>Contradictions recorded</li>
+        <li>Possible identity conflation flagged</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h3>Gate 3 &mdash; Comprehensive analysis</h3>
+      <ul>
+        <li>Build working family structure</li>
+        <li>Search relevant records and repositories</li>
+        <li>Compare independent sources</li>
+        <li>Track aliases and variant spellings</li>
+        <li>Record positive and negative findings</li>
+        <li>Identify unresolved questions</li>
+        <li>Record confidence levels</li>
+        <li>Preserve citations and evidence links</li>
+        <li>Maintain a research log</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h3>Gate 4 &mdash; Internal quality review</h3>
+      <ul>
+        <li>Second reviewer checks the evidence</li>
+        <li>Relationships and dates challenged</li>
+        <li>Unsupported claims removed or labeled</li>
+        <li>Privacy and consent reviewed</li>
+        <li>Duplicate records checked</li>
+        <li>Final case classification approved</li>
+      </ul>
+    </div>
+
+    <div class="gate">
+      <h3>Gate 5 &mdash; Final disposition</h3>
+      <ul>
+        <li>Approved for public search</li>
+        <li>Approved with limited fields</li>
+        <li>Returned for clarification</li>
+        <li>Held for further research</li>
+        <li>Restricted as private</li>
+        <li>Rejected</li>
+      </ul>
+    </div>
   </div>
 
-</div>
-
-<footer>
-  KVSV - Contribute. Submissions are reviewed before anything is published.
-</footer>
-
 <script>
-var CONTRIBUTE_ENDPOINT = 'https://web-production-1d0fb.up.railway.app/api/contribute';
-var _IDEMPOTENCY_KEY = (function () {
-  if (window.crypto && typeof window.crypto.randomUUID === 'function') {
-    return window.crypto.randomUUID();
-  }
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0;
-    var v = c === 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-})();
+  // ===== REPLACE THIS with your public-form Apps Script Web App URL =====
+  const SCRIPT_URL = "PASTE_APPS_SCRIPT_WEB_APP_URL_HERE";
 
-function onTurnstileSuccess() {
-  var btn = document.getElementById('submit-btn');
-  if (btn) { btn.disabled = false; }
-  var status = document.getElementById('turnstile-status');
-  if (status) { status.textContent = ''; }
-}
+  let turnstileToken = null;
+  function onTurnstileSuccess(token){ turnstileToken = token; document.getElementById('submitBtn').disabled = false; }
+  function onTurnstileError(){ turnstileToken = null; document.getElementById('submitBtn').disabled = true; }
+  function onTurnstileExpired(){ turnstileToken = null; document.getElementById('submitBtn').disabled = true; }
 
-function onTurnstileError(code) {
-  var btn = document.getElementById('submit-btn');
-  if (btn) { btn.disabled = true; }
-  var status = document.getElementById('turnstile-status');
-  if (status) { status.textContent = 'Verification failed to load (error ' + code + '). Please refresh the page and try again.'; }
-}
+  document.getElementById('contribute-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('form-status');
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
 
-function onTurnstileExpired() {
-  var btn = document.getElementById('submit-btn');
-  if (btn) { btn.disabled = true; }
-  var status = document.getElementById('turnstile-status');
-  if (status) { status.textContent = 'Verification expired — please complete it again.'; }
-}
+    const payload = {
+      fullName: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      contactMethod: document.getElementById('contactMethod').value,
+      organization: document.getElementById('organization').value,
+      caseCategory: document.getElementById('caseCategory').value,
+      surname: document.getElementById('surname').value,
+      peopleInvolved: document.getElementById('peopleInvolved').value,
+      relationships: document.getElementById('relationships').value,
+      locations: document.getElementById('locations').value,
+      dates: document.getElementById('dates').value,
+      narrative: document.getElementById('narrative').value,
+      researchQuestion: document.getElementById('researchQuestion').value,
+      sourceDescription: document.getElementById('sourceDescription').value,
+      consent1: document.getElementById('consent1').checked,
+      consent2: document.getElementById('consent2').checked,
+      consent3: document.getElementById('consent3').checked,
+      consent4: document.getElementById('consent4').checked,
+      turnstileToken: turnstileToken
+    };
 
-function _val(id) {
-  var el = document.getElementById(id);
-  return el ? el.value.trim() : '';
-}
-
-function handleSubmit(e) {
-  e.preventDefault();
-  var form = document.getElementById('contribute-form');
-  if (!form.checkValidity()) { form.reportValidity(); return false; }
-
-  var submitBtn = document.getElementById('submit-btn');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Submitting...';
-
-  var turnstileEl = document.querySelector('[name="cf-turnstile-response"]');
-  var turnstileToken = turnstileEl ? turnstileEl.value : '';
-
-  if (!turnstileToken) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Contribution';
-    alert('Please complete the verification before submitting.');
-    return false;
-  }
-
-  var payload = {
-    idempotency_key: _IDEMPOTENCY_KEY,
-    turnstile_token: turnstileToken,
-    name: _val('f-name'),
-    email: _val('f-email'),
-    phone: _val('f-phone'),
-    organization: _val('f-org'),
-    category: _val('f-category'),
-    family: _val('f-family'),
-    names: _val('f-names'),
-    relationships: _val('f-rels'),
-    locations: _val('f-locs'),
-    dates: _val('f-dates'),
-    narrative: _val('f-desc'),
-    research_question: _val('f-question'),
-    source_description: _val('f-source'),
-    contactConsent: document.getElementById('c-contact').checked,
-    publicationConsent: document.getElementById('c-publish').checked,
-    ackPublicRecord: document.getElementById('c-ack1').checked,
-    ackAccuracy: document.getElementById('c-ack2').checked
-  };
-
-  fetch(CONTRIBUTE_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(function (resp) {
-    return resp.json().then(function (body) {
-      return { ok: resp.ok, status: resp.status, body: body };
-    }).catch(function () {
-      return { ok: resp.ok, status: resp.status, body: {} };
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain'},
+      body: JSON.stringify(payload)
+    })
+    .then(r => r.json())
+    .then(data => {
+      if(data.success){
+        status.className = 'success';
+        status.textContent = 'Success — case ' + data.caseId + ' created. Thank you for your contribution.';
+        document.getElementById('contribute-form').reset();
+        btn.style.display = 'none';
+      } else {
+        status.className = 'error';
+        status.textContent = 'Something went wrong: ' + (data.error || 'please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Submit Contribution';
+      }
+    })
+    .catch(() => {
+      status.className = 'error';
+      status.textContent = 'Could not reach the server. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Submit Contribution';
     });
-  })
-  .then(function (result) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Contribution';
-    if (!result.ok || !result.body || !result.body.case_reference) {
-      alert('Your submission could not be processed. Please try again later.');
-      return;
-    }
-    document.getElementById('receipt-case-id').textContent = result.body.case_reference;
-    document.getElementById('receipt-status').textContent = 'Intake review';
-    var receipt = document.getElementById('receipt');
-    receipt.classList.add('show');
-    receipt.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  })
-  .catch(function () {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Contribution';
-    alert('Your submission could not be processed. Please try again later.');
   });
-
-  return false;
-}
 </script>
-
 </body>
 </html>
