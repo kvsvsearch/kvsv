@@ -17,7 +17,7 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KVSV Records Search & Portal</title>
+    <title>KVSV Family Records &amp; Archive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,24 +26,26 @@
     />
     <style>
       :root {
-        --paper: #ffffff;
-        --panel: #ffffff;
-        --ink: #000000;
-        --ink-soft: #333333;
-        --ink-faint: #666666;
-        --rule: #000000;
-        --rule-strong: #000000;
-        --reg-inner: #ececec;
-        --heading-blue: #1a56db;
-        --link-blue: #3b82f6;
-        --danger: #c0392b;
-        --evid-red: #c0392b;
-        --tier1: #3e5b50;
-        --tier1-bg: #dfe7e1;
-        --tier2: #8f6425;
-        --tier2-bg: #ede0c4;
-        --tier4: #7a362a;
-        --tier4-bg: #efdcd6;
+        --paper: #111013;
+        --panel: #1a191d;
+        --ink: #f5f2ec;
+        --ink-soft: #d7d3cc;
+        --ink-faint: #a7a3ab;
+        --rule: #34323a;
+        --rule-strong: #46424c;
+        --reg-inner: #211f24;
+        --heading-blue: #5b9bc0;
+        --link-blue: #5b9bc0;
+        --danger: #c1453d;
+        --evid-red: #c1453d;
+        --tier1: #8fcf9f;
+        --tier1-bg: #16241b;
+        --tier2: #d8b46a;
+        --tier2-bg: #2c2417;
+        --tier4: #d99a8c;
+        --tier4-bg: #2c1a17;
+        --blue-soft: #182228;
+        --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
       }
       * {
         box-sizing: border-box;
@@ -53,7 +55,11 @@
         text-size-adjust: 100%;
       }
       body {
-        background: var(--paper);
+        background:
+          radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%),
+          radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%),
+          var(--paper);
+        background-attachment: fixed;
         color: var(--ink);
         font-family: "Lato", Arial, sans-serif;
         line-height: 1.5;
@@ -87,17 +93,55 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        border-bottom: 2px solid var(--ink);
+        border-bottom: 1px solid var(--rule);
         padding-bottom: 16px;
         margin-bottom: 6px;
         flex-wrap: wrap;
         gap: 14px;
       }
       header.masthead h1 {
-        font-size: 1.9rem;
-        font-weight: 900;
+        font-family: var(--font-display), "Lato", Arial, sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
         color: var(--heading-blue);
-        letter-spacing: 0.01em;
+        letter-spacing: -0.01em;
+      }
+      header.masthead h1 a.logo-home {
+        color: inherit;
+        text-decoration: none;
+      }
+      header.masthead h1 label.logo-home {
+        cursor: pointer;
+        color: inherit;
+        display: flex;
+        align-items: baseline;
+        gap: 9px;
+      }
+      header.masthead h1 label.logo-home:hover .brand-name {
+        color: #d8695f;
+      }
+      .brand-name {
+        font-family: var(--font-display), "Lato", Arial, sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--evid-red);
+        letter-spacing: -0.01em;
+      }
+      .brand-sub {
+        font-family: "Lato", Arial, sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.13em;
+        color: var(--ink-faint);
+        text-transform: uppercase;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .brand-sub span {
+        display: inline;
+      }
+      .brand-sub span:not(:last-child)::after {
+        content: " \00b7 ";
+        color: var(--rule-strong);
       }
       header.masthead .sub {
         color: var(--ink-soft);
@@ -116,7 +160,8 @@
         display: flex;
         gap: 2px;
         margin: 20px 0 22px;
-        border-bottom: 1px solid #999;
+        border-bottom: 1px solid var(--rule);
+        flex-wrap: wrap;
       }
       .tab {
         font-size: 0.9rem;
@@ -159,6 +204,9 @@
       }
       .tab:hover {
         color: var(--ink);
+        background: var(--blue-soft);
+        border-bottom: 3px solid var(--heading-blue);
+        border-radius: 7px 7px 0 0;
       }
 
       /* Evidentiary Register / Search box */
@@ -166,8 +214,8 @@
         display: grid;
         grid-template-columns: 340px 1fr;
         gap: 0;
-        border: 2px solid #000000;
-        background: #ffffff;
+        border: 2px solid var(--rule);
+        background: var(--panel);
         min-height: 560px;
         margin-bottom: 1.5rem;
       }
@@ -177,13 +225,13 @@
         }
       }
       .register {
-        border-right: 1px solid #000000;
-        background: #ffffff;
+        border-right: 1px solid var(--rule);
+        background: var(--panel);
       }
       .register-head {
         padding: 14px 16px 12px;
-        border-bottom: 1px solid #000000;
-        background: #ffffff;
+        border-bottom: 1px solid var(--rule);
+        background: var(--panel);
       }
       .register-head .evid-title {
         font-size: 1.05rem;
@@ -194,11 +242,11 @@
       .search {
         width: 100%;
         padding: 9px 10px;
-        border: 1px solid #000000;
-        background: #ffffff;
+        border: 1px solid var(--rule);
+        background: var(--panel);
         font-family: "Lato", Arial, sans-serif;
         font-size: 0.9rem;
-        color: #000000;
+        color: var(--ink);
       }
       .search:focus {
         outline: 2px solid var(--evid-red);
@@ -214,15 +262,15 @@
         align-items: baseline;
         gap: 8px;
         padding: 10px 14px;
-        border-bottom: 1px solid #cfcfcf;
+        border-bottom: 1px solid var(--rule);
         cursor: pointer;
         background: var(--reg-inner);
       }
       .reg-item:hover {
-        background: #dcdcdc;
+        background: #242229;
       }
       .reg-item.selected {
-        background: #c9c9c9;
+        background: #2e2b33;
       }
       .reg-dot {
         width: 8px;
@@ -234,11 +282,11 @@
       .reg-name {
         font-size: 0.85rem;
         font-weight: 700;
-        color: #000000;
+        color: var(--ink);
       }
       .reg-type {
         font-size: 0.68rem;
-        color: #555555;
+        color: var(--ink-faint);
         margin-left: auto;
         white-space: nowrap;
       }
@@ -246,25 +294,25 @@
       /* Record panel */
       .record {
         padding: 22px 26px;
-        background: #ffffff;
+        background: var(--panel);
       }
       .record-empty {
         padding: 60px 26px;
-        color: #666666;
+        color: var(--ink-faint);
         font-style: italic;
         font-size: 0.95rem;
       }
       .record-id {
         font-family: monospace;
         font-size: 0.72rem;
-        color: #666666;
+        color: var(--ink-faint);
         margin-bottom: 2px;
       }
       .record-name {
         font-size: 1.5rem;
         font-weight: 900;
         margin: 0 0 6px;
-        color: #000000;
+        color: var(--ink);
       }
       .record-badgerow {
         display: flex;
@@ -279,7 +327,7 @@
         padding: 4px 10px;
         font-size: 0.72rem;
         font-weight: 700;
-        border: 1px solid #000;
+        border: 1px solid var(--rule);
       }
       .badge-tier1 {
         background: var(--tier1-bg);
@@ -297,9 +345,9 @@
         border-color: var(--tier4);
       }
       .badge-type {
-        background: #ececec;
-        color: #000;
-        border-color: #000;
+        background: var(--reg-inner);
+        color: var(--ink);
+        border-color: var(--rule);
       }
 
       .field-grid {
@@ -311,7 +359,7 @@
         margin-bottom: 18px;
       }
       .field-label {
-        color: #555555;
+        color: var(--ink-faint);
         font-size: 0.72rem;
         font-weight: 700;
         padding-top: 2px;
@@ -320,10 +368,10 @@
       }
       .field-value {
         line-height: 1.5;
-        color: #000000;
+        color: var(--ink);
       }
       .field-value.empty {
-        color: #888;
+        color: var(--ink-faint);
         font-style: italic;
       }
 
@@ -331,21 +379,31 @@
         font-size: 0.72rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        color: #000;
+        color: var(--ink);
         font-weight: 900;
-        border-top: 1px dashed #999;
+        border-top: 1px dashed var(--rule);
         padding-top: 14px;
         margin: 18px 0 8px;
       }
+
+      .articles-eyebrow {
+        font-family: var(--font-display), Georgia, serif;
+        font-size: 40px;
+        letter-spacing: -0.015em;
+        color: var(--heading-blue);
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 24px;
+      }
       .section-body {
         font-size: 0.85rem;
-        color: #000;
+        color: var(--ink);
         line-height: 1.5;
       }
       .life-summary {
         font-size: 0.88rem;
         line-height: 1.55;
-        color: #000;
+        color: var(--ink);
       }
       .citation-list {
         list-style: none;
@@ -371,17 +429,17 @@
         text-decoration: underline;
       }
       .assoc-none {
-        color: #666;
+        color: var(--ink-faint);
         font-size: 0.82rem;
       }
       mark {
-        background: #fff2a8;
+        background: #d8b46a;
       }
 
       /* Framework tab */
       .framework {
-        background: #ffffff;
-        border: 2px solid #000000;
+        background: var(--panel);
+        border: 2px solid var(--rule);
         padding: 30px 34px;
         margin-bottom: 1.5rem;
       }
@@ -392,7 +450,7 @@
       .framework p {
         font-size: 0.9rem;
         line-height: 1.6;
-        color: #333;
+        color: var(--ink-soft);
         max-width: 720px;
         margin-bottom: 14px;
       }
@@ -405,15 +463,15 @@
       .tier-table th {
         text-align: left;
         font-size: 0.7rem;
-        color: #555;
+        color: var(--ink-faint);
         font-weight: 700;
         padding: 7px 10px;
-        border-bottom: 2px solid #000;
+        border-bottom: 2px solid var(--rule);
         text-transform: uppercase;
       }
       .tier-table td {
         padding: 8px 10px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid var(--rule);
         word-wrap: break-word;
         overflow-wrap: break-word;
       }
@@ -438,21 +496,29 @@
       }
       .stat-label {
         font-size: 0.72rem;
-        color: #555;
+        color: var(--ink-faint);
       }
 
       /* Preserved real components */
       .banner {
-        background: #ffffff;
-        border: 1px solid #000;
-        color: #000;
-        font-size: 0.85rem;
-        padding: 0.9rem 1rem;
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        color: var(--ink);
+        font-size: 15px;
+        line-height: 1.8;
+        padding: 34px 38px;
         margin-bottom: 1.2rem;
+        border-radius: 10px;
+      }
+      .banner p {
+        margin: 0 0 14px;
+      }
+      .banner p:last-child {
+        margin-bottom: 0;
       }
       .card {
-        background: #ffffff;
-        border: 1px solid #000;
+        background: var(--panel);
+        border: 1px solid var(--rule);
         padding: 1.2rem;
         margin-bottom: 1.2rem;
       }
@@ -482,58 +548,58 @@
         border-radius: 6px;
       }
       .submission-card a.btn:hover {
-        background: #96271c;
+        background: #7a2620;
       }
       .narrative-card {
-        background: #f8d7da;
-        border: 1px solid #000;
-        color: #000;
+        background: #2c1a17;
+        border: 1px solid var(--rule);
+        color: var(--ink);
       }
       .narrative-card .section-title {
-        color: #000;
-        border-top-color: #000;
+        color: var(--ink);
+        border-top-color: var(--ink);
       }
       .article-entry {
         padding: 0.9rem 0;
-        border-top: 1px dashed #000;
+        border-top: 1px dashed var(--rule);
       }
       .article-entry:first-child {
         border-top: none;
         padding-top: 0;
       }
       .article-entry h4 {
-        color: #000;
+        color: var(--ink);
         font-weight: 900;
         font-size: 1.05rem;
         margin-bottom: 0.3rem;
       }
       .article-entry p {
-        color: #000;
+        color: var(--ink);
         font-size: 0.88rem;
         margin-bottom: 0.4rem;
         line-height: 1.5;
       }
       .article-entry p a,
       .article-entry a.read-more {
-        color: #7a1f14;
+        color: var(--heading-blue);
         font-size: 0.85rem;
         text-decoration: underline;
         font-weight: 700;
       }
       .article-entry a.read-more:hover,
       .article-entry p a:hover {
-        color: #c0392b;
+        color: var(--evid-red);
       }
       .audio-story-label {
         font-size: 0.6em;
       }
       .full-article {
-        background: #ffffff;
-        border: 1px solid #000;
+        background: var(--panel);
+        border: 1px solid var(--rule);
         border-radius: 6px;
         padding: 0.9rem 1rem;
         margin: 0.6rem 0;
-        color: #000;
+        color: var(--ink);
       }
       .full-article h5 {
         font-size: 1.05rem;
@@ -542,13 +608,13 @@
       }
       .full-article .full-article-sub {
         font-style: italic;
-        color: #444;
+        color: var(--ink-soft);
         font-size: 0.85rem;
         margin-bottom: 0.6rem;
       }
       .full-article h6 {
         font-size: 0.95rem;
-        color: #0a2472;
+        color: var(--heading-blue);
         margin-top: 0.8rem;
         margin-bottom: 0.3rem;
         font-weight: 900;
@@ -560,8 +626,8 @@
       }
       .full-article .full-article-sources {
         font-size: 0.75rem;
-        color: #555;
-        border-top: 1px dashed #999;
+        color: var(--ink-faint);
+        border-top: 1px dashed var(--rule);
         padding-top: 0.5rem;
       }
       .article-entry .media-links {
@@ -599,6 +665,7 @@
       #view-oralhistory,
   #view-stories,
   #view-contribute,
+  #view-contact,
       #view-privateportal {
         display: none;
       }
@@ -618,6 +685,9 @@
   display: block;
 }
 #tab-contribute:checked ~ #view-contribute {
+  display: block;
+}
+#tab-contact:checked ~ #view-contact {
   display: block;
 }
       #tab-publicsearch:checked ~ .tabs label[for="tab-publicsearch"] {
@@ -640,6 +710,10 @@
   color: var(--ink);
   border-bottom: 3px solid var(--evid-red);
 }
+#tab-contact:checked ~ .tabs label[for="tab-contact"] {
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
 #tab-contribute:checked ~ .tabs label[for="tab-contribute"] {
   color: var(--ink);
   border-bottom: 3px solid var(--evid-red);
@@ -655,19 +729,29 @@
         font-family: "Lato", Arial, sans-serif;
         font-size: 10px;
         text-align: center;
-        color: #555;
+        color: var(--ink-faint);
         padding: 1.5rem 1rem;
-        border-top: 1px solid #000;
+        border-top: 1px solid var(--rule);
         margin-top: 2rem;
       }
+      a {
+        color: var(--link-blue);
+      }
+      a:visited {
+        color: var(--link-blue);
+      }
     </style>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
       <header class="masthead">
         <div>
-          <h1 id="pageTitle">KVSV Records Search &amp; Portal</h1>
-          <p id="recordCountLabel" class="sub">Local archive database</p>
+          <h1 id="pageTitle"><label class="logo-home" for="tab-register" title="Back to Research Database"><span class="brand-name">KVSV</span><span class="brand-sub"><span>Family</span><span>Ancestry</span><span>&amp; Archive</span></span></label></h1>
+          <p id="recordCountLabel" class="sub" hidden></p>
         </div>
         <div class="masthead-meta" id="mastheadStats">
           Database: loading&hellip;
@@ -688,6 +772,7 @@
       <input type="radio" name="kvsvtab" id="tab-privateportal" class="tabradio" />
 <input type="radio" name="kvsvtab" id="tab-stories" class="tabradio" />
 <input type="radio" name="kvsvtab" id="tab-contribute" class="tabradio" />
+<input type="radio" name="kvsvtab" id="tab-contact" class="tabradio" />
       <div class="tabs">
         <label class="tab" for="tab-register">Research Database</label>
         <label class="tab" for="tab-publicsearch">Public Search</label>
@@ -696,6 +781,7 @@
         <label class="tab" for="tab-oralhistory">Oral History</label>
         <label class="tab" for="tab-privateportal">Private Portal</label>
 <label class="tab" for="tab-contribute">Contribute</label>
+<label class="tab" for="tab-contact">Contact</label>
       </div>
       <!-- NOTE: the original "Framework" label was removed from this nav row so the site has exactly the 5
            requested top-level tabs. The #tab-framework radio input above and the entire #view-framework block
@@ -704,31 +790,68 @@
 
       <div id="view-register">
         <div class="banner">
+          <p style="font-family: var(--font-display); font-size: 21px; font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: 18px;">Welcome to KVSV&mdash;a family research portal and archive.</p>
           <p>
-            The KVSV Search portal is a living genealogical archival framework
-            built around one central mission: documenting the ancestral lines
-            and mixed heritages that mainstream genealogy routinely overlooks
-            &mdash; research grounded in source and direct testimony. The KVSV
-            research project traces family lines across the Indigenous world,
-            Freedmen's Bureaus, and mixed-heritage records, along with their
-            contemporaries and immigrant population groups &mdash; data that
-            colonial-era frameworks, institutions, and agencies often left
-            incomplete, scattered, modified, reclassified, or lost &mdash; and
-            treats that gap as the project's core work, not a footnote. It is
-            this framework that has been rigorously architected that is the
-            backbone of our platform, and what the private portals and service
-            offerings are designed around &mdash; the missing pieces and
-            artifacts that make your genealogical narrative real, and
+            This journey began with research into my own family. What started
+            unexpectedly as personal curiosity has grown, over more than a
+            decade, into a meaningful genealogical and archival undertaking.
+            Through work with family members and fellow researchers across
+            the country, I have traced records, compared memories, uncovered
+            overlooked connections, and recovered pieces of history that
+            might otherwise have remained hidden. It has been a beautiful and
+            empowering journey&mdash;one that has taught me that ancestry is
+            about far more than names and dates. It is about people, place,
+            identity, resilience, and the unbroken connections between
+            generations.
+          </p>
+          <p>
+            From that personal work, KVSV emerged as a living genealogical
+            archival framework and the foundation for the KVSV family
+            ancestry records search and archival database. Its central
+            mission is to document ancestral lines and mixed heritages that
+            mainstream genealogy often overlooks. This work is grounded in
+            source material, careful investigation, and direct testimony,
+            because every family's lineage holds a story worth discovering,
+            sharing, and preserving.
+          </p>
+          <p>
+            KVSV provides personalized, evidence-centered genealogical
+            services unlike conventional platforms. We look beyond incomplete
+            classifications and static documents to connect the fragments,
+            close the gaps, and preserve the lived experiences, testimonies,
+            and relationships that make a family narrative real and
             evidentiary.
           </p>
           <p>
-            The current research is centered on ancestry from Southern U.S.,
-            Mid-Atlantic and Lower-Midwest regions (Alabama, Georgia,
-            Mississippi, North and South Carolina, Tennessee, Kentucky, Ohio,
-            Pennsylvania, Virginia, West Virginia), and the adjacent
-            territories with a specific focus on pre- and post colonial era
-            lineages, associated familial connections.
+            My own research has traced familial lines through Indigenous
+            worlds, Freedmen's Bureau records, mixed heritages, the noble
+            lines of Scotland and Britain, and the communities connected to
+            them&mdash;histories that colonial-era institutions and agencies
+            often left incomplete, scattered, altered, reclassified, or lost.
+            At KVSV, those absences are not a footnote; they are central to
+            the work.
           </p>
+          <p>
+            Today, my research focuses on ancestral connections across the
+            Southern United States, the Mid-Atlantic, and the Lower
+            Midwest&mdash;including Alabama, Georgia, Mississippi, North
+            Carolina, South Carolina, Tennessee, Kentucky, Ohio, Pennsylvania,
+            Virginia, and West Virginia, as well as adjacent territories. I
+            focus especially on pre- and post-colonial records, the people
+            within them, and the family and community ties conventional
+            archives may not fully reveal.
+          </p>
+          <p>
+            KVSV invites you to discover your ancestral story, reconnect with
+            the past, and preserve a more complete record for future
+            generations. Establish a private family portal or contribute to
+            the global database and records search. Whether you are
+            beginning with one name, reclaiming an obscured branch, or
+            seeking evidence that connects generations, this is a place for
+            inquiry, preservation, and discovery.
+          </p>
+          <p style="font-family: var(--font-display); font-size: 18px; font-style: italic; color: var(--heading-blue); margin-top: 22px; margin-bottom: 6px;">Discover your truth.</p>
+          <p style="font-family: var(--font-display); font-size: 15px; color: var(--ink-faint); font-style: italic;">&mdash; Jason Eugene B.</p>
           <br />
         </div>
 
@@ -774,11 +897,8 @@
 </div>
 <div id="view-stories">
         <div class="card narrative-card">
-          <div
-            class="section-title"
-            style="margin-top: 0; border-top: none; padding-top: 0"
-          >
-            Featured Articles &amp; Historical Context
+          <div class="articles-eyebrow">
+            Featured Articles, Stories &amp; White Papers
           </div>
           <div class="article-entry">
             <h4>
@@ -1201,7 +1321,7 @@
                 href="https://drive.google.com/file/d/1JOUJ696Y0hpeqCmtBphUiRKfwf9gYbm3/view"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Also listen HERE! Open in Drive)</a
+                >(Also listen HERE! Open in Drive)</a
               >
             </div>
           </div>
@@ -1231,7 +1351,7 @@
                 href="https://drive.google.com/file/d/1W7N80ToANhY7gMwtUWes4T6A07Z3GIih/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Also listen HERE! Open in Drive)</a
+                >(Also listen HERE! Open in Drive)</a
               >
             </div>
           </div>
@@ -1376,7 +1496,11 @@
       </div>
 
             <div id="view-contribute">
-        <a href="contribute.html" style="display:inline-block;margin:24px 0;padding:14px 20px;background:#1e5fd8;color:#ffffff;border-radius:6px;text-decoration:none;font-weight:bold;">Open the Contribute Form</a>
+        <a href="contribute.html" style="display:inline-block;margin:24px 0;padding:14px 20px;background:var(--heading-blue);color:#ffffff;border-radius:6px;text-decoration:none;font-weight:bold;">Open the Contribute Form</a>
+      </div>
+
+      <div id="view-contact">
+        <iframe class="site-tab-iframe" src="contact.html" title="Contact KVSV" loading="lazy"></iframe>
       </div>
     </div>
 
