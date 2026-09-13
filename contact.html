@@ -49,6 +49,11 @@ h1.page-title{font-family:var(--font-display);font-size:46px;font-weight:700;col
 .submit-btn{background:var(--blue);color:#fff;border:none;padding:14px 32px;border-radius:var(--radius-sm);font-family:var(--font-ui);font-size:15px;font-weight:700;cursor:pointer;margin-top:18px;box-shadow:var(--shadow-card);transition:background 0.15s var(--ease), transform 0.15s var(--ease);}
 .submit-btn:hover{background:var(--blue2);transform:translateY(-1px);}
 .page-footer-note{text-align:center;font-size:13px;color:var(--faint);margin-top:30px;padding-top:22px;border-top:1px solid var(--border);}
+.form-status{font-family:var(--font-ui);font-size:14px;border-radius:var(--radius-sm);padding:12px 16px;margin-top:16px;display:none;}
+.form-status.show{display:block;}
+.form-status.ok{background:#16241b;border:1px solid #2f5a3d;color:#6fae7f;}
+.form-status.err{background:var(--accent-soft);border:1px solid #5a2320;color:#e9d6d2;}
+.submit-btn:disabled{opacity:0.55;cursor:not-allowed;transform:none;}
 </style>
 </head>
 <body>
@@ -57,17 +62,67 @@ h1.page-title{font-family:var(--font-display);font-size:46px;font-weight:700;col
 <h1 class="page-title">Contact KVSV</h1>
 <p class="intro">Questions, corrections, deletion requests, or anything else &mdash; send it here.</p>
 
-<div class="form-section">
+<form id="contact-form" class="form-section" novalidate>
   <h3>Send a message</h3>
-  <div class="field"><label>Full Name *</label><input type="text"></div>
-  <div class="field"><label>Email Address *</label><input type="text"></div>
-  <div class="field"><label>Subject</label><select><option>-- Select --</option><option>General question</option><option>Correction request</option><option>Deletion request</option><option>Something else</option></select></div>
-  <div class="field"><label>Message *</label><textarea></textarea></div>
-  <div><button class="submit-btn" type="button">Send Message</button></div>
-</div>
+  <div class="field"><label for="c-name">Full Name *</label><input type="text" id="c-name" required></div>
+  <div class="field"><label for="c-email">Email Address *</label><input type="email" id="c-email" required></div>
+  <div class="field"><label for="c-subject">Subject</label><select id="c-subject"><option>General question</option><option>Correction request</option><option>Deletion request</option><option>Something else</option></select></div>
+  <div class="field"><label for="c-message">Message *</label><textarea id="c-message" required></textarea></div>
+  <input type="text" id="c-website" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
+  <div><button class="submit-btn" type="submit" id="c-submit">Send Message</button></div>
+  <div class="form-status" id="c-status"></div>
+</form>
 
-<div class="page-footer-note">KVSV &mdash; messages sent here are reviewed by KVSV. This is a demo form; nothing is transmitted yet.</div>
+<div class="page-footer-note">KVSV &mdash; messages sent here are reviewed by KVSV.</div>
 
 </div>
+<script>
+const CONTACT_ENDPOINT = 'https://web-production-1d0fb.up.railway.app/api/contact';
+const form = document.getElementById('contact-form');
+const statusEl = document.getElementById('c-status');
+const submitBtn = document.getElementById('c-submit');
+
+function showStatus(kind, text) {
+  statusEl.className = 'form-status show ' + kind;
+  statusEl.textContent = text;
+}
+
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const name = document.getElementById('c-name').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const subject = document.getElementById('c-subject').value;
+  const message = document.getElementById('c-message').value.trim();
+  const website = document.getElementById('c-website').value;
+
+  if (!name || !email || !message) {
+    showStatus('err', 'Please fill in your name, email, and message.');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+  statusEl.className = 'form-status';
+
+  try {
+    const resp = await fetch(CONTACT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, subject, message, website }),
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok) {
+      throw new Error(data.error || ('Server returned ' + resp.status));
+    }
+    showStatus('ok', 'Message sent — thank you. KVSV will review and respond if needed.');
+    form.reset();
+  } catch (err) {
+    showStatus('err', 'Could not send your message: ' + err.message + '. Please try again in a moment.');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  }
+});
+</script>
 </body>
 </html>
