@@ -5,125 +5,143 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KVSV - Contribute</title>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --paper: #ffffff;
-  --ink: #000000;
-  --ink-soft: #333333;
-  --muted: #666666;
-  --rule: #000000;
-  --rule-soft: #dddddd;
-  --tint: #f7f7f7;
-  --heading: #1a56db;
-  --accent: #c0392b;
-  --info-bg: #eef2ff;
-  --ok: #2f7a3f;
-  --warn: #8f6425;
+  --bg: #111013; --surface: #1a191d; --surface2: #211f24; --border: #34323a;
+  --border-soft: #2a2830;
+  --text: #f5f2ec; --muted: #a7a3ab; --faint: #77737c;
+  --accent: #c1453d; --accent2: #8f322b;
+  --blue: #5b9bc0; --blue2: #3f7593; --blue-soft: #182228;
+  --warn-bg: #2c1a17; --warn-border: #5a2320; --warn-text: #e9d6d2;
+  --ok-bg: #16241b; --ok-border: #2f5a3d; --ok: #6fae7f;
+  --warn-amber: #d8b46a;
+  --radius-sm: 6px; --radius-md: 10px;
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.55);
+  --ease: cubic-bezier(.2,.7,.3,1);
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--paper); color: var(--ink); font-family: "Lato", Arial, sans-serif; line-height: 1.5; }
+body {
+  background:
+    radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%),
+    radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text); font-family: var(--font-ui); line-height: 1.6;
+}
 .demo-banner {
-  background: var(--accent); color: #fff; text-align: center;
+  background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #fff; text-align: center;
   font-weight: 700; letter-spacing: 0.08em; font-size: 0.78rem;
-  padding: 8px 12px; text-transform: uppercase;
+  padding: 10px 12px; text-transform: uppercase;
 }
 .wrap { max-width: 860px; margin: 0 auto; padding: 32px 24px 60px; }
-h1 { font-size: 1.6rem; font-weight: 900; color: var(--heading); margin-bottom: 6px; }
-.lede { color: var(--muted); font-size: 0.95rem; margin-bottom: 22px; }
-h2 { font-size: 1.1rem; font-weight: 900; color: var(--heading); margin: 28px 0 10px; }
-h3 { font-size: 0.95rem; margin: 18px 0 8px; color: var(--ink); }
-p { margin-bottom: 10px; font-size: 0.92rem; }
+h1 { font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; color: var(--blue); margin-bottom: 8px; letter-spacing: -0.01em; }
+.lede { color: var(--muted); font-size: 0.98rem; margin-bottom: 24px; }
+h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--blue); margin: 30px 0 12px; }
+h3 { font-family: var(--font-ui); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 20px 0 10px; color: var(--blue); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+p { margin-bottom: 10px; font-size: 0.95rem; color: var(--text); }
 .principle {
-  background: var(--info-bg); border-left: 4px solid var(--heading);
-  padding: 14px 18px; border-radius: 2px; margin-bottom: 22px;
+  background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--blue);
+  padding: 18px 22px; border-radius: var(--radius-sm); margin-bottom: 24px; box-shadow: var(--shadow-card);
 }
-.principle strong { color: var(--heading); }
+.principle strong { color: var(--text); }
 .flow {
-  background: var(--tint); border: 1px solid var(--rule-soft);
-  border-radius: 3px; padding: 16px 20px; margin-bottom: 22px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 18px 22px; margin-bottom: 24px; box-shadow: var(--shadow-card);
 }
-.flow ol { margin: 0; padding-left: 22px; font-size: 0.9rem; }
-.flow li { padding: 3px 0; }
-.statement ul { list-style: none; padding: 0; }
-.statement li { padding: 6px 0 6px 22px; position: relative; font-size: 0.9rem; }
+.flow ol { margin: 0; padding-left: 22px; font-size: 0.92rem; color: var(--text); }
+.flow li { padding: 4px 0; }
+.statement ul { list-style: none; padding: 0; margin: 20px 0; }
+.statement li { padding: 6px 0 6px 24px; position: relative; font-size: 0.92rem; color: var(--text); }
 .statement li::before {
   content: "\2713"; position: absolute; left: 0; top: 6px;
-  color: var(--ok); font-weight: 700;
+  color: var(--blue); font-weight: 700;
 }
-form { background: #fff; border: 1px solid var(--rule-soft); border-radius: 3px; padding: 22px; }
-.field { margin-bottom: 14px; }
+form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 26px; box-shadow: var(--shadow-card); }
+.field { margin-bottom: 16px; }
 .field label {
-  display: block; font-size: 0.82rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.04em;
-  color: var(--ink-soft); margin-bottom: 5px;
+  display: block; font-family: var(--font-ui); font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text); margin-bottom: 7px;
 }
 .field input, .field select, .field textarea {
-  width: 100%; padding: 10px 12px; border: 1px solid var(--rule-soft);
-  border-radius: 3px; font-family: inherit; font-size: 0.92rem; background: #fff;
+  width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); font-family: var(--font-ui); font-size: 0.95rem;
+  background: var(--surface2); color: var(--text); transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); }
 .field textarea { min-height: 90px; resize: vertical; }
-.field .hint { font-size: 0.76rem; color: var(--muted); margin-top: 4px; }
-fieldset { border: 1px solid var(--rule-soft); border-radius: 3px; padding: 16px 18px; margin-bottom: 16px; }
+.field .hint { font-size: 0.76rem; color: var(--faint); margin-top: 5px; }
+fieldset { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 20px; margin-bottom: 18px; }
 legend {
-  font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.05em; color: var(--heading); padding: 0 8px;
+  font-family: var(--font-ui); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--blue); padding: 0 8px;
 }
 .consent-row {
   display: flex; align-items: flex-start; gap: 10px;
-  padding: 9px 0; border-bottom: 1px solid var(--rule-soft); font-size: 0.9rem;
+  padding: 10px 0; border-bottom: 1px solid var(--border-soft); font-size: 0.92rem; color: var(--text);
 }
 .consent-row:last-child { border-bottom: none; }
-.consent-row input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; }
-.submit-row { margin-top: 20px; }
+.consent-row input { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; accent-color: var(--blue); }
+.submit-row { margin-top: 22px; }
 .submit-btn {
-  background: var(--heading); color: #fff; border: none; padding: 12px 28px;
-  border-radius: 3px; font-family: inherit; font-size: 0.95rem;
-  font-weight: 700; letter-spacing: 0.04em; cursor: pointer;
+  background: var(--blue); color: #fff; border: none; padding: 14px 30px;
+  border-radius: var(--radius-sm); font-family: var(--font-ui); font-size: 0.95rem;
+  font-weight: 700; letter-spacing: 0.04em; cursor: pointer; box-shadow: var(--shadow-card);
+  transition: background 0.15s var(--ease), transform 0.15s var(--ease);
 }
-.submit-btn:hover { background: #1444b3; }
+.submit-btn:hover { background: var(--blue2); transform: translateY(-1px); }
+.submit-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 .receipt {
-  display: none; background: #e7f1e8; border: 1px solid var(--ok);
-  border-left: 4px solid var(--ok); border-radius: 3px;
-  padding: 20px 22px; margin-top: 22px;
+  display: none; background: var(--ok-bg); border: 1px solid var(--ok-border);
+  border-left: 3px solid var(--ok); border-radius: var(--radius-sm);
+  padding: 22px 24px; margin-top: 24px;
 }
 .receipt.show { display: block; }
-.receipt h3 { color: var(--ok); margin-top: 0; }
+.receipt h3 { color: var(--ok); margin-top: 0; border-bottom: none; padding-bottom: 0; text-transform: none; font-family: var(--font-display); font-size: 1.15rem; letter-spacing: normal; }
 .case-record {
-  background: #fff; border: 1px solid var(--rule-soft);
-  border-radius: 3px; padding: 18px 20px; margin-top: 22px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 20px 22px; margin-top: 24px; box-shadow: var(--shadow-card);
 }
-.case-record table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.case-record table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .case-record th, .case-record td {
-  text-align: left; padding: 8px 10px;
-  border-bottom: 1px solid var(--rule-soft);
+  text-align: left; padding: 10px 12px;
+  border-bottom: 1px solid var(--border-soft); color: var(--text);
 }
 .case-record th {
-  background: var(--tint); font-size: 0.75rem; text-transform: uppercase;
-  letter-spacing: 0.05em; color: var(--muted); width: 40%;
+  background: var(--surface2); font-family: var(--font-ui); font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--faint); width: 40%;
 }
 .tag {
-  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  display: inline-block; font-family: var(--font-ui); font-size: 0.7rem; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 2px 8px; border-radius: 10px;
-  background: var(--info-bg); color: var(--heading);
+  padding: 3px 10px; border-radius: 20px;
+  background: var(--blue-soft); color: var(--blue);
 }
-.tag.ok { background: #e7f1e8; color: var(--ok); }
-.tag.warn { background: #f3ead9; color: var(--warn); }
-.gates { margin-top: 22px; }
+.tag.ok { background: var(--ok-bg); color: var(--ok); }
+.tag.warn { background: var(--warn-bg); color: var(--warn-amber); }
+.gates { margin-top: 24px; }
 .gate {
-  border: 1px solid var(--rule-soft); border-radius: 3px;
-  padding: 12px 16px; margin-bottom: 8px; background: #fff;
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 18px 22px; margin-bottom: 12px; background: var(--surface);
+  transition: border-color 0.15s var(--ease);
 }
-.gate .gate-name { font-weight: 700; font-size: 0.88rem; color: var(--heading); }
-.gate ul { margin: 6px 0 0 0; padding-left: 20px; font-size: 0.84rem; color: var(--ink-soft); }
+.gate .gate-name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--blue); }
+.gate ul { margin: 10px 0 0 0; padding-left: 20px; font-size: 0.86rem; color: var(--text); line-height: 1.9; }
 .gate li { padding: 2px 0; }
 footer {
-  border-top: 1px solid var(--rule-soft); padding: 20px 24px;
-  text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 40px;
+  border-top: 1px solid var(--border); padding: 22px 24px;
+  text-align: center; color: var(--faint); font-size: 0.82rem; margin-top: 44px;
 }
+a { color: var(--blue); }
+a:hover { color: #8ec2e2; }
 @media (max-width: 860px) {
   .wrap { padding: 20px 14px 40px; }
-  h1 { font-size: 1.3rem; }
+  h1 { font-size: 1.6rem; }
 }
 </style>
 </head>
@@ -260,7 +278,7 @@ footer {
       </label>
     </fieldset>
 
-    <div class="field" style="background:#f7f7f7;border-left:3px solid #c0392b;padding:12px 14px;font-size:0.86rem;line-height:1.55;">
+    <div class="field" style="background:var(--warn-bg);border:1px solid var(--warn-border);border-left:3px solid var(--accent);color:var(--warn-text);padding:16px 18px;border-radius:var(--radius-sm);font-size:0.86rem;line-height:1.65;">
       <strong>Before you submit:</strong> Please do not include Social Security numbers, government ID numbers, passwords or credentials, living-person street addresses, parcel or assessor numbers, or divorce filings. If any of these are received, they may be restricted, removed, or handled according to KVSV's review procedures.<br><br>
       For security and spam prevention, KVSV creates short-lived, protected, hash-derived network and email identifiers. These are used only for abuse and rate-limit protection. KVSV does not retain your raw IP address in the contribution record.<br><br>
       Publication consent does not automatically publish a contribution. Any future use requires separate editorial, evidentiary, and privacy review.<br><br>
