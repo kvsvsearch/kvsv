@@ -4,112 +4,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KVSV Family Records — Oral History (Coming Soon)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap');
-  :root{
-    --paper:#ffffff; --ink:#000000; --ink-soft:#5a5a5a;
-    --seal:#c0392b; --seal-dark:#96271b; --pine:#1a56db; --brass:#d8d8d8; --card:#f8d7da;
-  }
-  *{box-sizing:border-box;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Lato',sans-serif;line-height:1.6;}
-  header{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:1px solid var(--brass);}
-  .wordmark{font-family:'Lato',sans-serif;font-weight:600;font-size:22px;}
-  .wordmark span{color:var(--seal);}
-  .badge{font-family:'Lato',sans-serif;font-size:11px;background:var(--pine);color:#ffffff;padding:3px 10px;letter-spacing:0.5px;}
-
-  .hero{max-width:760px;margin:0 auto;padding:56px 48px 8px;text-align:left;}
-  .hero h1{font-family:'Lato',sans-serif;font-weight:500;font-size:36px;line-height:1.2;margin:0 0 14px;}
-  .hero p{font-size:15.5px;color:var(--ink-soft);max-width:560px;margin:0 0 28px;}
-
-  .notify{display:flex;gap:8px;max-width:440px;margin-bottom:8px;}
-  .notify input{flex:1;min-width:0;border:1.5px solid var(--ink);background:var(--card);padding:13px 14px;font-size:14px;color:var(--ink);}
-  .notify input:focus{outline:none;}
-  .notify button{border:none;background:var(--seal);color:#ffffff;padding:0 24px;font-size:14px;font-weight:500;cursor:pointer;}
-  .notify button:hover{background:var(--seal-dark);}
-  .notify-hint{font-size:12px;color:var(--ink-soft);margin-bottom:48px;}
-
-  .principle{max-width:760px;margin:0 auto;padding:0 48px 48px;}
-  .principle .rule{border-left:3px solid var(--pine);padding:4px 0 4px 20px;font-size:14.5px;color:var(--ink-soft);}
-  .principle .rule b{color:var(--ink);font-weight:600;}
-
-  .section-label{font-family:'Lato',sans-serif;font-size:12px;color:var(--ink-soft);margin-bottom:16px;}
-  .preview{max-width:760px;margin:0 auto;padding:0 48px 64px;}
-
-  .attestation{background:var(--card);border:1px solid var(--brass);padding:26px 28px;margin-bottom:16px;}
-  .att-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;}
-  .att-name{font-family:'Lato',sans-serif;font-weight:600;font-size:19px;}
-  .att-meta{font-family:'Lato',sans-serif;font-size:11.5px;color:var(--ink-soft);}
-  .att-rel{font-size:13px;color:var(--ink-soft);margin-bottom:16px;}
-  .att-quote{font-family:'Lato',sans-serif;font-style:italic;font-size:16px;color:var(--ink);line-height:1.6;border-left:2px solid var(--brass);padding-left:18px;margin-bottom:16px;}
-  .att-controls{display:flex;align-items:center;gap:12px;}
-  .play-btn{width:32px;height:32px;border-radius:50%;background:var(--pine);color:#ffffff;border:none;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:not-allowed;opacity:0.6;}
-  .waveform{flex:1;height:24px;background:repeating-linear-gradient(90deg,var(--brass) 0 2px,transparent 2px 6px);opacity:0.5;}
-  .att-tags{display:flex;gap:8px;margin-top:14px;}
-  .tag{font-family:'Lato',sans-serif;font-size:11px;padding:3px 10px;background:#e8f0fe;color:var(--pine);}
-
-  .placeholder-note{font-size:12.5px;color:var(--ink-soft);text-align:center;font-style:italic;margin-top:6px;}
-
-  .footer-note{border-top:1px solid var(--brass);padding:20px 48px;font-size:12px;color:var(--ink-soft);text-align:center;}
-
-  @media (max-width: 600px) {
-    header{padding:18px 20px;}
-    .hero{padding:36px 20px 8px;}
-    .hero h1{font-size:28px;}
-    .principle{padding:0 20px 32px;}
-    .preview{padding:0 20px 48px;}
-    .footer-note{padding:16px 20px;}
-    .notify input{font-size:16px;}
-    .attestation{padding:20px 18px;}
-  }
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a;
+  --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b; --accent-soft:#2c1917;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --panel-bg:#241b17; --panel-border:#4a352a; --panel-text:#e7d9cf;
+  --radius-sm:6px; --radius-md:10px; --radius-lg:16px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.55);
+  --shadow-pop:0 4px 10px -4px rgba(0,0,0,0.5), 0 16px 40px -18px rgba(0,0,0,0.6);
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --font-display:'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-body:Georgia, 'Times New Roman', serif;
+  --font-ui:'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{
+  margin:0;color:var(--text);font-family:var(--font-body);
+  background:
+    radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%),
+    radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%),
+    var(--bg);
+  background-attachment:fixed;
+  padding:40px 40px 64px;
+}
+a{color:var(--blue);text-decoration:none;transition:color 0.15s var(--ease);}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+.wrap{max-width:760px;margin:0 auto;}
+.badge-pill{display:inline-block;font-family:var(--font-ui);font-size:11.5px;font-weight:700;letter-spacing:0.06em;color:#eaf4fb;background:var(--blue2);padding:5px 14px;border-radius:999px;}
+.oh-head{text-align:center;padding-bottom:16px;margin-bottom:22px;}
+.oh-headline{font-family:var(--font-display);font-size:46px;font-weight:700;margin:12px auto 6px;letter-spacing:-0.015em;text-align:center;max-width:760px;line-height:1.15;}
+.oh-signup-link{display:block;text-align:center;font-family:var(--font-ui);font-size:14px;font-weight:600;margin-bottom:22px;}
+.oh-intro{font-family:var(--font-body);font-size:16px;color:var(--muted);margin:0 auto 24px;text-align:center;line-height:1.65;max-width:640px;}
+.notify-row{display:flex;gap:0;max-width:560px;margin:0 auto 10px;box-shadow:var(--shadow-card);border-radius:var(--radius-sm);}
+.notify-row input{flex:1;padding:14px 16px;background:var(--surface2);border:1px solid var(--border);border-right:none;border-radius:var(--radius-sm) 0 0 var(--radius-sm);color:var(--text);font-family:var(--font-ui);font-size:14px;}
+.notify-row button{padding:14px 28px;background:var(--accent);color:#fff;border:none;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-ui);font-weight:700;font-size:14px;}
+.helper-text{font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;margin-bottom:48px;}
+.callout-blue{background:var(--blue-soft);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--radius-sm);padding:20px 24px;font-size:14px;line-height:1.65;color:var(--text);margin:0 0 40px;}
+.preview-label{font-family:var(--font-ui);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;}
+.testimony-card{background:linear-gradient(175deg,var(--panel-bg),#201714);border:1px solid var(--panel-border);border-radius:var(--radius-lg);padding:26px 28px;max-width:680px;box-shadow:var(--shadow-pop);margin:0 0 12px;}
+.testimony-card .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;}
+.testimony-card h3{font-family:var(--font-display);font-size:22px;font-weight:600;margin:0;color:var(--text);}
+.testimony-card .rec-tag{font-family:var(--font-ui);font-size:13px;color:var(--faint);}
+.testimony-card .role{font-size:14.5px;color:var(--panel-text);margin-bottom:16px;}
+.testimony-card blockquote{margin:0 0 18px;font-style:italic;font-size:18px;line-height:1.7;color:var(--text);}
+.audio-player{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.audio-player .play{width:34px;height:34px;border-radius:50%;background:var(--blue2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.audio-player .track{flex:1;height:4px;background:var(--border);border-radius:2px;}
+.testimony-tags{display:flex;gap:8px;}
+.tt-tag{font-family:var(--font-ui);font-size:11px;padding:3px 10px;background:var(--blue-soft);color:var(--blue);border-radius:999px;}
+.placeholder-note{font-size:12.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:6px;}
+.page-footer-note{border-top:1px solid var(--border);padding-top:20px;margin-top:32px;font-size:12px;color:var(--faint);text-align:center;}
+@media (max-width:600px){
+  body{padding:24px 20px 40px;}
+  .oh-headline{font-size:32px;}
+}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header>
-  <div class="wordmark">KVSV <span>Family Records</span></div>
-  <span class="badge">oral history — coming soon</span>
-</header>
+<div class="oh-head"><span class="badge-pill">oral history &mdash; coming soon</span></div>
 
-<section class="hero">
-  <h1>Family stories, in their own voice.</h1>
-  <p>We're building a place to record, preserve, and attach oral history and oral attestation directly to your family's record — a grandmother's account of a name, a place, a migration, spoken and kept exactly as it was told.</p>
+<h1 class="oh-headline">Family stories, in their own voice.</h1>
+<a class="oh-signup-link" href="https://forms.gle/zsw2iLqVvxc7HaLq5" target="_blank" rel="noopener">Sign up for updates &rarr;</a>
 
-  <div class="notify">
-    <input type="email" placeholder="you@family.com">
-    <button>Notify me</button>
+<p class="oh-intro">We're building a place to record, preserve, and attach oral history and oral attestation directly to your family's record &mdash; a grandmother's account of a name, a place, a migration, spoken and kept exactly as it was told.</p>
+
+<div class="notify-row">
+  <input type="email" placeholder="you@family.com" readonly>
+  <button type="button">Notify me</button>
+</div>
+<div class="helper-text">We'll email you the day recording opens for your family line.</div>
+
+<div class="callout-blue"><b>Oral attestation, not a hypothesis.</b> A recorded family account is treated as documented testimony from the moment it's submitted &mdash; the starting point for the record, not a claim waiting on official paperwork to confirm it.</div>
+
+<div class="preview-label">a preview of what's coming</div>
+<div class="testimony-card">
+  <div class="top"><h3>Verna Hearns Taylor</h3><span class="rec-tag">recorded &mdash; example</span></div>
+  <div class="role">Attesting on behalf of the Hearns family, Coosa County line</div>
+  <blockquote>&ldquo;My grandmother always said the Hearns land ran right up to the river, past where the old church used to stand. She showed me where the foundation stones were, before they built the new road through there.&rdquo;</blockquote>
+  <div class="audio-player">
+    <div class="play">&#9654;</div>
+    <div class="track"></div>
+    <span class="rec-tag">3:12</span>
   </div>
-  <div class="notify-hint">We'll email you the day recording opens for your family line.</div>
-</section>
+  <div class="testimony-tags"><span class="tt-tag">oral attestation</span><span class="tt-tag">place testimony</span></div>
+</div>
+<p class="placeholder-note">Sample entry shown for layout only &mdash; recording is not yet live.</p>
 
-<section class="principle">
-  <div class="rule"><b>Oral attestation, not a hypothesis.</b> A recorded family account is treated as documented testimony from the moment it's submitted — the starting point for the record, not a claim waiting on official paperwork to confirm it.</div>
-</section>
+<div class="page-footer-note">KVSV Family Records &mdash; oral history feature in development. Not connected to the live repo yet.</div>
 
-<section class="preview">
-  <div class="section-label">a preview of what's coming</div>
-
-  <div class="attestation">
-    <div class="att-head">
-      <span class="att-name">Verna Hearns Taylor</span>
-      <span class="att-meta">recorded — example</span>
-    </div>
-    <div class="att-rel">Attesting on behalf of the Hearns family, Coosa County line</div>
-    <div class="att-quote">"My grandmother always said the Hearns land ran right up to the river, past where the old church used to stand. She showed me where the foundation stones were, before they built the new road through there."</div>
-    <div class="att-controls">
-      <button class="play-btn" aria-label="Play (preview only)">&#9654;</button>
-      <div class="waveform"></div>
-      <span class="att-meta">3:12</span>
-    </div>
-    <div class="att-tags">
-      <span class="tag">oral attestation</span>
-      <span class="tag">place testimony</span>
-    </div>
-  </div>
-
-  <p class="placeholder-note">Sample entry shown for layout only — recording is not yet live.</p>
-</section>
-
-<div class="footer-note">KVSV Family Records — oral history feature in development. Not connected to the live repo yet.</div>
-
+</div>
 </body>
 </html>
