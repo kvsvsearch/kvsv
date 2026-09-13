@@ -1,403 +1,201 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-CJ1J3050J8"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-CJ1J3050J8");
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KVSV Family Records &amp; Archive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --paper: #111013;
-        --panel: #1a191d;
-        --ink: #f5f2ec;
-        --ink-soft: #d7d3cc;
-        --ink-faint: #a7a3ab;
-        --rule: #34323a;
-        --rule-strong: #46424c;
-        --reg-inner: #211f24;
-        --heading-blue: #5b9bc0;
-        --link-blue: #5b9bc0;
-        --danger: #c1453d;
-        --evid-red: #c1453d;
-        --tier1: #8fcf9f;
-        --tier1-bg: #16241b;
-        --tier2: #d8b46a;
-        --tier2-bg: #2c2417;
-        --tier4: #d99a8c;
-        --tier4-bg: #2c1a17;
-        --blue-soft: #182228;
-        --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-      }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
-      }
-      body {
-        background:
-          radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%),
-          radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%),
-          var(--paper);
-        background-attachment: fixed;
-        color: var(--ink);
-        font-family: "Lato", Arial, sans-serif;
-        line-height: 1.5;
-        min-height: 100vh;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      .section-title,
-      .tab,
-      .reg-name,
-      .record-name,
-      .stat-num,
-      .masthead h1,
-      .framework h2 {
-        font-family: "Lato", Arial, sans-serif;
-        font-weight: 700;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 1.5rem 1rem 3rem;
-      }
-
-      /* Masthead */
-      header.masthead {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        border-bottom: 1px solid var(--rule);
-        padding-bottom: 16px;
-        margin-bottom: 6px;
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-      header.masthead h1 {
-        font-family: var(--font-display), "Lato", Arial, sans-serif;
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--heading-blue);
-        letter-spacing: -0.01em;
-      }
-      header.masthead h1 a.logo-home {
-        color: inherit;
+}
+      .submission-card a.btn {
+        display: inline-block;
+        padding: 0.7rem 1.6rem;
+        background: var(--danger);
+        color: #fff;
+        font-weight: 900;
         text-decoration: none;
+        border-radius: 6px;
       }
-      header.masthead h1 label.logo-home {
-        cursor: pointer;
-        color: inherit;
-        display: flex;
-        align-items: baseline;
-        gap: 9px;
+      .submission-card a.btn:hover {
+        background: #7a2620;
       }
-      header.masthead h1 label.logo-home:hover .brand-name {
-        color: #d8695f;
+      .narrative-card {
+        background: #2c1a17;
+        border: 1px solid var(--rule);
+        color: var(--ink);
       }
-      .brand-name {
-        font-family: var(--font-display), "Lato", Arial, sans-serif;
-        font-size: 2rem;
+      .narrative-card .section-title {
+        color: var(--ink);
+        border-top-color: var(--ink);
+      }
+      .article-entry {
+        padding: 0.9rem 0;
+        border-top: 1px dashed var(--rule);
+      }
+      .article-entry:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+      .article-entry h4 {
+        color: var(--ink);
+        font-weight: 900;
+        font-size: 1.05rem;
+        margin-bottom: 0.3rem;
+      }
+      .article-entry p {
+        color: var(--ink);
+        font-size: 0.88rem;
+        margin-bottom: 0.4rem;
+        line-height: 1.5;
+      }
+      .article-entry p a,
+      .article-entry a.read-more {
+        color: var(--heading-blue);
+        font-size: 0.85rem;
+        text-decoration: underline;
         font-weight: 700;
+      }
+      .article-entry a.read-more:hover,
+      .article-entry p a:hover {
         color: var(--evid-red);
-        letter-spacing: -0.01em;
       }
-      .brand-sub {
-        font-family: "Lato", Arial, sans-serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.13em;
-        color: var(--ink-faint);
-        text-transform: uppercase;
-        font-weight: 600;
-        white-space: nowrap;
+      .audio-story-label {
+        font-size: 0.6em;
       }
-      .brand-sub span {
-        display: inline;
+      .full-article {
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 0.9rem 1rem;
+        margin: 0.6rem 0;
+        color: var(--ink);
       }
-      .brand-sub span:not(:last-child)::after {
-        content: " \00b7 ";
-        color: var(--rule-strong);
+      .full-article h5 {
+        font-size: 1.05rem;
+        margin-bottom: 0.1rem;
+        font-weight: 900;
       }
-      header.masthead .sub {
+      .full-article .full-article-sub {
+        font-style: italic;
         color: var(--ink-soft);
+        font-size: 0.85rem;
+        margin-bottom: 0.6rem;
+      }
+      .full-article h6 {
         font-size: 0.95rem;
-        margin-top: 4px;
+        color: var(--heading-blue);
+        margin-top: 0.8rem;
+        margin-bottom: 0.3rem;
+        font-weight: 900;
       }
-      header.masthead .masthead-meta {
+      .full-article p {
+        font-size: 0.88rem;
+        line-height: 1.5;
+        margin-bottom: 0.6rem;
+      }
+      .full-article .full-article-sources {
         font-size: 0.75rem;
-        color: var(--ink-soft);
-        text-align: right;
-        line-height: 1.6;
+        color: var(--ink-faint);
+        border-top: 1px dashed var(--rule);
+        padding-top: 0.5rem;
+      }
+      .article-entry .media-links {
+        margin-top: 0.4rem;
+      }
+      .article-entry .media-links a {
+        margin-right: 0.9rem;
       }
 
-      /* Tabs */
-      .tabs {
-        display: flex;
-        gap: 2px;
-        margin: 20px 0 22px;
-        border-bottom: 1px solid var(--rule);
-        flex-wrap: wrap;
+      .tabradio {
+        display: none;
       }
-      .tab {
-        font-size: 0.9rem;
-        font-weight: 700;
-        padding: 9px 16px;
-        background: none;
-        border: none;
-        color: var(--ink-soft);
-        cursor: pointer;
-        border-bottom: 3px solid transparent;
-        margin-bottom: -1px;
-        white-space: nowrap;
+      #view-register,
+      #view-framework {
+        display: none;
       }
-      @media (max-width: 860px) {
-        .tabs {
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          flex-wrap: nowrap;
-        }
-        .tab {
-          flex: 0 0 auto;
-          padding: 9px 12px;
-          font-size: 0.82rem;
-          min-height: 44px;
-          display: flex;
-          align-items: center;
-        }
-        .framework {
-          padding: 20px 16px;
-        }
-        .tier-table th,
-        .tier-table td {
-          padding: 6px 6px;
-          font-size: 0.8rem;
-        }
+      #tab-register:checked ~ #view-register {
+        display: block;
       }
-      .tab.active {
+      #tab-framework:checked ~ #view-framework {
+        display: block;
+      }
+      #tab-register:checked ~ .tabs label[for="tab-register"] {
         color: var(--ink);
         border-bottom: 3px solid var(--evid-red);
       }
-      .tab:hover {
+      #tab-framework:checked ~ .tabs label[for="tab-framework"] {
         color: var(--ink);
-        background: var(--blue-soft);
-        border-bottom: 3px solid var(--heading-blue);
-        border-radius: 7px 7px 0 0;
+        border-bottom: 3px solid var(--evid-red);
       }
 
-      /* Evidentiary Register / Search box */
-      .desk {
-        display: grid;
-        grid-template-columns: 340px 1fr;
-        gap: 0;
-        border: 2px solid var(--rule);
-        background: var(--panel);
-        min-height: 560px;
-        margin-bottom: 1.5rem;
+      /* Added: site-level 5-tab navigation. Additive only -- no existing rule above this point was changed. */
+      #view-publicsearch,
+      #view-about,
+      #view-oralhistory,
+  #view-stories,
+  #view-contribute,
+  #view-contact,
+      #view-privateportal {
+        display: none;
       }
-      @media (max-width: 860px) {
-        .desk {
-          grid-template-columns: 1fr;
-        }
+      #tab-publicsearch:checked ~ #view-publicsearch {
+        display: block;
       }
-      .register {
-        border-right: 1px solid var(--rule);
-        background: var(--panel);
+      #tab-about:checked ~ #view-about {
+        display: block;
       }
-      .register-head {
-        padding: 14px 16px 12px;
-        border-bottom: 1px solid var(--rule);
-        background: var(--panel);
+      #tab-oralhistory:checked ~ #view-oralhistory {
+        display: block;
       }
-      .register-head .evid-title {
-        font-size: 1.05rem;
-        font-weight: 900;
-        color: var(--evid-red);
-        margin-bottom: 8px;
+      #tab-privateportal:checked ~ #view-privateportal {
+  display: block;
+}
+#tab-stories:checked ~ #view-stories {
+  display: block;
+}
+#tab-contribute:checked ~ #view-contribute {
+  display: block;
+}
+#tab-contact:checked ~ #view-contact {
+  display: block;
+}
+      #tab-publicsearch:checked ~ .tabs label[for="tab-publicsearch"] {
+        color: var(--ink);
+        border-bottom: 3px solid var(--evid-red);
       }
-      .search {
+      #tab-about:checked ~ .tabs label[for="tab-about"] {
+        color: var(--ink);
+        border-bottom: 3px solid var(--evid-red);
+      }
+      #tab-oralhistory:checked ~ .tabs label[for="tab-oralhistory"] {
+        color: var(--ink);
+        border-bottom: 3px solid var(--evid-red);
+      }
+      #tab-privateportal:checked ~ .tabs label[for="tab-privateportal"] {
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
+#tab-stories:checked ~ .tabs label[for="tab-stories"] {
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
+#tab-contact:checked ~ .tabs label[for="tab-contact"] {
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
+#tab-contribute:checked ~ .tabs label[for="tab-contribute"] {
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
+      .site-tab-iframe {
         width: 100%;
-        padding: 9px 10px;
-        border: 1px solid var(--rule);
-        background: var(--panel);
-        font-family: "Lato", Arial, sans-serif;
-        font-size: 0.9rem;
-        color: var(--ink);
-      }
-      .search:focus {
-        outline: 2px solid var(--evid-red);
-        outline-offset: -1px;
-      }
-      .register-list {
-        max-height: 620px;
-        overflow-y: auto;
-        background: var(--reg-inner);
-      }
-      .reg-item {
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-        padding: 10px 14px;
-        border-bottom: 1px solid var(--rule);
-        cursor: pointer;
-        background: var(--reg-inner);
-      }
-      .reg-item:hover {
-        background: #242229;
-      }
-      .reg-item.selected {
-        background: #2e2b33;
-      }
-      .reg-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        flex-shrink: 0;
-        margin-top: 4px;
-      }
-      .reg-name {
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: var(--ink);
-      }
-      .reg-type {
-        font-size: 0.68rem;
-        color: var(--ink-faint);
-        margin-left: auto;
-        white-space: nowrap;
+        min-height: 1400px;
+        border: none;
+        display: block;
       }
 
-      /* Record panel */
-      .record {
-        padding: 22px 26px;
-        background: var(--panel);
-      }
-      .record-empty {
-        padding: 60px 26px;
-        color: var(--ink-faint);
-        font-style: italic;
-        font-size: 0.95rem;
-      }
-      .record-id {
-        font-family: monospace;
-        font-size: 0.72rem;
-        color: var(--ink-faint);
-        margin-bottom: 2px;
-      }
-      .record-name {
-        font-size: 1.5rem;
-        font-weight: 900;
-        margin: 0 0 6px;
-        color: var(--ink);
-      }
-      .record-badgerow {
-        display: flex;
-        gap: 8px;
-        margin: 8px 0 18px;
-        flex-wrap: wrap;
-      }
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 10px;
-        font-size: 0.72rem;
-        font-weight: 700;
-        border: 1px solid var(--rule);
-      }
-      .badge-tier1 {
-        background: var(--tier1-bg);
-        color: var(--tier1);
-        border-color: var(--tier1);
-      }
-      .badge-tier2 {
-        background: var(--tier2-bg);
-        color: var(--tier2);
-        border-color: var(--tier2);
-      }
-      .badge-tier4 {
-        background: var(--tier4-bg);
-        color: var(--tier4);
-        border-color: var(--tier4);
-      }
-      .badge-type {
-        background: var(--reg-inner);
-        color: var(--ink);
-        border-color: var(--rule);
-      }
-
-      .field-grid {
-        display: grid;
-        grid-template-columns: 150px 1fr;
-        row-gap: 9px;
-        column-gap: 14px;
-        font-size: 0.85rem;
-        margin-bottom: 18px;
-      }
-      .field-label {
-        color: var(--ink-faint);
-        font-size: 0.72rem;
-        font-weight: 700;
-        padding-top: 2px;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-      }
-      .field-value {
-        line-height: 1.5;
-        color: var(--ink);
-      }
-      .field-value.empty {
-        color: var(--ink-faint);
-        font-style: italic;
-      }
-
-      .section-title {
-        font-size: 0.72rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--ink);
-        font-weight: 900;
-        border-top: 1px dashed var(--rule);
-        padding-top: 14px;
-        margin: 18px 0 8px;
-      }
-
-      .articles-eyebrow {
-        font-family: var(--font-display), Georgia, serif;
-        font-size: 40px;
-        letter-spacing: -0.015em;
-        color: var(--heading-blue);
-        font-weight: 700;
-        line-height: 1.15;
-        margin-bottom: 24px;
-      }
-      .section-body {
-        font-size: 0.85rem;
-        color: var(--ink);
-        line-height: 1.5;
-      }
- 
+      /* About KVSV -- inlined directly (no iframe), scoped under #view-about
+         so its own variable names and generic element selectors (a, dl,
+         table, main) never bleed into the rest of the page. */
+      #view-about {
+        --surface:#1a191d; --border:#34323a; --border-soft:#2a2830;
+        --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+        --accent:#c1453d; --blue:#5b9bc0; --blue2:#3f7593;
+        --warn-bg:#2c1a17; --warn-border:#5a2320; --warn-text:#e9d6d2;
+        --radius-sm:6px; --radius-md:10px;
+        --shadow-card:0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.55);
+        --ease:cubic-bezier(.2,.7,.3,1);
+        --font-ui:'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: var(--text);
