@@ -725,6 +725,59 @@
         display: block;
       }
 
+      /* About KVSV -- inlined directly (no iframe), scoped under #view-about
+         so its own variable names and generic element selectors (a, dl,
+         table, main) never bleed into the rest of the page. */
+      #view-about {
+        --surface:#1a191d; --border:#34323a; --border-soft:#2a2830;
+        --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+        --accent:#c1453d; --blue:#5b9bc0; --blue2:#3f7593;
+        --warn-bg:#2c1a17; --warn-border:#5a2320; --warn-text:#e9d6d2;
+        --radius-sm:6px; --radius-md:10px;
+        --shadow-card:0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.55);
+        --ease:cubic-bezier(.2,.7,.3,1);
+        --font-ui:'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: var(--text);
+        font-family: Georgia, 'Times New Roman', serif;
+        line-height: 1.6;
+      }
+      #view-about a { color: var(--blue); text-decoration: none; }
+      #view-about a:hover { color: #8ec2e2; text-decoration: underline; }
+      #view-about .letterhead { border-bottom: 1px solid var(--border); padding: 32px 24px 22px; text-align: center; }
+      #view-about .letterhead .mark { font-family: var(--font-ui); font-weight: 700; letter-spacing: 0.12em; font-size: 0.95rem; color: var(--accent); }
+      #view-about .letterhead h1 { margin: 10px 0 6px; font-family: var(--font-display); font-size: 46px; color: var(--blue); font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; }
+      #view-about .letterhead p { margin: 0; color: var(--muted); font-family: var(--font-ui); font-size: 0.95rem; }
+      #view-about main { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+      #view-about .intro-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px 30px; font-size: 15px; line-height: 1.8; color: var(--text); margin-bottom: 28px; box-shadow: var(--shadow-card); }
+      #view-about .intro-box p { margin: 0; }
+      #view-about .section-block { margin-bottom: 32px; }
+      #view-about .section-block h2 { font-family: var(--font-display); font-size: 20px; color: var(--blue); margin: 0 0 12px; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+      #view-about .section-block p { font-size: 14.5px; line-height: 1.8; color: var(--text); margin: 0 0 12px; }
+      #view-about .notice-red { background: var(--warn-bg); border: 1px solid var(--warn-border); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); padding: 20px 24px; font-size: 14.5px; line-height: 1.7; color: var(--warn-text); box-shadow: var(--shadow-card); }
+      #view-about dl { margin: 0; }
+      #view-about .terms-row { display: flex; gap: 24px; padding: 12px 4px; border-bottom: 1px solid var(--border-soft); font-size: 14px; }
+      #view-about .terms-row:last-child { border-bottom: none; }
+      #view-about .terms-row dt { width: 120px; flex-shrink: 0; font-family: var(--font-ui); color: var(--blue); font-weight: 700; margin: 0; }
+      #view-about .terms-row dd { margin: 0; color: var(--text); }
+      #view-about .stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; margin: 26px 0; box-shadow: var(--shadow-card); }
+      #view-about .stat-cell { background: var(--surface); padding: 20px 22px; transition: background 0.15s var(--ease); }
+      #view-about .stat-cell b { font-family: var(--font-display); font-size: 28px; display: block; color: var(--text); font-weight: 700; }
+      #view-about .stat-cell span { font-family: var(--font-ui); font-size: 12.5px; color: var(--faint); }
+      #view-about .table-scroll { overflow-x: auto; }
+      #view-about table.tiers { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; min-width: 480px; }
+      #view-about table.tiers th { text-align: left; font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--blue); padding: 10px 12px; border-bottom: 1px solid var(--border); }
+      #view-about table.tiers th:last-child { text-align: right; }
+      #view-about table.tiers td { padding: 13px 12px; border-bottom: 1px solid var(--border-soft); vertical-align: top; color: var(--text); }
+      #view-about table.tiers tr:hover td { background: var(--surface); }
+      #view-about table.tiers td.tiername { font-family: var(--font-ui); color: var(--accent); font-weight: 700; white-space: nowrap; }
+      #view-about table.tiers td.count { text-align: right; font-weight: 700; font-family: var(--font-display); white-space: nowrap; }
+      #view-about .page-footer-note { text-align: center; font-family: var(--font-ui); font-size: 13px; color: var(--faint); margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--border); }
+      @media (max-width: 480px) {
+        #view-about .terms-row { gap: 14px; }
+        #view-about .terms-row dt { width: 100px; }
+        #view-about .stat-row { grid-template-columns: repeat(2,1fr); }
+      }
+
       footer.site-footer {
         font-family: "Lato", Arial, sans-serif;
         font-size: 10px;
@@ -1484,7 +1537,68 @@
       </div>
 
       <div id="view-about">
-        <iframe class="site-tab-iframe" src="about_kvsv.html" title="About KVSV" loading="lazy"></iframe>
+        <div class="letterhead">
+          <div class="mark">KVSV</div>
+          <h1 class="page-title">About this research</h1>
+          <p>What you're looking at, and how it was built</p>
+        </div>
+
+        <main>
+
+          <div class="intro-box">
+            <p>KVSV is a genealogy research portal and community project centered on lineages and mix-heritages that are often overlooked by mainstream genealogists and institutions — and the branches connected them. The public search portal draws from a vast array of access points, from the U.S. Census to the National Archives, WikiTree, FamilySearch, and more. The records here are public records and are not subject to the same rigorous tier-level standards or protocols as the research arm or commissioned project studies, and should be taken at face value. Every entry in the KVSV databases is built from primary records and source materials, including private and public indexes. KVSV strives to be a &ldquo;source-first&rdquo; portal, not a commercial ancestry database, and offers customizable genealogical research frameworks for those wanting to establish canonical trees and lineage mapping. For more on customization, please contact us for details.</p>
+          </div>
+
+          <div class="section-block">
+            <h2>How this research is done</h2>
+            <p>Primary sources come first. No fact is stated without a source behind it. When two sources disagree, the disagreement is logged, not quietly resolved. Nothing is merged into the record without review.</p>
+          </div>
+
+          <div class="section-block">
+            <h2>What's public vs. private</h2>
+            <div class="notice-red">Public Search shows only the fields cleared for public display. Full family research, restricted notes, and information about living people stay in the private portals — not here.</div>
+          </div>
+
+          <div class="section-block">
+            <h2>Terms</h2>
+            <dl>
+              <div class="terms-row"><dt>Entity</dt><dd>One person tracked in this database.</dd></div>
+              <div class="terms-row"><dt>Narrative</dt><dd>The written account of what's known about them, in plain language.</dd></div>
+              <div class="terms-row"><dt>Citation</dt><dd>The actual source behind a fact.</dd></div>
+              <div class="terms-row"><dt>Source Tier</dt><dd>How strong that source is — see above.</dd></div>
+            </dl>
+          </div>
+
+          <div class="section-block">
+            <h2>Privacy</h2>
+            <p>No living person's sensitive information is published according to standards. Restricted genealogy research — the kind that touches people who are still alive — stays behind the private portal, not on the public search portal. All private or customized search portals, outside of the researcher's own portal, are password protected and secured in the Cloud.</p>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat-cell"><b>1,322</b><span>Total entities in this database</span></div>
+            <div class="stat-cell"><b>1,256</b><span>Person records</span></div>
+            <div class="stat-cell"><b>285</b><span>Entities with at least one citation</span></div>
+            <div class="stat-cell"><b>1,037</b><span>Entities with no citation on file yet</span></div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="tiers">
+              <thead>
+                <tr><th>Tier</th><th>What it means</th><th>Entities</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="tiername">Tier 1</td><td>An original document logged directly from the courthouse or archive — for example a deed or marriage record.</td><td class="count">140</td></tr>
+                <tr><td class="tiername">Tier 2</td><td>A certified transcription or index — census, land patent, or assessor data — cross-corroborated across multiple independent sources.</td><td class="count">30</td></tr>
+                <tr><td class="tiername">Tier 2/3</td><td>A user-maintained tree checked against a public record, but not itself a primary source.</td><td class="count">182</td></tr>
+                <tr><td class="tiername">Tier 3</td><td>Corroborated by a named family document (Bible record, family history) not yet independently verified against the underlying courthouse/vital record.</td><td class="count">21</td></tr>
+                <tr><td class="tiername">Tier 4</td><td>Researcher/family-stated — no independent document located yet. Treated as a real, sourced lead, not a confirmed fact.</td><td class="count">949</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="page-footer-note">KVSV — research grounded in source tiers and family testimony.</div>
+
+        </main>
       </div>
 
       <div id="view-oralhistory">
@@ -46839,5 +46953,74 @@
         return false;
       }
     </script>
+    <script>
+      // Mobile/tablet fix: .site-tab-iframe was a fixed min-height:1400px with
+      // no way to grow to fit content. On narrow viewports the embedded pages
+      // (public_search.html, oral_history.html, private_portals.html,
+      // contact.html) reflow much taller than 1400px, so the iframe clipped
+      // text and cut the page off instead of showing it in full. Fix: measure
+      // each same-origin iframe's real content height and set the iframe's
+      // own height to match, on load, on tab switch, and on resize/rotate.
+      (function () {
+        function measure(iframe) {
+          try {
+            var doc = iframe.contentWindow && iframe.contentWindow.document;
+            if (!doc) return;
+            var h = Math.max(
+              doc.documentElement ? doc.documentElement.scrollHeight : 0,
+              doc.body ? doc.body.scrollHeight : 0,
+            );
+            if (h > 0) {
+              iframe.style.height = Math.max(h, 1400) + "px";
+            }
+          } catch (e) {
+            // Cross-origin or not-yet-loaded -- leave the CSS min-height fallback in place.
+          }
+        }
+
+        function resizeAll() {
+          document
+            .querySelectorAll(".site-tab-iframe")
+            .forEach(function (f) {
+              measure(f);
+            });
+        }
+
+        document.querySelectorAll(".site-tab-iframe").forEach(function (f) {
+          f.addEventListener("load", function () {
+            measure(f);
+            // Re-measure shortly after load too, since fonts/images loading
+            // inside the iframe can change its content height slightly after
+            // the initial load event fires.
+            setTimeout(function () {
+              measure(f);
+            }, 400);
+          });
+        });
+
+        // The active tab's <div id="view-*"> switches from display:none to
+        // display:block via the radio-input CSS rules. A hidden iframe can
+        // report a stale or zero height, so re-measure right after a tab
+        // change once the browser has applied the new display value.
+        document.querySelectorAll('input[name="kvsvtab"]').forEach(function (r) {
+          r.addEventListener("change", function () {
+            requestAnimationFrame(function () {
+              setTimeout(resizeAll, 50);
+            });
+          });
+        });
+
+        var resizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(resizeAll, 200);
+        });
+        window.addEventListener("orientationchange", function () {
+          setTimeout(resizeAll, 300);
+        });
+      })();
+    </script>
   </body>
 </html>
+
+              
