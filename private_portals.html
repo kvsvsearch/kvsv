@@ -6,26 +6,33 @@
 <title>KVSV - Private Family Portal (DEMO)</title>
 <style>
 :root {
-  --paper: #ffffff;
-  --ink: #000000;
-  --ink-soft: #333333;
-  --muted: #666666;
-  --rule: #000000;
-  --rule-soft: #dddddd;
-  --tint: #f7f7f7;
-  --heading: #1a56db;
-  --accent: #c0392b;
-  --info-bg: #eef2ff;
-  --ok: #2f7a3f;
-  --warn: #8f6425;
-  --oral-bg: #f2cfcf;
-  --oral-tag-bg: #ffffff;
+  --paper: #111013;
+  --ink: #f5f2ec;
+  --ink-soft: #d7d3cc;
+  --muted: #a7a3ab;
+  --rule: #34323a;
+  --rule-soft: #2a2830;
+  --tint: #1a191d;
+  --heading: #5b9bc0;
+  --accent: #c1453d;
+  --info-bg: #182228;
+  --ok: #6fae7f;
+  --warn: #d8b46a;
+  --oral-bg: #241b17;
+  --oral-tag-bg: #182228;
+  --surface2: #211f24;
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  background: var(--paper);
+  background:
+    radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%),
+    radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%),
+    var(--paper);
+  background-attachment: fixed;
   color: var(--ink);
-  font-family: "Lato", Arial, sans-serif;
+  font-family: var(--font-ui), Arial, sans-serif;
   line-height: 1.5;
   min-height: 100vh;
 }
@@ -45,9 +52,10 @@ body {
   text-align: center;
 }
 .letterhead .mark {
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  font-size: 1.35rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1.6rem;
   color: var(--accent);
 }
 .letterhead .sub {
@@ -56,6 +64,16 @@ body {
   margin-top: 4px;
   letter-spacing: 0.06em;
 }
+.page-title {
+  font-family: var(--font-display);
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--heading);
+  margin-top: 12px;
+}
+.letterhead a:hover { text-decoration: underline; }
 .rad { display: none; }
 .shell {
   display: grid;
@@ -77,12 +95,13 @@ body {
   border-left: 3px solid transparent;
   user-select: none;
 }
-.nav label:hover { background: #fff; color: var(--ink); }
+.nav label:hover { background: var(--surface2); color: var(--ink); }
 .pane { padding: 28px 32px 40px; }
 .pane > section { display: none; }
 .pane h2 {
-  font-size: 1.35rem;
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
   color: var(--heading);
   margin-bottom: 4px;
 }
@@ -98,14 +117,14 @@ body {
 }
 .card {
   border: 1px solid var(--rule-soft);
-  background: #fff;
+  background: var(--tint);
   padding: 16px 18px;
   border-radius: 3px;
   margin-bottom: 14px;
 }
 .card.demo {
   border-left: 4px solid var(--accent);
-  background: #fdf6f5;
+  background: #2c1917;
 }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -157,9 +176,12 @@ th {
   background: var(--info-bg);
   color: var(--heading);
 }
-.tag.demo { background: #fdf6f5; color: var(--accent); }
-.tag.ok { background: #e7f1e8; color: var(--ok); }
-.tag.warn { background: #f3ead9; color: var(--warn); }
+.tag.demo { background: #2c1917; color: var(--accent); }
+.tag.ok { background: #17261c; color: var(--ok); }
+.tag.warn { background: #2c2417; color: var(--warn); }
+.settings-saved-msg { margin-left: 12px; color: var(--ok); font-size: 0.85rem; display: none; }
+.settings-saved-msg.show { display: inline; }
+.helper-text { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
 .empty {
   border: 1px dashed var(--rule-soft);
   padding: 26px 18px;
@@ -170,12 +192,13 @@ th {
   background: var(--tint);
 }
 .tree {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 14px;
   margin-top: 12px;
 }
-.gen { display: flex; flex-direction: column; gap: 10px; }
+.gen { display: flex; flex-direction: column; gap: 10px; flex: 1 1 190px; min-width: 170px; max-width: 230px; }
+
 .gen .gen-label {
   font-size: 0.72rem;
   color: var(--muted);
@@ -190,7 +213,7 @@ th {
   border-left: 3px solid var(--heading);
   padding: 8px 10px;
   border-radius: 3px;
-  background: #fff;
+  background: var(--surface2);
 }
 .person .p-name { font-weight: 700; font-size: 0.85rem; }
 .person .p-name::before {
@@ -200,7 +223,7 @@ th {
   height: 13px;
   margin-right: 6px;
   vertical-align: -2px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a56db'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235b9bc0'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -216,14 +239,14 @@ th {
 .chk input { width: 16px; height: 16px; }
 .chk .hint { color: var(--muted); font-size: 0.78rem; margin-left: auto; }
 .people-table td:first-child {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a56db'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235b9bc0'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
   background-repeat: no-repeat;
   background-position: 10px 50%;
   background-size: 15px 15px;
   padding-left: 34px;
 }
 .members-table td:first-child {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a56db'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235b9bc0'><path d='M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z'/></svg>");
   background-repeat: no-repeat;
   background-position: 10px 50%;
   background-size: 15px 15px;
@@ -236,7 +259,7 @@ th {
   border: 1px solid var(--rule-soft);
   border-radius: 3px;
   padding: 12px 14px;
-  background: #fff;
+  background: var(--surface2);
   margin-bottom: 8px;
 }
 .doc-icon {
@@ -246,7 +269,7 @@ th {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a56db'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2l4 4h-4V4zM8 12h8v2H8v-2zm0 4h8v2H8v-2z'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235b9bc0'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2l4 4h-4V4zM8 12h8v2H8v-2zm0 4h8v2H8v-2z'/></svg>");
 }
 .doc-name { font-weight: 700; font-size: 0.9rem; }
 .doc-meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
@@ -260,12 +283,12 @@ th {
   border: 1px solid var(--rule-soft);
   border-radius: 3px;
   overflow: hidden;
-  background: #fff;
+  background: var(--surface2);
 }
 .photo-thumb {
   height: 110px;
   background-color: var(--tint);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23aaaaaa'><path d='M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23767a85'><path d='M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z'/></svg>");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 42px 42px;
@@ -307,7 +330,7 @@ th {
   font-style: italic;
   font-size: 1rem;
   color: var(--ink-soft);
-  border-left: 3px solid rgba(0,0,0,0.15);
+  border-left: 3px solid rgba(255,255,255,0.15);
   padding-left: 12px;
   margin-bottom: 18px;
   line-height: 1.55;
@@ -321,7 +344,7 @@ th {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--heading);
   color: #fff;
   border: none;
   cursor: pointer;
@@ -332,7 +355,7 @@ th {
   flex-shrink: 0;
   font-family: inherit;
 }
-.oral-play:hover { background: #222; }
+.oral-play:hover { background: #3f7593; }
 .oral-wave {
   flex: 1;
   height: 28px;
@@ -344,7 +367,7 @@ th {
 .oral-wave span {
   display: block;
   width: 3px;
-  background: rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.3);
   border-radius: 1px;
   flex-shrink: 0;
 }
@@ -399,7 +422,7 @@ footer {
 #p-log:checked ~ .shell .nav label[for="p-log"],
 #p-members:checked ~ .shell .nav label[for="p-members"],
 #p-settings:checked ~ .shell .nav label[for="p-settings"] {
-  background: #fff;
+  background: var(--surface2);
   color: var(--accent);
   border-left: 3px solid var(--accent);
   font-weight: 700;
@@ -428,7 +451,6 @@ footer {
   }
   .pane { padding: 18px 16px 30px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .tree { grid-template-columns: 1fr 1fr; }
   .photo-grid { grid-template-columns: 1fr; }
   .oral-head { flex-direction: column; align-items: flex-start; gap: 2px; }
 }
@@ -436,11 +458,11 @@ footer {
 </head>
 <body>
 
-<div class="demo-banner">Demo only - no real records - no authentication - not connected to live system</div>
+<div class="demo-banner">DEMO ONLY &middot; NO REAL RECORDS &middot; NO AUTHENTICATION &middot; NOT CONNECTED TO LIVE SYSTEM</div>
 
 <header class="letterhead">
   <div class="mark">KVSV</div>
-  <div class="sub">Private Family Portal Prototype Preview</div>
+  <h1 class="page-title">Private Family Portal Prototype Preview</h1>
 </header>
 
 <input type="radio" name="p" id="p-overview" class="rad" checked>
@@ -470,10 +492,10 @@ footer {
 
     <section id="s-overview">
       <h2>Your family's own research portal</h2>
-      <p class="lede">A private, sourced, tiered research space built the same way this project builds its own - sourced, tiered, and never silently overwritten.</p>
+      <p class="lede">A private, sourced, tiered research space built the same way this project builds its own &mdash; sourced, tiered, and never silently overwritten.</p>
 
       <div class="card demo">
-        <strong>This is a demo.</strong> Everything you see here is placeholder content. No real family records are stored, no authentication is required, and nothing is saved anywhere. This page is a layout preview only.
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
       </div>
 
       <h3>What this portal will include</h3>
@@ -503,158 +525,104 @@ footer {
 
     <section id="s-dashboard">
       <h2>Dashboard</h2>
-      <p class="lede">At-a-glance counts for this portal. All numbers are demo values.</p>
+      <p class="lede">A snapshot of your family's research, the moment you sign in.</p>
+
+      <div class="card demo">
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
+      </div>
 
       <div class="grid-4">
-        <div class="stat"><div class="num">12</div><div class="lbl">People</div></div>
-        <div class="stat"><div class="num">3</div><div class="lbl">Documents</div></div>
-        <div class="stat"><div class="num">5</div><div class="lbl">Media</div></div>
-        <div class="stat"><div class="num">4</div><div class="lbl">Research Log</div></div>
+        <div class="stat"><div class="num">128</div><div class="lbl">People in your tree</div></div>
+        <div class="stat"><div class="num">34</div><div class="lbl">Sourced documents</div></div>
+        <div class="stat"><div class="num">6</div><div class="lbl">Oral histories recorded</div></div>
+        <div class="stat"><div class="num">3</div><div class="lbl">Pending research requests</div></div>
       </div>
 
       <h3>Recent activity</h3>
       <table>
-        <thead><tr><th>When</th><th>Activity</th><th>By</th></tr></thead>
         <tbody>
-          <tr><td>Demo - today</td><td>Portal preview opened</td><td>You</td></tr>
-          <tr><td>Demo - 2 days ago</td><td>Added person "Sample Person 4"</td><td>Owner</td></tr>
-          <tr><td>Demo - 5 days ago</td><td>Research log entry added</td><td>Editor</td></tr>
-          <tr><td>Demo - 1 week ago</td><td>Portal created</td><td>Owner</td></tr>
+          <tr><td>Sep 10, 2026</td><td>Land patent added to Whetstone, Coosa County line &mdash; Tier 1</td></tr>
+          <tr><td>Sep 6, 2026</td><td>Oral history recorded: Verna Hearns Taylor, Hearns family</td></tr>
+          <tr><td>Aug 29, 2026</td><td>Research question opened: Anna Taylor's placement in the Glass line</td></tr>
         </tbody>
       </table>
     </section>
 
     <section id="s-people">
       <h2>People</h2>
-      <p class="lede">Every person attached to this portal. All names below are fictional demo placeholders.</p>
+      <p class="lede">Your family list, with sources and evidence tiers attached to every name.</p>
+
+      <div class="card demo">
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
+      </div>
+
+      <input class="search-input" type="text" placeholder="Search your family list&hellip;" style="width:100%;padding:10px 14px;margin-bottom:16px;background:var(--surface2);border:1px solid var(--rule);border-radius:8px;color:var(--ink);font-family:var(--font-ui);font-size:0.9rem;">
 
       <table class="people-table">
-        <thead><tr><th>Name</th><th>Born</th><th>Location</th><th>Relationship</th></tr></thead>
         <tbody>
-          <tr><td>Sample Person 1</td><td>1900</td><td>Demo City, Demo State</td><td>Great-grandparent</td></tr>
-          <tr><td>Sample Person 2</td><td>1902</td><td>Demo City, Demo State</td><td>Great-grandparent</td></tr>
-          <tr><td>Sample Person 3</td><td>1928</td><td>Demo Town, Demo State</td><td>Grandparent</td></tr>
-          <tr><td>Sample Person 4</td><td>1930</td><td>Demo Town, Demo State</td><td>Grandparent</td></tr>
-          <tr><td>Sample Person 5</td><td>1955</td><td>Demo Village, Demo State</td><td>Parent</td></tr>
-          <tr><td>Sample Person 6</td><td>1957</td><td>Demo Village, Demo State</td><td>Parent</td></tr>
-          <tr><td>Sample Person 7</td><td>1980</td><td>Demo City, Demo State</td><td>Sibling</td></tr>
-          <tr><td>Sample Person 8</td><td>1985</td><td>Demo City, Demo State</td><td>Self</td></tr>
-          <tr><td>Sample Person 9</td><td>2008</td><td>Demo City, Demo State</td><td>Child</td></tr>
-          <tr><td>Sample Person 10</td><td>2011</td><td>Demo City, Demo State</td><td>Child</td></tr>
-          <tr><td>Sample Person 11</td><td>Unknown</td><td>Unknown</td><td>Researching</td></tr>
-          <tr><td>Sample Person 12</td><td>Unknown</td><td>Unknown</td><td>Researching</td></tr>
+          <tr><td style="font-weight:700;">Thomas Bradford</td><td>Grandfather</td><td><span class="tag ok">Tier 1</span></td></tr>
+          <tr><td style="font-weight:700;">Mae Cotis Hearns</td><td>Grandmother</td><td><span class="tag ok">Tier 1</span></td></tr>
+          <tr><td style="font-weight:700;">Jessie Glass</td><td>Great-grandmother</td><td><span class="tag warn">Tier 2</span></td></tr>
+          <tr><td style="font-weight:700;">Henry Glass</td><td>Great-great-grandfather</td><td><span class="tag warn">Tier 2</span></td></tr>
+          <tr><td style="font-weight:700;">Anna Taylor</td><td>Placement under review</td><td><span class="tag">Tier 4</span></td></tr>
         </tbody>
       </table>
     </section>
 
     <section id="s-tree">
       <h2>Family Tree</h2>
-      <p class="lede">A horizontal four-generation preview. Names are fictional demo placeholders.</p>
+      <p class="lede">Every generation on file, oldest to newest &mdash; as the tree grows wider than the page has room for, it wraps into a new row instead of running off the edge.</p>
 
-      <div class="tree">
-        <div class="gen">
-          <div class="gen-label">Generation 1</div>
-          <div class="person"><div class="p-name">Sample Person 1</div><div class="p-meta">b. 1900</div></div>
-          <div class="person"><div class="p-name">Sample Person 2</div><div class="p-meta">b. 1902</div></div>
-        </div>
-        <div class="gen">
-          <div class="gen-label">Generation 2</div>
-          <div class="person"><div class="p-name">Sample Person 3</div><div class="p-meta">b. 1928</div></div>
-          <div class="person"><div class="p-name">Sample Person 4</div><div class="p-meta">b. 1930</div></div>
-        </div>
-        <div class="gen">
-          <div class="gen-label">Generation 3</div>
-          <div class="person"><div class="p-name">Sample Person 5</div><div class="p-meta">b. 1955</div></div>
-          <div class="person"><div class="p-name">Sample Person 6</div><div class="p-meta">b. 1957</div></div>
-        </div>
-        <div class="gen">
-          <div class="gen-label">Generation 4</div>
-          <div class="person"><div class="p-name">Sample Person 8</div><div class="p-meta">b. 1985</div></div>
-        </div>
+      <div class="card demo">
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
       </div>
+
+      <h3>Sample line &mdash; Bradford / Hearns / Glass / Taylor (16 generations)</h3>
+      <div class="tree">
+        <div class="gen"><div class="gen-label">Generation 1</div><div class="person"><div class="p-name">Timothy Glass</div><div class="p-meta">b. 1780</div></div><div class="person"><div class="p-name">Henry Glass</div><div class="p-meta">b. 1780</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 2</div><div class="person"><div class="p-name">Anna Taylor</div><div class="p-meta">b. 1802</div></div><div class="person"><div class="p-name">Jessie Glass</div><div class="p-meta">b. 1802</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 3</div><div class="person"><div class="p-name">James M. Hearns</div><div class="p-meta">b. 1824</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 4</div><div class="person"><div class="p-name">Mae Cotis Hearns</div><div class="p-meta">b. 1846</div></div><div class="person"><div class="p-name">Thomas Bradford</div><div class="p-meta">b. 1846</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 5</div><div class="person"><div class="p-name">Shirley Ann Bradford</div><div class="p-meta">b. 1868</div></div><div class="person"><div class="p-name">Verna Hearns Taylor</div><div class="p-meta">b. 1868</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 6</div><div class="person"><div class="p-name">Wallace Fleming</div><div class="p-meta">b. 1890</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 7</div><div class="person"><div class="p-name">Ida Bell</div><div class="p-meta">future generation &ndash; placeholder</div></div><div class="person"><div class="p-name">Coy Barnett</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 8</div><div class="person"><div class="p-name">Ruth Allen</div><div class="p-meta">future generation &ndash; placeholder</div></div><div class="person"><div class="p-name">Otis Whetstone</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 9</div><div class="person"><div class="p-name">Nora Bell</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 10</div><div class="person"><div class="p-name">Timothy Glass</div><div class="p-meta">future generation &ndash; placeholder</div></div><div class="person"><div class="p-name">Henry Glass</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 11</div><div class="person"><div class="p-name">Anna Taylor</div><div class="p-meta">future generation &ndash; placeholder</div></div><div class="person"><div class="p-name">Jessie Glass</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 12</div><div class="person"><div class="p-name">James M. Hearns</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 13</div><div class="person"><div class="p-name">Mae Cotis Hearns</div><div class="p-meta">future generation &ndash; placeholder</div></div><div class="person"><div class="p-name">Thomas Bradford</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 14</div><div class="person"><div class="p-name">Shirley Ann Bradford</div><div class="p-meta">future generation &ndash; placeholder</div></div><div class="person"><div class="p-name">Verna Hearns Taylor</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 15</div><div class="person"><div class="p-name">Wallace Fleming</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+        <div class="gen"><div class="gen-label">Generation 16</div><div class="person"><div class="p-name">Ida Bell</div><div class="p-meta">future generation &ndash; placeholder</div></div><div class="person"><div class="p-name">Coy Barnett</div><div class="p-meta">future generation &ndash; placeholder</div></div></div>
+      </div>
+      <p style="margin-top:14px;font-size:0.8rem;color:var(--muted);">This preview shows 16 generations to demonstrate the row-wrap behavior. The real portal renders this as an interactive, zoomable tree built from your own verified records &mdash; generations 7&ndash;16 above are placeholders standing in for future/undetermined descendants.</p>
     </section>
 
     <section id="s-docs">
       <h2>Documents &amp; Media</h2>
-      <p class="lede">A place for scanned records, photos, and family media. All entries below are demo placeholders. Upload is not enabled in this demo.</p>
+      <p class="lede">A place for scanned records, photos, and family media.</p>
 
-      <h3>Documents</h3>
-
-      <div class="doc-card">
-        <div class="doc-icon"></div>
-        <div>
-          <div class="doc-name">Sample Census Record 1910.pdf</div>
-          <div class="doc-meta">PDF &middot; 2.4 MB &middot; demo placeholder</div>
-        </div>
-      </div>
-      <div class="doc-card">
-        <div class="doc-icon"></div>
-        <div>
-          <div class="doc-name">Sample Marriage License 1900.pdf</div>
-          <div class="doc-meta">PDF &middot; 1.1 MB &middot; demo placeholder</div>
-        </div>
-      </div>
-      <div class="doc-card">
-        <div class="doc-icon"></div>
-        <div>
-          <div class="doc-name">Sample Family Bible Transcription.docx</div>
-          <div class="doc-meta">DOCX &middot; 240 KB &middot; demo placeholder</div>
-        </div>
+      <div class="card demo">
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
       </div>
 
-      <h3>Media - Photos</h3>
-      <div class="photo-grid">
-        <div class="photo-card">
-          <div class="photo-thumb"></div>
-          <div class="photo-caption">Sample photo - portrait</div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">Deed</div>
+          <p style="margin-top:8px;">Coosa County deed book 4, p. 212 &mdash; Wallace Fleming land patent (scan)</p>
         </div>
-        <div class="photo-card">
-          <div class="photo-thumb"></div>
-          <div class="photo-caption">Sample photo - homestead</div>
+        <div class="card">
+          <div class="tag">Photo</div>
+          <p style="margin-top:8px;">Hearns family portrait, Coosa County, circa 1940</p>
         </div>
-        <div class="photo-card">
-          <div class="photo-thumb"></div>
-          <div class="photo-caption">Sample photo - family group</div>
+        <div class="card">
+          <div class="tag">Census</div>
+          <p style="margin-top:8px;">1900 Federal Census, Coosa County, AL &mdash; Bradford household</p>
         </div>
-      </div>
-
-      <h3>Media - Audio</h3>
-
-      <div class="oral-card">
-        <div class="oral-head">
-          <div class="oral-name">Sample Audio Clip 1</div>
-          <div class="oral-recorded">recorded - example</div>
-        </div>
-        <div class="oral-attest">Demo audio placeholder - not a real recording</div>
-        <div class="oral-controls">
-          <button class="oral-play" type="button" onclick="var w=this.parentNode.querySelector('.oral-wave'); if(w.dataset.playing==='1'){w.dataset.playing='0'; this.textContent='\u25B6';}else{w.dataset.playing='1'; this.textContent='\u275A\u275A';}">&#9654;</button>
-          <div class="oral-wave" aria-hidden="true">
-            <span style="height:6px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:6px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:14px"></span><span style="height:24px"></span><span style="height:12px"></span>
-          </div>
-          <div class="oral-dur">1:45</div>
-        </div>
-        <div class="oral-tags">
-          <span class="oral-tag">audio</span>
-          <span class="oral-tag">demo</span>
-        </div>
-      </div>
-
-      <div class="oral-card" style="margin-top:14px;">
-        <div class="oral-head">
-          <div class="oral-name">Sample Audio Clip 2</div>
-          <div class="oral-recorded">recorded - example</div>
-        </div>
-        <div class="oral-attest">Demo audio placeholder - not a real recording</div>
-        <div class="oral-controls">
-          <button class="oral-play" type="button" onclick="var w=this.parentNode.querySelector('.oral-wave'); if(w.dataset.playing==='1'){w.dataset.playing='0'; this.textContent='\u25B6';}else{w.dataset.playing='1'; this.textContent='\u275A\u275A';}">&#9654;</button>
-          <div class="oral-wave" aria-hidden="true">
-            <span style="height:6px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:6px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:14px"></span><span style="height:24px"></span><span style="height:12px"></span>
-          </div>
-          <div class="oral-dur">2:38</div>
-        </div>
-        <div class="oral-tags">
-          <span class="oral-tag">audio</span>
-          <span class="oral-tag">demo</span>
+        <div class="card">
+          <div class="tag">Audio</div>
+          <p style="margin-top:8px;">Recorded oral history, Verna Hearns Taylor, 3:12</p>
         </div>
       </div>
     </section>
@@ -663,74 +631,87 @@ footer {
       <h2>Oral History</h2>
       <p class="lede">Recorded family testimony, attached directly to the record.</p>
 
-      <div class="card">
-        <p><strong>Oral attestation, not a hypothesis.</strong> A recorded family account is treated as documented testimony from the moment it is submitted - the starting point for the record, not a claim waiting on official paperwork to confirm it.</p>
+      <div class="card demo">
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
       </div>
-
-      <p style="margin-top:22px; font-size:0.85rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em;">a preview of what's coming</p>
 
       <div class="oral-card">
         <div class="oral-head">
-          <div class="oral-name">Sample Narrator One</div>
-          <div class="oral-recorded">recorded - example</div>
+          <div class="oral-name">Verna Hearns Taylor</div>
+          <div class="oral-recorded">recorded &mdash; example</div>
         </div>
-        <div class="oral-attest">Attesting on behalf of the Sample Family, Demo County line</div>
-        <div class="oral-quote">"My grandmother always said the family land ran right up to the river, past where the old church used to stand. She showed me where the foundation stones were, before they built the new road through there."</div>
-        <div class="oral-controls">
-          <button class="oral-play" type="button" onclick="var w=this.parentNode.querySelector('.oral-wave'); if(w.dataset.playing==='1'){w.dataset.playing='0'; this.textContent='\u25B6';}else{w.dataset.playing='1'; this.textContent='\u275A\u275A';}">&#9654;</button>
-          <div class="oral-wave" aria-hidden="true">
-            <span style="height:6px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:6px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:14px"></span><span style="height:24px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:10px"></span><span style="height:22px"></span><span style="height:16px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:14px"></span><span style="height:24px"></span><span style="height:12px"></span>
-          </div>
-          <div class="oral-dur">3:12</div>
-        </div>
+        <div class="oral-attest">Attesting on behalf of the Hearns family, Coosa County line</div>
+        <div class="oral-quote">&ldquo;My grandmother always said the Hearns land ran right up to the river, past where the old church used to stand.&rdquo;</div>
         <div class="oral-tags">
           <span class="oral-tag">oral attestation</span>
           <span class="oral-tag">place testimony</span>
         </div>
       </div>
-
-      <p class="oral-sample-note">Sample entry shown for layout only - recording is not yet live.</p>
     </section>
 
     <section id="s-log">
       <h2>Research Log</h2>
-      <p class="lede">A running log of what was checked, when, and by whom. Demo entries below.</p>
+      <p class="lede">A running record of what was checked, when, and by whom.</p>
+
+      <div class="card demo">
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
+      </div>
 
       <table>
-        <thead><tr><th>Date</th><th>Researcher</th><th>Finding</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>Demo - 2026-09-01</td><td>Sample Editor</td><td>Located 1910 census entry for Sample Person 3</td><td><span class="tag ok">Confirmed</span></td></tr>
-          <tr><td>Demo - 2026-09-03</td><td>Sample Owner</td><td>Death record found for Sample Person 1</td><td><span class="tag ok">Confirmed</span></td></tr>
-          <tr><td>Demo - 2026-09-05</td><td>Sample Editor</td><td>Marriage record for Sample Person 5 - county unknown</td><td><span class="tag warn">Open</span></td></tr>
-          <tr><td>Demo - 2026-09-08</td><td>Sample Owner</td><td>Possible variant spelling for Sample Person 11 - unconfirmed</td><td><span class="tag warn">Open</span></td></tr>
+          <tr><td>2026-09-10</td><td>Whetstone land patent search &mdash; BLM GLO, cross-checked against deed book</td></tr>
+          <tr><td>2026-09-06</td><td>Oral history intake &mdash; Verna Hearns Taylor</td></tr>
+          <tr><td>2026-08-29</td><td>Dawes Roll batch review opened for Bradford, Bell, Barnett, Allen</td></tr>
         </tbody>
       </table>
     </section>
 
     <section id="s-members">
       <h2>Members</h2>
-      <p class="lede">Who can view or edit this portal. All members below are demo placeholders.</p>
+      <p class="lede">Everyone with access to this family's private portal.</p>
+
+      <div class="card demo">
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
+      </div>
 
       <table class="members-table">
-        <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>Sample Owner</td><td>Owner</td><td><span class="tag ok">Active</span></td></tr>
-          <tr><td>Sample Editor</td><td>Editor</td><td><span class="tag ok">Active</span></td></tr>
-          <tr><td>Sample Viewer</td><td>Viewer</td><td><span class="tag">Invited</span></td></tr>
+          <tr><td style="font-weight:700;">Jason Eugene B.</td><td>Owner</td><td><span class="tag ok">Active</span></td></tr>
+          <tr><td style="font-weight:700;">James Ewing</td><td>Contributing genealogist</td><td><span class="tag ok">Active</span></td></tr>
+          <tr><td style="font-weight:700;">Family member (invited)</td><td>Viewer</td><td><span class="tag warn">Pending</span></td></tr>
         </tbody>
       </table>
     </section>
 
     <section id="s-settings">
       <h2>Settings</h2>
-      <p class="lede">Preferences for this portal. Toggles below are non-functional in this demo.</p>
+      <p class="lede">Portal name, privacy, and notification preferences.</p>
+
+      <div class="card demo">
+        <strong>This is a demo.</strong> Everything on this screen is placeholder content, shown so the layout can be reviewed section by section. No real family records are stored, no authentication is required, and nothing here is saved.
+      </div>
 
       <div class="card">
-        <label class="chk"><input type="checkbox" checked disabled><span>Email notifications for new research log entries</span><span class="hint">Demo</span></label>
-        <label class="chk"><input type="checkbox" disabled><span>Weekly digest of portal activity</span><span class="hint">Demo</span></label>
-        <label class="chk"><input type="checkbox" disabled><span>Allow members to invite others</span><span class="hint">Demo</span></label>
-        <label class="chk"><input type="checkbox" disabled><span>Public shareable link to family tree</span><span class="hint">Demo</span></label>
-        <label class="chk"><input type="checkbox" checked disabled><span>Show evidence tier labels on every record</span><span class="hint">Demo</span></label>
+        <label style="display:block;font-weight:700;margin-bottom:6px;">Portal name</label>
+        <input type="text" id="set-name" value="The Bradford &amp; Hearns Family Portal" style="width:100%;padding:10px 14px;margin-bottom:16px;background:var(--surface2);border:1px solid var(--rule);border-radius:8px;color:var(--ink);font-family:var(--font-ui);font-size:0.9rem;">
+
+        <label style="display:block;font-weight:700;margin-bottom:6px;">Visibility</label>
+        <select id="set-visibility" style="width:100%;padding:10px 14px;margin-bottom:16px;background:var(--surface2);border:1px solid var(--rule);border-radius:8px;color:var(--ink);font-family:var(--font-ui);font-size:0.9rem;">
+          <option>Private &mdash; invite only</option>
+          <option>Private &mdash; link sharing enabled</option>
+        </select>
+
+        <label style="display:block;font-weight:700;margin-bottom:6px;">Notify me when</label>
+        <select id="set-notify" style="width:100%;padding:10px 14px;margin-bottom:16px;background:var(--surface2);border:1px solid var(--rule);border-radius:8px;color:var(--ink);font-family:var(--font-ui);font-size:0.9rem;">
+          <option>A new record is added</option>
+          <option>A research request is answered</option>
+          <option>Both</option>
+        </select>
+
+        <button type="button" class="oral-play" style="width:auto;height:auto;border-radius:8px;padding:10px 20px;background:var(--heading);color:#fff;border:none;font-family:var(--font-ui);font-weight:700;cursor:pointer;" onclick="saveKvsvSettings()">Save settings</button>
+        <span class="settings-saved-msg" id="settings-saved-msg">Saved to this browser &#10003;</span>
+
+        <p class="helper-text" style="margin-top:14px;">These settings actually save and reload correctly on this device/browser (via local storage), which is real, working functionality for this preview. A live portal would instead save them to your account on our server, so they'd follow you to any device you sign in on &mdash; that requires accounts and a backend database, which is beyond what a static preview can do.</p>
       </div>
     </section>
 
@@ -740,6 +721,40 @@ footer {
 <footer>
   KVSV - Private Family Portal prototype. Demo only. Not connected to any live system.
 </footer>
+
+<script>
+var KVSV_SETTINGS_KEY = 'kvsv_demo_portal_settings';
+
+function saveKvsvSettings(){
+  var data = {
+    name: document.getElementById('set-name').value,
+    visibility: document.getElementById('set-visibility').value,
+    notify: document.getElementById('set-notify').value
+  };
+  try{
+    localStorage.setItem(KVSV_SETTINGS_KEY, JSON.stringify(data));
+  }catch(e){}
+  var msg = document.getElementById('settings-saved-msg');
+  if(msg){
+    msg.classList.add('show');
+    setTimeout(function(){ msg.classList.remove('show'); }, 2200);
+  }
+}
+
+function loadKvsvSettings(){
+  var raw;
+  try{ raw = localStorage.getItem(KVSV_SETTINGS_KEY); }catch(e){ raw = null; }
+  if(!raw) return;
+  try{
+    var data = JSON.parse(raw);
+    if(data.name) document.getElementById('set-name').value = data.name;
+    if(data.visibility) document.getElementById('set-visibility').value = data.visibility;
+    if(data.notify) document.getElementById('set-notify').value = data.notify;
+  }catch(e){}
+}
+
+document.addEventListener('DOMContentLoaded', loadKvsvSettings);
+</script>
 
 </body>
 </html>
