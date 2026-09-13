@@ -223,10 +223,12 @@
 
             const wikitreeUrl = `${PROXY_BASE}/api/wikitree-search?lastName=${encodeURIComponent(query)}`;
             const naraUrl = `${PROXY_BASE}/api/nara-search?q=${encodeURIComponent(query)}`;
+            const dawesUrl = `${PROXY_BASE}/api/dawes-search?lastName=${encodeURIComponent(query)}`;
 
-            const [wikitreeOutcome, naraOutcome] = await Promise.allSettled([
+            const [wikitreeOutcome, naraOutcome, dawesOutcome] = await Promise.allSettled([
                 fetch(wikitreeUrl).then(r => { if (!r.ok) throw new Error('WikiTree service returned ' + r.status); return r.json(); }),
                 fetch(naraUrl).then(r => { if (!r.ok) throw new Error('National Archives service returned ' + r.status); return r.json(); }),
+                fetch(dawesUrl).then(r => { if (!r.ok) throw new Error('Dawes Rolls service returned ' + r.status); return r.json(); }),
             ]);
 
             let combined = [];
@@ -240,6 +242,11 @@
                 combined = combined.concat(naraOutcome.value.results || []);
             } else {
                 errors.push('National Archives: ' + naraOutcome.reason.message);
+            }
+            if (dawesOutcome.status === 'fulfilled') {
+                combined = combined.concat(dawesOutcome.value.results || []);
+            } else {
+                errors.push('Dawes Rolls (Five Civilized Tribes): ' + dawesOutcome.reason.message);
             }
 
             lastResults = combined;
