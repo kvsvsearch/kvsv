@@ -670,6 +670,7 @@
   #view-stories,
   #view-contribute,
   #view-contact,
+  #view-services,
       #view-privateportal {
         display: none;
       }
@@ -692,6 +693,9 @@
   display: block;
 }
 #tab-contact:checked ~ #view-contact {
+  display: block;
+}
+#tab-services:checked ~ #view-services {
   display: block;
 }
       #tab-publicsearch:checked ~ .tabs label[for="tab-publicsearch"] {
@@ -719,6 +723,10 @@
   border-bottom: 3px solid var(--evid-red);
 }
 #tab-contribute:checked ~ .tabs label[for="tab-contribute"] {
+  color: var(--ink);
+  border-bottom: 3px solid var(--evid-red);
+}
+#tab-services:checked ~ .tabs label[for="tab-services"] {
   color: var(--ink);
   border-bottom: 3px solid var(--evid-red);
 }
@@ -782,6 +790,70 @@
         #view-about .stat-row { grid-template-columns: repeat(2,1fr); }
       }
 
+      /* Services -- inlined directly (no iframe), scoped under #view-services
+         following the same letterhead pattern as #view-about. */
+      #view-services {
+        --surface:#1a191d; --border:#34323a; --border-soft:#2a2830;
+        --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+        --accent:#c1453d; --blue:#5b9bc0;
+        --radius-sm:6px; --radius-md:10px;
+        --shadow-card:0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.55);
+        --font-ui:'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: var(--text);
+        font-family: Georgia, 'Times New Roman', serif;
+        line-height: 1.6;
+      }
+      #view-services a { color: var(--blue); text-decoration: none; }
+      #view-services a:hover { color: #8ec2e2; text-decoration: underline; }
+      #view-services .letterhead { border-bottom: 1px solid var(--border); padding: 32px 24px 22px; text-align: center; }
+      #view-services .letterhead .mark { font-family: var(--font-ui); font-weight: 700; letter-spacing: 0.12em; font-size: 0.95rem; color: var(--accent); }
+      #view-services .letterhead h1 { margin: 10px 0 6px; font-family: var(--font-display); font-size: 46px; color: var(--blue); font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; }
+      #view-services .letterhead p { margin: 0; color: var(--muted); font-family: var(--font-ui); font-size: 0.95rem; }
+      #view-services main { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
+      #view-services .intro-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px 30px; font-size: 15px; line-height: 1.8; color: var(--text); margin-bottom: 32px; box-shadow: var(--shadow-card); }
+      #view-services .intro-box p { margin: 0; }
+
+      #view-services .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 36px; }
+      @media (max-width: 760px) { #view-services .service-grid { grid-template-columns: 1fr; } }
+      #view-services .service-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px 26px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; }
+      #view-services .service-card h2 { font-family: var(--font-display); font-size: 21px; color: var(--blue); font-weight: 600; margin-bottom: 4px; }
+      #view-services .service-card .tagline { font-family: var(--font-ui); font-size: 12.5px; letter-spacing: 0.03em; color: var(--faint); text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
+      #view-services .service-card p.body-text { font-size: 14.5px; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
+      #view-services .price-list { list-style: none; border-top: 1px solid var(--border-soft); padding-top: 10px; margin-bottom: 10px; }
+      #view-services .price-list li { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13.5px; color: var(--text); }
+      #view-services .price-list li b { font-family: var(--font-display); color: var(--blue); font-weight: 700; }
+      #view-services .price-list.detailed { border-top: 1px solid var(--border-soft); padding-top: 10px; margin-bottom: 4px; }
+      #view-services .price-list.detailed li { display: block; padding: 7px 0; border-bottom: 1px solid var(--border-soft); }
+      #view-services .price-list.detailed li:last-child { border-bottom: none; }
+      #view-services .price-row { display: flex; justify-content: space-between; margin-bottom: 2px; }
+      #view-services .price-desc { font-size: 11.5px; line-height: 1.5; color: var(--muted); margin: 0; }
+      #view-services .sub-note { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+      #view-services .status-badge { align-self: flex-start; margin-top: auto; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+      #view-services .status-live { color: var(--tier1); background: var(--tier1-bg); }
+      #view-services .status-soon { color: var(--tier2); background: var(--tier2-bg); }
+
+      #view-services .case-studies { margin-bottom: 40px; }
+      #view-services .case-studies .cs-heading { text-align: center; margin-bottom: 20px; }
+      #view-services .case-studies .cs-heading h2 { font-family: var(--font-display); font-size: 22px; color: var(--blue); font-weight: 600; margin-bottom: 8px; }
+      #view-services .case-studies .cs-heading p { font-size: 14px; color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+      #view-services .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      @media (max-width: 760px) { #view-services .cs-grid { grid-template-columns: 1fr; } }
+      #view-services .cs-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px 26px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; }
+      #view-services .cs-card .cs-label { font-family: var(--font-ui); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+      #view-services .cs-card h3 { font-family: var(--font-display); font-size: 19px; color: var(--blue); font-weight: 600; margin-bottom: 4px; }
+      #view-services .cs-card .cs-tagline { font-family: var(--font-ui); font-size: 12.5px; letter-spacing: 0.02em; color: var(--faint); font-weight: 700; margin-bottom: 12px; }
+      #view-services .cs-card .cs-body { font-size: 14px; line-height: 1.75; color: var(--text); margin-bottom: 12px; }
+      #view-services .cs-card .cs-body strong { color: var(--text); }
+      #view-services .cs-card .cs-result { font-size: 13px; line-height: 1.7; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 10px; margin-top: auto; }
+      #view-services .cs-card .cs-result b { color: var(--tier1); }
+
+      #view-services .section-block { margin-bottom: 32px; text-align: center; }
+      #view-services .section-block h2 { font-family: var(--font-display); font-size: 20px; color: var(--blue); margin: 0 0 12px; font-weight: 600; }
+      #view-services .section-block p { font-size: 14.5px; line-height: 1.8; color: var(--text); margin: 0 auto 18px; max-width: 560px; }
+      #view-services .btn-cta { display: inline-block; font-family: var(--font-ui); font-weight: 700; font-size: 14px; color: #111013; background: var(--blue); padding: 11px 26px; border-radius: var(--radius-sm); text-decoration: none; cursor: pointer; }
+      #view-services .btn-cta:hover { background: #4a86a8; color: #111013; text-decoration: none; }
+      #view-services .page-footer-note { text-align: center; font-family: var(--font-ui); font-size: 13px; color: var(--faint); margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--border); }
+
       footer.site-footer {
         font-family: "Lato", Arial, sans-serif;
         font-size: 10px;
@@ -830,6 +902,7 @@
 <input type="radio" name="kvsvtab" id="tab-stories" class="tabradio" />
 <input type="radio" name="kvsvtab" id="tab-contribute" class="tabradio" />
 <input type="radio" name="kvsvtab" id="tab-contact" class="tabradio" />
+<input type="radio" name="kvsvtab" id="tab-services" class="tabradio" />
       <div class="tabs">
         <label class="tab" for="tab-register">Research Database</label>
         <label class="tab" for="tab-publicsearch">Public Search</label>
@@ -837,6 +910,7 @@
         <label class="tab" for="tab-about">About KVSV</label>
         <label class="tab" for="tab-oralhistory">Oral History</label>
         <label class="tab" for="tab-privateportal">Private Portal</label>
+<label class="tab" for="tab-services">Services</label>
 <a class="tab" href="https://script.google.com/macros/s/AKfycbxcyRze4m_gHcE3OmgUhnsBS8_tlzwHm62Rp9OJJN9jVXCIoL9DXQbApzvikWq1ym1Tyw/exec" style="text-decoration: none;">Contribute</a>
 <a class="tab" href="https://script.google.com/macros/s/AKfycbzbAv_4wIQIa7VNvPybJzE95H_ojqTIoytfYRZgmc9ZbcHDqvg-T5BBjLvVepzUyeuD/exec" style="text-decoration: none;">Contact</a>
       </div>
@@ -1611,6 +1685,110 @@
 
       <div id="view-privateportal">
         <iframe class="site-tab-iframe" src="private_portals.html" title="Private Portal" loading="lazy"></iframe>
+      </div>
+
+      <div id="view-services">
+        <div class="letterhead">
+          <h1 class="page-title">Services</h1>
+          <p>What we offer today, and how each engagement works</p>
+        </div>
+
+        <main>
+          <div class="intro-box">
+            <p>KVSV offers five services, each grounded in the same source-tiering and rigorous discipline used across this entire platform and its archives and commissioned research projects. Every engagement and every client collaboration is done by an assigned human researcher, who reviews all materials and deliverables using the most advanced AI and computing software and reasoning algorithms.</p>
+          </div>
+
+          <div class="service-grid">
+            <div class="service-card">
+              <h2>Consulting</h2>
+              <div class="tagline">Professional research, sized to the case</div>
+              <p class="body-text">From a single elusive record to a full multi-generation reconstruction, backed by the same five-tier evidence standard used across this archive.</p>
+              <ul class="price-list">
+                <li><span>Foundational Report</span><b>$250</b></li>
+                <li><span>Extended Research</span><b>$850</b></li>
+                <li><span>Comprehensive Case</span><b>$2,200</b></li>
+              </ul>
+              <p class="sub-note">Also available: a $45 Discovery Hour, a $150 Hyper-Detailed Research Sprint, and a $225/month Research Membership (deliverables delivered monthly until cancelled &mdash; ideal for large research cases or legal evidentiary needs).</p>
+              <span class="status-badge status-live">Available now</span>
+            </div>
+
+            <div class="service-card">
+              <h2>Publications</h2>
+              <div class="tagline">Verified history, written to be read</div>
+              <p class="body-text">Micro-histories and research guides drawn from documented work &mdash; sold as single articles, themed collections, or a printed edition.</p>
+              <ul class="price-list detailed">
+                <li>
+                  <div class="price-row"><span>Single Article</span><b>$3.99</b></div>
+                  <p class="price-desc">One standalone micro-history piece, sold individually.</p>
+                </li>
+                <li>
+                  <div class="price-row"><span>Collection</span><b>$8.99</b></div>
+                  <p class="price-desc">A themed bundle of several related articles &mdash; e.g. all pieces on one family line or region.</p>
+                </li>
+                <li>
+                  <div class="price-row"><span>Print Edition</span><b>$17.99</b></div>
+                  <p class="price-desc">A physical or print-ready PDF compilation &mdash; the highest-value, most complete version.</p>
+                </li>
+              </ul>
+              <span class="status-badge status-live">Available now</span>
+            </div>
+
+            <div class="service-card">
+              <h2>AI Tools &amp; Prompt Licensing</h2>
+              <div class="tagline">Custom research tooling, built for your case load</div>
+              <p class="body-text">Bespoke prompts, protocols, and configured research tools built around workflows. Custom prompts and guides available upon request.</p>
+              <span class="status-badge status-live">Available now</span>
+            </div>
+
+            <div class="service-card">
+              <h2>Family &amp; Professional Research Portals</h2>
+              <div class="tagline">Two portals, one evidence standard</div>
+              <p class="body-text">A private home for a family's own research, and a real case-management tool for professional genealogists, built on the Genealogical Proof Standard.</p>
+              <span class="status-badge status-soon">In development</span>
+            </div>
+
+            <div class="service-card">
+              <h2>Oral History &amp; Living Testimony</h2>
+              <div class="tagline">Your family's voice, preserved and linked to the record</div>
+              <p class="body-text">Recorded, transcribed, and linked directly to the documented family tree &mdash; testimony treated as real evidence, not a lesser add-on.</p>
+              <span class="status-badge status-soon">Program launching</span>
+            </div>
+          </div>
+
+          <div class="case-studies">
+            <div class="cs-heading">
+              <h2>Case Studies</h2>
+              <p>Two engagements that show how a KVSV case actually moves &mdash; from a family's own chart to certified documentation, and from scattered personal records to a working private archive.</p>
+            </div>
+            <div class="cs-grid">
+              <div class="cs-card">
+                <div class="cs-label">Consulting &mdash; Comprehensive Case</div>
+                <h3>The James Family</h3>
+                <div class="cs-tagline">From a family chart to a certified estate trail</div>
+                <p class="cs-body">The client arrived with a family chart reaching back to a root couple and their thirteen children &mdash; but no certified record independently confirmed any of it. We opened a case workbook, assigned every individual a source tier, and began working outward from the most recent confirmable generation.</p>
+                <p class="cs-body">The breakthrough came from a certified probate record that had never been connected to the family's own chart. It confirmed five heirs to an estate &mdash; including one relative the client didn't know belonged to the family &mdash; and led us to a second, related estate in another county. Both are now tied together in a single documented estate trail, with the open questions clearly logged rather than glossed over.</p>
+                <div class="cs-result"><b>Result:</b> a 67-entity research workbook, a certified probate connection identifying a previously-unknown heir, a linked second estate, and a documented action plan for the client's next record requests.</div>
+              </div>
+
+              <div class="cs-card">
+                <div class="cs-label">AI Tools &amp; Portals &mdash; Custom Build</div>
+                <h3>The Bradford Family Archive</h3>
+                <div class="cs-tagline">Turning decades of scattered research into one searchable archive</div>
+                <p class="cs-body">The Bradford family had done real research for decades &mdash; family charts, inherited documents, photographs, and oral accounts &mdash; but it lived across binders, spreadsheets, and memory, with no single place to search or verify any of it.</p>
+                <p class="cs-body">We built them a private, searchable research platform: over a thousand entities tiered by evidence strength, a fuzzy-search engine so any name or place surfaces instantly, and a structure that keeps certified records, family narrative, and photo archives connected to one another instead of scattered across files. A public-facing companion view lets the family share select findings and stories without exposing the working archive itself.</p>
+                <div class="cs-result"><b>Result:</b> a single working platform &mdash; searchable database, evidence tiers, photo archive, and a growing oral history program &mdash; built entirely around one family's own research.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h2>How to get started</h2>
+            <p>Tell us what you need or where your research currently stands using the Contact or Contribute links above in the navigation. We'll recommend the right path for you based on your specific need and desired outcomes.</p>
+            <a class="btn-cta" href="https://script.google.com/macros/s/AKfycbzbAv_4wIQIa7VNvPybJzE95H_ojqTIoytfYRZgmc9ZbcHDqvg-T5BBjLvVepzUyeuD/exec">Get in touch</a>
+          </div>
+
+          <div class="page-footer-note">KVSV &mdash; research grounded in source tiers and family testimony.</div>
+        </main>
       </div>
 
             <div id="view-contribute">
