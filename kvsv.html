@@ -54,14 +54,15 @@
         -webkit-text-size-adjust: 100%;
         text-size-adjust: 100%;
       }
-       body {
+      body {
         background:
           linear-gradient(rgba(17, 16, 19, 0.82), rgba(17, 16, 19, 0.82)),
           radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%),
           radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%),
-          url('https://lh3.googleusercontent.com/d/1is8o1ifuS-z1y_GRnpfLCkLVacJPPlK3')
-            center center / cover no-repeat fixed,
           var(--paper);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
         background-attachment: fixed;
         color: var(--ink);
         font-family: "Lato", Arial, sans-serif;
@@ -47022,6 +47023,22 @@
           setTimeout(resizeAll, 300);
         });
       })();
+  <script>
+  (function () {
+    var images = [
+      "https://lh3.googleusercontent.com/d/1is8o1ifuS-z1y_GRnpfLCkLVacJPPlK3",
+      "https://lh3.googleusercontent.com/d/1MZeD4ZVrkqtWvjIrFFZZ0zGQbZSwig7x",
+      "https://lh3.googleusercontent.com/d/16a-NrXluDAsRqovYlLvAgZGUjX2DxvjX",
+      "https://lh3.googleusercontent.com/d/116nGNvXkfwibp5GKFMLSbaQ2kwL2scUF"
+    ];
+    var pick = images[Math.floor(Math.random() * images.length)];
+    document.body.style.backgroundImage =
+      "linear-gradient(rgba(17, 16, 19, 0.82), rgba(17, 16, 19, 0.82)), " +
+      "radial-gradient(1100px 520px at 12% -8%, rgba(91,155,192,0.07), transparent 60%), " +
+      "radial-gradient(900px 480px at 88% 0%, rgba(193,69,61,0.06), transparent 55%), " +
+      "url('" + pick + "')";
+  })();
+  </script>
     </script>
   </body>
 </html>
