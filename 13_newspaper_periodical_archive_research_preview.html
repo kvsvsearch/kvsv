@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newspaper &amp; Periodical Archive Research | KVSV (Preview)</title>
+<!--
+  PREVIEW-ONLY SEO METADATA (not for deployment):
+  Meta title: Newspaper &amp; Periodical Archive Research | Obituaries, Notices &amp; Social Columns
+  Meta description: Search historical newspaper archives for obituaries, marriage notices, and mentions that name relationships no vital record captured.
+-->
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:not-allowed;opacity:0.9;}
+.btn-secondary{background:transparent;color:var(--faint);border:1px solid var(--border-soft);cursor:not-allowed;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="preview-banner">Preview only — not published, not deployed.</div>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Preview &mdash; Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / Newspaper &amp; Periodical Archive Research</div>
+
+<main>
+  <section class="hero">
+    <h1>Newspaper &amp; Periodical Archive Research</h1>
+    <p class="headline">The obituary knew things the census never asked.</p>
+    <p class="context">Newspapers recorded births, marriages, deaths, social visits, land sales, and local disputes in more human detail than any government form. KVSV searches historical newspaper archives for the mentions, obituaries, and notices that name relationships, confirm dates, and add texture no other record source provides.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A customer has a death date from a headstone but no obituary. The next step is identifying which of three local papers actually covered that town in that decade, then searching a two-week window around the date. The obituary that turns up names a sister nobody in the family remembered — a lead the headstone alone could never have given.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Researchers looking for an obituary or marriage notice; anyone trying to confirm a death date, cause, or list of surviving relatives; families wanting the social context around an ancestor's life, not just the vital statistics.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Search digitized and microfilmed newspaper archives by name, place, and date range.</li>
+      <li>Locate obituaries, marriage and engagement notices, and social columns mentioning the family.</li>
+      <li>Extract named relatives, survivors, and relationships from obituary text.</li>
+      <li>Cross-check newspaper-reported dates against vital records.</li>
+      <li>Identify local papers likely to cover a specific county or community in a given era.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you find the newspaper mentions that name relationships and confirm details no vital record provides. The value you receive is a set of cited newspaper items — obituary, marriage notice, or social mention — transcribed and cross-checked, with every named relative extracted into your research file.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>Cited transcriptions of located obituaries, notices, or mentions.</li>
+      <li>A list of named relatives and relationships extracted from each item.</li>
+      <li>A comparison of newspaper-reported dates against vital records.</li>
+      <li>A list of local papers searched and any gaps in surviving issues.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Identify the right papers</strong> — likely local and regional papers for the place and era are identified.</li>
+      <li><strong>Search systematically</strong> — name and date-range searches are run across available digitized and microfilmed runs.</li>
+      <li><strong>Extract and verify</strong> — located items are transcribed, relatives are extracted, and dates are cross-checked.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>An obituary names seven surviving children and their residences, three of whom don't appear in any prior family tree.</li>
+      <li>A marriage notice gives a bride's maiden name the courthouse marriage index recorded only as an initial.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>Newspaper research locates and transcribes what surviving print records report; it does not verify a newspaper's own accuracy, and errors in period reporting are common. Findings are cross-checked against other records rather than taken at face value.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">What if the local paper wasn't digitized?</p>
+      <p class="faq-a">We check microfilm finding aids and identify the holding library or archive so a targeted lookup request can be made.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can you guarantee an obituary exists?</p>
+      <p class="faq-a">No — not everyone received one, and not every paper survives. A documented no-match is still useful and is reported honestly.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do you search foreign-language newspapers?</p>
+      <p class="faq-a">Where relevant to the family's community, yes; transcription and translation are handled with the same care as English-language items.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <button type="button" class="btn-primary" disabled>Request Information</button>
+    <a class="btn-secondary active-link" href="05_historical_document_research.html">Explore Historical Document Research</a>
+    <div class="cta-note">Preview only — buttons are not connected to a live form, payment, or backend system.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="05_historical_document_research.html">Historical Document Research</a></li>
+      <li><a href="07_military_census_immigration_research.html">Military, Census &amp; Immigration Research</a></li>
+      <li><a href="25_freedmens_bureau_reconstruction_records_preview.html">Freedmen's Bureau &amp; Reconstruction-Era Records Research</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

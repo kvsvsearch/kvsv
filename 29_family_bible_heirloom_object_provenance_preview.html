@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Bible, Heirloom &amp; Object Provenance Research | KVSV (Preview)</title>
+<!--
+  PREVIEW-ONLY SEO METADATA (not for deployment):
+  Meta title: Family Bible, Heirloom &amp; Object Provenance Research
+  Meta description: Research the history and provenance of family Bibles, heirlooms, and inscribed objects — transcribed, cross-checked, and documented alongside your family archive.
+-->
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:not-allowed;opacity:0.9;}
+.btn-secondary{background:transparent;color:var(--faint);border:1px solid var(--border-soft);cursor:not-allowed;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="preview-banner">Preview only — not published, not deployed.</div>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Preview &mdash; Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / Family Bible, Heirloom &amp; Object Provenance Research</div>
+
+<main>
+  <section class="hero">
+    <h1>Family Bible, Heirloom &amp; Object Provenance Research</h1>
+    <p class="headline">The family Bible's flyleaf is a record too.</p>
+    <p class="context">A family Bible's handwritten births and deaths, a signet ring, a trunk carried across an ocean — heirlooms and inscribed objects carry documentary and contextual value alongside their sentimental worth. KVSV researches the provenance and historical context of family objects, treating a Bible's flyleaf entries with the same evidentiary care as any other handwritten record.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A family has an old Bible with handwritten births going back further than any other family record. The next step is treating those entries as evidence, not just heirloom charm: each date is transcribed and checked against county birth records where they exist. Most entries match closely; one date is off by two years, likely recorded from memory well after the birth — a distinction worth knowing before that date gets treated as fact elsewhere in the family tree.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Families with an inherited Bible, ring, trunk, or other object carrying names, dates, or inscriptions; anyone wanting an heirloom's history and likely origin researched alongside the family's documentary record; people preparing heirlooms for family archiving or eventual passing-down.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Transcribe and evidentiarily assess handwritten entries in a family Bible or similar record book.</li>
+      <li>Cross-check Bible-recorded dates against vital and census records for accuracy.</li>
+      <li>Research the likely origin, era, and maker of an inscribed or marked heirloom object.</li>
+      <li>Document an object's known chain of custody through the family.</li>
+      <li>Prepare heirloom documentation for the family archive alongside paper records.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you treat a family heirloom as the record it actually is — researched, dated, and cross-checked, not just admired. The value you receive is a documented assessment of the object's likely origin and history, plus, where it carries handwritten entries, a transcribed and evidence-checked record ready to sit alongside the rest of your family archive.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>A transcription and evidence assessment of any handwritten entries.</li>
+      <li>A cross-check of recorded dates against vital and census records.</li>
+      <li>Research on the object's likely origin, era, or maker where inscriptions or marks allow.</li>
+      <li>A documented chain-of-custody summary for the family archive.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Examine and transcribe</strong> — handwritten entries or inscriptions are carefully transcribed.</li>
+      <li><strong>Research and cross-check</strong> — recorded information is checked against vital and census records, and the object's likely origin is researched.</li>
+      <li><strong>Document for the archive</strong> — findings and chain of custody are written up for inclusion in the family archive.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>A family Bible's flyleaf birth dates are cross-checked against county birth registrations, confirming three entries and revealing a fourth was recorded years after the fact with a likely transcription error.</li>
+      <li>An engraved ring's maker's mark is researched, dating it to a specific decade and region consistent with a documented ancestor's known residence at the time.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>This service researches historical context, likely origin, and documentary value of family objects and handwritten entries; it does not provide monetary appraisal, does not authenticate an object's material composition, and refers conservation or formal appraisal needs to qualified professionals.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">Can you tell how old an object is just from a photo?</p>
+      <p class="faq-a">Often we can narrow an era from visible marks, materials, or style, though a physical examination or a specialist appraiser gives more certainty for valuable or ambiguous pieces.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do you appraise monetary value?</p>
+      <p class="faq-a">No — this service researches historical and genealogical context, not market value; monetary appraisal is referred to a qualified appraiser.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if Bible entries conflict with other records?</p>
+      <p class="faq-a">That's documented and reported plainly, the same as any other record conflict — neither source is assumed correct by default.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <button type="button" class="btn-primary" disabled>Request Information</button>
+    <a class="btn-secondary active-link" href="04_family_records_archive_services.html">Explore Family Records &amp; Archive Services</a>
+    <div class="cta-note">Preview only — buttons are not connected to a live form, payment, or backend system.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="04_family_records_archive_services.html">Family Records &amp; Archive Services</a></li>
+      <li><a href="22_photograph_identification_restoration_preview.html">Photograph Identification &amp; Restoration Guidance</a></li>
+      <li><a href="05_historical_document_research.html">Historical Document Research</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

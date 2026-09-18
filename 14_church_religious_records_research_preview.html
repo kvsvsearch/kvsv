@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Church &amp; Religious Records Research | KVSV (Preview)</title>
+<!--
+  PREVIEW-ONLY SEO METADATA (not for deployment):
+  Meta title: Church &amp; Religious Records Research | Baptisms, Marriages &amp; Burials
+  Meta description: Search parish and congregation registers for baptism, marriage, and burial records that reach further back than civil recordkeeping allows.
+-->
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:not-allowed;opacity:0.9;}
+.btn-secondary{background:transparent;color:var(--faint);border:1px solid var(--border-soft);cursor:not-allowed;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="preview-banner">Preview only — not published, not deployed.</div>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Preview &mdash; Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / Church &amp; Religious Records Research</div>
+
+<main>
+  <section class="hero">
+    <h1>Church &amp; Religious Records Research</h1>
+    <p class="headline">Before the courthouse kept records, the church did.</p>
+    <p class="context">In many places and eras, baptism, marriage, and burial registers kept by churches and congregations predate or outlast civil recordkeeping entirely. KVSV searches denominational archives, parish registers, and congregation records to find the sacramental and membership records that document a family when the courthouse can't.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A family's earliest documented ancestor appears already an adult in an 1840s census, with no birth record to go further back. The next step is identifying the likely congregation for that community and era, then searching its baptism register for the right name and date range — exactly the kind of record that can supply a birthdate and both parents' names when no civil record exists.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Researchers whose family history runs earlier than civil vital records begin; families tracing a specific congregation or denomination; anyone needing a baptism, marriage, or burial record a courthouse never had.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Identify which denomination and specific congregation a family likely belonged to.</li>
+      <li>Locate parish or congregation registers and the archive holding them.</li>
+      <li>Search baptism, marriage, burial, and membership records for name matches.</li>
+      <li>Interpret register entries written in period language, Latin, or another language.</li>
+      <li>Cross-check church-recorded dates against any surviving civil records.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you reach further back than civil records allow, using the recordkeeping congregations were already doing. The value you receive is a set of cited sacramental or membership records — baptism, marriage, burial — transcribed, translated where needed, and cross-checked against whatever civil records exist.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>Cited transcriptions of located baptism, marriage, or burial register entries.</li>
+      <li>Translation and plain-language explanation where entries are in period or foreign-language script.</li>
+      <li>Identification of the holding archive or denominational records office for further lookups.</li>
+      <li>A comparison against any surviving civil vital records for the same events.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Identify the congregation</strong> — likely denomination, parish, or congregation is identified from family location and known practice.</li>
+      <li><strong>Search the registers</strong> — held records are searched for baptism, marriage, and burial entries by name and date range.</li>
+      <li><strong>Transcribe and contextualize</strong> — entries are transcribed, translated if needed, and compared to civil records.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>A baptism register entry from 1841 names both parents where the corresponding county had no birth-registration system at all that year.</li>
+      <li>A marriage register in a foreign language is transcribed and translated, revealing the bride's home parish and confirming an immigrant origin.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>Church-records research locates and transcribes what congregational registers document; it does not verify a register's own accuracy, and early or handwritten entries sometimes resist full certainty. Uncertain readings are always marked as uncertain rather than guessed.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">Do all denominations keep the same kind of records?</p>
+      <p class="faq-a">No — recordkeeping practices vary widely by denomination, era, and even individual congregation; we identify what's realistic to expect before searching.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if the congregation no longer exists?</p>
+      <p class="faq-a">Many closed congregations' records were transferred to a diocesan or denominational archive; we identify where they likely ended up.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can you read old or foreign-language handwriting?</p>
+      <p class="faq-a">Yes — transcription and translation of period church-register entries is part of this service.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <button type="button" class="btn-primary" disabled>Request Information</button>
+    <button type="button" class="btn-secondary" disabled>Return to Services</button>
+    <div class="cta-note">Preview only — buttons are not connected to a live form, payment, or backend system.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="05_historical_document_research.html">Historical Document Research</a></li>
+      <li><a href="24_alabama_state_county_research_preview.html">Alabama State &amp; County-Specific Research</a></li>
+      <li><a href="04_family_records_archive_services.html">Family Records &amp; Archive Services</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

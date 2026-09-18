@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citizenship, Naturalization &amp; Immigration Origin Research | KVSV (Preview)</title>
+<!--
+  PREVIEW-ONLY SEO METADATA (not for deployment):
+  Meta title: Citizenship, Naturalization &amp; Immigration Origin Research | Manifests to Petitions
+  Meta description: Search arrival manifests, declarations of intent, and naturalization petitions to document an immigrant ancestor's origin and arrival — historical research only.
+-->
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:not-allowed;opacity:0.9;}
+.btn-secondary{background:transparent;color:var(--faint);border:1px solid var(--border-soft);cursor:not-allowed;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="preview-banner">Preview only — not published, not deployed.</div>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Preview &mdash; Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / Citizenship, Naturalization &amp; Immigration Origin Research</div>
+
+<main>
+  <section class="hero">
+    <h1>Citizenship, Naturalization &amp; Immigration Origin Research</h1>
+    <p class="headline">Where the ship's manifest ends, the naturalization file begins.</p>
+    <p class="context">An immigrant ancestor's paper trail runs through arrival manifests, declarations of intent, petitions for naturalization, and the courts that processed them. KVSV searches these historical record sets to document an ancestor's arrival and naturalization process — historical research only, never a determination of anyone's status today.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A family believes an ancestor “came over sometime in the 1890s.” The next step is a systematic manifest search across a realistic arrival window and likely ports, checking name variants, followed by a declaration-of-intent search in the county where the family is later found in the census. The result is either a cited arrival record and naturalization timeline — or a documented negative search with the next record set to try.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Researchers tracing an immigrant ancestor's arrival and naturalization; anyone trying to confirm a country of origin, port of entry, or naturalization date; families connecting an immigration story to the documents behind it.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Search arrival manifests for a name, approximate date, and port of entry.</li>
+      <li>Locate declarations of intent and naturalization petitions across the relevant courts.</li>
+      <li>Interpret what each document type actually records versus what family memory suggests.</li>
+      <li>Cross-reference arrival and naturalization records with census-reported citizenship status.</li>
+      <li>Identify the specific archive or court holding original naturalization files.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you locate the specific documents behind an immigration story — the manifest, the declaration, the petition — and read what each one actually says. The value you receive is a cited timeline of arrival and naturalization, with the ancestor's own recorded name spelling, origin, and dates, distinct from family retellings that may have drifted over generations.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>Cited arrival manifest entries with port, date, and ship where located.</li>
+      <li>Located declaration of intent and naturalization petition records.</li>
+      <li>A timeline comparing arrival, census-reported status, and naturalization dates.</li>
+      <li>Identification of the archive or court holding original files for further copies.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Profile the arrival</strong> — likely arrival window, port, and name variants are established from family information.</li>
+      <li><strong>Search the record sets</strong> — manifests, declarations, and petitions are searched systematically across the likely years and courts.</li>
+      <li><strong>Assemble the timeline</strong> — located records are cited and assembled into an arrival-to-naturalization timeline.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>A manifest entry under a phonetically altered surname confirms a specific origin village the family had only a vague regional memory of.</li>
+      <li>A naturalization petition names a wife and children not listed in any surviving census for that decade, filling a documented gap.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>This is historical document research only. KVSV does not determine anyone's current immigration or citizenship status, provide immigration legal advice, or represent anyone before an immigration authority. All current-status questions are referred to the appropriate government agency or qualified immigration attorney.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">Can this confirm someone's citizenship status today?</p>
+      <p class="faq-a">No — this is historical document research only; current immigration or citizenship status is a legal matter for the appropriate government agency and qualified counsel.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if the family name changed at arrival?</p>
+      <p class="faq-a">Name changes at Ellis Island specifically are largely a documented myth — manifests were usually pre-printed from ship passenger lists; we look at where and how the name actually changed instead of assuming a single dramatic moment.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can you find a village of origin?</p>
+      <p class="faq-a">Sometimes — naturalization petitions after 1906 in particular often record a specific birthplace; we search for the record type most likely to have that detail.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <button type="button" class="btn-primary" disabled>Request Information</button>
+    <a class="btn-secondary active-link" href="07_military_census_immigration_research.html">Explore Military, Census &amp; Immigration Research</a>
+    <div class="cta-note">Preview only — buttons are not connected to a live form, payment, or backend system.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="07_military_census_immigration_research.html">Military, Census &amp; Immigration Research</a></li>
+      <li><a href="25_freedmens_bureau_reconstruction_records_preview.html">Freedmen's Bureau &amp; Reconstruction-Era Records Research</a></li>
+      <li><a href="24_alabama_state_county_research_preview.html">Alabama State &amp; County-Specific Research</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNA Match Analysis &amp; Genetic Genealogy | KVSV (Preview)</title>
+<!--
+  PREVIEW-ONLY SEO METADATA (not for deployment):
+  Meta title: DNA Match Analysis &amp; Genetic Genealogy | Clusters, Not Guesswork
+  Meta description: Organize DNA matches into clusters, pair each with a documentary hypothesis, and turn a confusing match list into a confirmed family connection.
+-->
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:not-allowed;opacity:0.9;}
+.btn-secondary{background:transparent;color:var(--faint);border:1px solid var(--border-soft);cursor:not-allowed;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="preview-banner">Preview only — not published, not deployed.</div>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Preview &mdash; Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / DNA Match Analysis &amp; Genetic Genealogy</div>
+
+<main>
+  <section class="hero">
+    <h1>DNA Match Analysis &amp; Genetic Genealogy</h1>
+    <p class="headline">A DNA match is a lead, not a conclusion.</p>
+    <p class="context">DNA testing can point toward relatives paper records never named — and it can also mislead when read without documentary context. KVSV helps you organize match lists, shared-DNA amounts, and triangulated segments, then pairs that genetic evidence with records research so a match becomes a documented connection, not a guess.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A customer has 60 DNA matches and no idea what most of them mean. The next step is sorting, not searching: cM ranges get organized into likely relationship tiers, shared matches get clustered, and each cluster is paired with a documentary hypothesis. One cluster points toward a specific county in the 1900 census — that's where the record search starts, not from all 60 matches at once.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>People with AncestryDNA, 23andMe, MyHeritage, or FamilyTreeDNA results who have matches they can't place; researchers using DNA to test a specific paper-trail hypothesis; anyone building a genetic network alongside a documentary tree.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Organize match lists by shared cM and probable relationship range.</li>
+      <li>Group matches into clusters that point to a shared ancestral couple.</li>
+      <li>Pair a genetic cluster with the documentary research needed to name the connection.</li>
+      <li>Flag matches that need a specialist — complex endogamy, adoption cases, or disputed parentage.</li>
+      <li>Keep genetic findings clearly labeled as genetic, separate from documentary proof.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you turn a match list into an organized research asset instead of a confusing spreadsheet. The value you receive is a cluster analysis that tells you which matches point to which branch of your tree — and exactly which record search could confirm the connection the DNA is pointing toward.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>A shared-cM and relationship-range organized match list.</li>
+      <li>Cluster groupings with a working hypothesis for each cluster's shared ancestor.</li>
+      <li>A prioritized list of record searches to confirm each hypothesis.</li>
+      <li>Referral flags for matches needing a certified genetic genealogist.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Organize the match list</strong> — shared cM, trees, and notes are compiled into one working file.</li>
+      <li><strong>Cluster and hypothesize</strong> — matches are grouped, and a documentary hypothesis is proposed for each cluster.</li>
+      <li><strong>Test against records</strong> — the hypothesis is checked against census, vital, and land records, with results reported plainly.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>Twelve unplaced matches cluster into two groups; census research identifies the shared great-great-grandparents behind the larger cluster, cited and confirmed.</li>
+      <li>A 40-cM match resists explanation until a marriage record reveals a previously unknown second marriage, which resolves three other unplaced matches at once.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>DNA analysis here organizes match data and proposes documentary hypotheses; it does not itself prove a specific relationship, determine legal parentage, or replace interpretation by a certified genetic genealogist for complex, disputed, or emotionally sensitive cases. Genetic findings are always labeled as genetic, separate from documentary proof.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">Can you tell me exactly how I'm related to a match?</p>
+      <p class="faq-a">We can build a strong documentary hypothesis from clustering and records, but confirming an exact relationship sometimes needs additional testing or a specialist's review.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do you interpret ethnicity estimates?</p>
+      <p class="faq-a">Ethnicity estimates are population-level statistics, not proof of specific ancestry; we treat them as context, not evidence for a specific ancestor.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What about close, unexpected matches (NPE situations)?</p>
+      <p class="faq-a">Those are handled with extra care and referred to a specialist experienced in unexpected-parentage cases; we won't rush a sensitive finding.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <button type="button" class="btn-primary" disabled>Request Information</button>
+    <a class="btn-secondary active-link" href="03_ancestry_family_tree_discovery.html">Explore Ancestry &amp; Family Tree Discovery</a>
+    <div class="cta-note">Preview only — buttons are not connected to a live form, payment, or backend system.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="03_ancestry_family_tree_discovery.html">Ancestry Research &amp; Family Tree Discovery</a></li>
+      <li><a href="26_tribal_enrollment_rolls_research_preview.html">Tribal Enrollment &amp; Rolls Research</a></li>
+      <li><a href="19_professional_genealogist_consultation_preview.html">Professional Genealogist Consultation &amp; Expert Review</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>
