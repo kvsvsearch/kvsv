@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genealogy Research Services | KVSV</title>
+<meta name="description" content="Disciplined, evidence-first genealogy research: defined questions, cited sources, documented conflicts, and findings you can verify and build on.">
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:pointer;}
+.btn-primary:hover{background:var(--blue2);color:#fff;text-decoration:none;}
+.btn-secondary{background:transparent;color:var(--blue);border:1px solid var(--blue);cursor:pointer;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / Genealogy Research Services</div>
+
+<main>
+  <section class="hero">
+    <h1>Genealogy Research Services</h1>
+    <p class="headline">Research built on evidence, not guesswork.</p>
+    <p class="context">Genealogy succeeds when every conclusion rests on a cited source. KVSV’s research services apply a disciplined, evidence-first method: define the question, search the right records, weigh what they actually say, and document everything. You get organized research you can verify, extend, or hand to a professional — never a tree built on unexamined hints.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A customer asks, “Who was my great-grandmother’s father?” The next step is narrowing: establish her maiden name and residence at marriage from the marriage record, then test candidate fathers in that county’s household structures. The deliverable is not a triumphant name — it’s a cited shortlist with the strongest candidate marked probable, not proven, and the record that could settle it named.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Customers who want methodical, documented research on a specific question — a parentage puzzle, an immigrant origin, a missing generation — and who value accuracy over speed or volume.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Define a focused, answerable research question.</li>
+      <li>Build a source-based research plan before searching begins.</li>
+      <li>Weigh direct and indirect evidence and record conflicting information.</li>
+      <li>Maintain a research log so every step is reproducible.</li>
+      <li>Package findings for your own use or for a professional’s review.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you put one hard genealogy question through a disciplined evidence process instead of trial-and-error searching. The value you receive is a defensible written analysis: what the records show, how strong the evidence is, what conflicts remain, and exactly which next searches could resolve them.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>A written research question and scope statement.</li>
+      <li>A cited evidence analysis with conflicts clearly presented.</li>
+      <li>A complete research log of sources searched.</li>
+      <li>Prioritized recommendations for further work.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Define the question</strong> — we narrow a broad goal into a testable research question.</li>
+      <li><strong>Search and analyze</strong> — records are gathered, transcribed, and weighed against each other.</li>
+      <li><strong>Report and recommend</strong> — you receive an evidence analysis, the research log, and next steps.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>An evidence analysis weighs two census entries against a death certificate to assess which supports a stated parentage; both positions and their weaknesses are documented.</li>
+      <li>A research log for one immigrant ancestor lists eleven sources across three repositories, with transcriptions and relevance notes for each.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>Genealogy research produces cited findings, leads, and honest uncertainty — not guaranteed answers. It does not establish legal parentage, authenticate documents, or replace DNA analysis or professional legal review where those are required.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">What’s the difference between a lead and a finding?</p>
+      <p class="faq-a">A lead is an unverified pointer worth checking; a finding is a cited statement tied to a specific source. We label each one.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can you take over my existing tree?</p>
+      <p class="faq-a">Yes — existing material is reviewed, sourced claims are kept, and unsourced claims are flagged for verification.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How do you handle brick walls?</p>
+      <p class="faq-a">By changing the question’s angle — neighbors, associates, records of indirect kin — and documenting each attempt, including failures.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <a class="btn-primary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Request Information</a>
+    <a class="btn-secondary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Schedule a Consultation</a>
+    <div class="cta-note">Opens KVSV’s contact page in a new tab.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="01_kvsv_family_history_research.html">KVSV Family History Research</a></li>
+      <li><a href="03_ancestry_family_tree_discovery.html">Ancestry Research &amp; Family Tree Discovery</a></li>
+      <li><a href="05_historical_document_research.html">Historical Document Research</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KVSV Family History Research | KVSV</title>
+<meta name="description" content="Turn scattered names, dates, and stories into an organized, source-cited family record with KVSV’s disciplined family history research approach.">
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:pointer;}
+.btn-primary:hover{background:var(--blue2);color:#fff;text-decoration:none;}
+.btn-secondary{background:transparent;color:var(--blue);border:1px solid var(--blue);cursor:pointer;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / KVSV Family History Research</div>
+
+<main>
+  <section class="hero">
+    <h1>KVSV Family History Research</h1>
+    <p class="headline">Every family has a record worth finding.</p>
+    <p class="context">Family history research starts with scattered names, dates, and stories — and turns them into an organized, source-aware record of where your family came from. KVSV helps you plan the search, work through census, vital, and local records, and keep every finding tied to the source it came from, so your family file stays accurate, honest, and yours.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A customer knows a grandfather was born “around 1940, somewhere in Ohio.” The next step isn’t guessing — it’s a plan: identify the most likely county from the family’s 1940 address, search birth indexes and delayed registrations for that county, and record every result, including no-matches. The customer leaves with two candidate records and a clear decision point rather than a guess.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Families and individuals beginning or continuing research on their own family lines; people who have hit a wall with subscription sites; anyone who wants an organized, documented family record rather than an unchecked family tree.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Turn family names, dates, and stories into a structured research plan.</li>
+      <li>Identify which record types — census, vital, land, probate, newspapers — fit each question.</li>
+      <li>Organize findings with citations so every claim traces back to a source.</li>
+      <li>Recognize conflicting records and mark what is proven, probable, or still open.</li>
+      <li>Decide when a question needs a qualified professional.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you move from scattered information to an organized, source-cited family record — with clear labels for what the evidence shows and what it doesn’t. The value you receive is a research file you can defend, hand down, or hand to a professional without rework: every name, date, and relationship tied to a record you can point to.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>A structured research plan built around your specific family questions.</li>
+      <li>An organized findings file with source citations for each entry.</li>
+      <li>A research log showing what was searched, found, and ruled out.</li>
+      <li>A clear list of open questions and recommended next steps.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Intake and scope</strong> — you share what you know, what you’ve tried, and what you want to learn.</li>
+      <li><strong>Planned record work</strong> — searches are organized by question, record type, and location.</li>
+      <li><strong>Findings and handoff</strong> — you receive a cited findings file, a research log, and next-step recommendations.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>A two-generation family group is documented through census entries and a marriage record, with one open question flagged for follow-up.</li>
+      <li>A research log shows six record sets searched for one ancestor, including two that produced no match — documented so the work isn’t repeated.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>Research organizes records, resolves citation questions, and identifies leads; it does not prove identity beyond the evidence, authenticate documents, or replace legal, DNA, or other qualified professional review. Verify findings against original records wherever possible.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">How far back can research go?</p>
+      <p class="faq-a">It depends on surviving records for the place and period. We tell you honestly when the paper trail thins or ends.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do you guarantee findings?</p>
+      <p class="faq-a">No. Research produces documented findings, leads, or honest negative results — never guaranteed outcomes.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if records conflict?</p>
+      <p class="faq-a">Conflicts are recorded and analyzed, and the file states what each source supports rather than smoothing the disagreement over.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <a class="btn-primary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Request Information</a>
+    <a class="btn-secondary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Return to Services</a>
+    <div class="cta-note">Opens KVSV’s contact page in a new tab.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="02_genealogy_research_services.html">Genealogy Research Services</a></li>
+      <li><a href="03_ancestry_family_tree_discovery.html">Ancestry Research &amp; Family Tree Discovery</a></li>
+      <li><a href="09_oral_history_family_story_preservation.html">Oral History &amp; Family Story Preservation</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

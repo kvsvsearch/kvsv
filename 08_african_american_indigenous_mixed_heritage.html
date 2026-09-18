@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>African American, Indigenous &amp; Mixed-Heritage Research | KVSV</title>
+<meta name="description" content="Patient, respectful research for difficult family lines: variant searches, honest documentation gaps, and clear separation of records, testimony, and identity.">
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:pointer;}
+.btn-primary:hover{background:var(--blue2);color:#fff;text-decoration:none;}
+.btn-secondary{background:transparent;color:var(--blue);border:1px solid var(--blue);cursor:pointer;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / African American, Indigenous &amp; Mixed-Heritage Research</div>
+
+<main>
+  <section class="hero">
+    <h1>African American, Indigenous &amp; Mixed-Heritage Research</h1>
+    <p class="headline">Hard trails, honored carefully.</p>
+    <p class="context">Some family lines cross record systems that are fragmented, uneven, or painful — name changes, migration, and documentation gaps that standard searches handle poorly. KVSV approaches this research with extra care: patient variant work, respect for lived identity, and honest acknowledgment of what the records can and cannot establish.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A family’s story says an ancestor was born enslaved in a named county, but no one knows the enslaver’s name. The next step is structured work in that county’s probate and deed records — the documents that most often name the people held in estates — with every no-match logged so nothing is searched twice. Whatever emerges is cited; whatever doesn’t is documented as a gap, not filled with a guess.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Researchers navigating African American lines through enslavement-era record gaps; families with Indigenous or mixed heritage seeking documented context; anyone whose family history crosses record systems that were incomplete or unequal by design.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Search under name variants, surname changes, and reorganized record sets.</li>
+      <li>Work around documentation gaps with indirect evidence and honest negative results.</li>
+      <li>Organize findings so family, community, and identity context is preserved.</li>
+      <li>Distinguish documented ancestry from oral tradition and lived identity.</li>
+      <li>Prepare findings for qualified review where claims carry legal, tribal, or cultural weight.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you pursue difficult lines with methods built for fragmented records — and with respect for what the search touches. The value you receive is an honest, carefully organized family record: what the documents support, where the trail breaks, and which questions need community knowledge, cultural expertise, or qualified legal and tribal authorities rather than more searching.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>A variant-name and location search log built for your family’s specific trail.</li>
+      <li>Cited findings with documentation gaps clearly marked.</li>
+      <li>A research summary that separates documented lines, tradition-based lines, and open questions.</li>
+      <li>Referral guidance for cultural, tribal, legal, or DNA specialists when questions cross into their authority.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Map the trail honestly</strong> — names, places, and known gaps are laid out, including family testimony.</li>
+      <li><strong>Search with adapted methods</strong> — variant and indirect-evidence searches are run, with every attempt logged.</li>
+      <li><strong>Organize and refer</strong> — findings, traditions, and open questions are kept distinct, with specialist referrals where questions exceed research.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>A family appears under three surname spellings across four decades of records; a variant log links them into one cited household timeline.</li>
+      <li>A research file clearly separates a documented 1870 household, an earlier tradition-based line, and a note naming the archive most likely to carry earlier evidence.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>Research documents what records show and never determines tribal citizenship, enrollment, or eligibility; those decisions belong solely to the nations and tribes involved. DNA is treated as research context requiring qualified specialist interpretation — never as proof of identity or heritage. Lived identity and family testimony are respected and labeled as testimony, not converted into claims the records don’t support.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">Can research prove tribal citizenship or enrollment?</p>
+      <p class="faq-a">No. Citizenship and enrollment are determined only by each nation or tribe through its own processes; research can organize documentation but never determines the outcome.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can DNA testing prove this heritage?</p>
+      <p class="faq-a">DNA can offer leads and context, but it cannot prove ethnicity, citizenship, or specific ancestry by itself; qualified specialists interpret DNA evidence.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if the records don’t exist?</p>
+      <p class="faq-a">That answer is treated as a finding. We document the gap, preserve testimony and tradition with clear labels, and identify alternative sources and archives.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <a class="btn-primary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Request Information</a>
+    <a class="btn-secondary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Schedule a Consultation</a>
+    <div class="cta-note">Opens KVSV’s contact page in a new tab.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="09_oral_history_family_story_preservation.html">Oral History &amp; Family Story Preservation</a></li>
+      <li><a href="06_land_probate_heirs_property_research.html">Land, Probate &amp; Heirs Property Research</a></li>
+      <li><a href="02_genealogy_research_services.html">Genealogy Research Services</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

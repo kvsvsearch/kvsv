@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Records &amp; Archive Services | KVSV</title>
+<meta name="description" content="Turn boxes of family documents and photographs into an organized, citation-ready archive with clear priorities for preservation and privacy.">
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:pointer;}
+.btn-primary:hover{background:var(--blue2);color:#fff;text-decoration:none;}
+.btn-secondary{background:transparent;color:var(--blue);border:1px solid var(--blue);cursor:pointer;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / Family Records &amp; Archive Services</div>
+
+<main>
+  <section class="hero">
+    <h1>Family Records &amp; Archive Services</h1>
+    <p class="headline">Your family’s paper, protected and put in order.</p>
+    <p class="context">Birth certificates, deeds, letters, and photographs carry your family’s evidence — and they decay, scatter, and get lost. KVSV’s records and archive services organize what you have: identifying each item, stabilizing its information, and arranging it so it can be found, cited, and shared safely for generations.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A customer inherits a file drawer of unlabeled envelopes. The next step is triage: an inventory separates vital records, land papers, and correspondence; the land papers go to the front of the research queue because they carry names, dates, and locations no one in the family has written down. The customer leaves with an indexed drawer — and a shortlist of questions the papers can actually answer.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Families with boxes of unsorted documents and photos; executors and heirs organizing an estate’s papers; anyone who wants a usable family archive instead of an attic of mystery.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Inventory and identify documents, photos, and artifacts.</li>
+      <li>Organize records by person, family line, date, or record type.</li>
+      <li>Create citation-ready descriptions for important items.</li>
+      <li>Flag items that need professional conservation or appraisal.</li>
+      <li>Set up simple access and sharing rules for living relatives.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you turn a disorganized collection into a working family archive where any document can be located and cited in minutes. The value you receive is preservation with order: the information is captured before the paper fails, organized so it supports research, and governed by clear privacy rules your family agrees on.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>A complete inventory of your family records with item descriptions.</li>
+      <li>An organizational structure by person, line, or record type.</li>
+      <li>A priority list for conservation, duplication, or professional referral.</li>
+      <li>Basic access and privacy guidance for sharing within the family.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Gather and inventory</strong> — items are listed, described, and assessed for condition.</li>
+      <li><strong>Organize and describe</strong> — the collection is structured and each key item gets a citation-ready description.</li>
+      <li><strong>Protect and plan</strong> — priorities for preservation and sharing are set with your family’s privacy in mind.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>A box of 80 mixed photographs is sorted by family line and decade, with 12 unidentified images flagged for relative consultation.</li>
+      <li>A deed and two letters are described to citation standard, revealing the deed as the oldest item in the collection and a candidate for professional conservation.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>Archive services organize, describe, and preserve information; they do not authenticate documents, appraise monetary value, or provide legal, tax, or estate advice. Items requiring those services are referred to qualified professionals.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">Do you physically repair documents?</p>
+      <p class="faq-a">No. We organize and describe; physical conservation is referred to qualified conservators, and we flag what needs them.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can you tell if a document is authentic?</p>
+      <p class="faq-a">We can organize context and point out what specialists examine, but authentication opinions belong to qualified experts.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Who can see the archive?</p>
+      <p class="faq-a">Access rules are yours. We help you set them, especially for records about living people.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <a class="btn-primary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Request Information</a>
+    <a class="btn-secondary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Explore Family Archive Setup</a>
+    <div class="cta-note">Opens KVSV’s contact page in a new tab.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="05_historical_document_research.html">Historical Document Research</a></li>
+      <li><a href="09_oral_history_family_story_preservation.html">Oral History &amp; Family Story Preservation</a></li>
+      <li><a href="10_family_narrative_legacy_writing.html">Family Narrative &amp; Legacy Writing</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancestry Research &amp; Family Tree Discovery | KVSV</title>
+<meta name="description" content="Build or audit a family tree where every relationship is sourced, uncertain links are marked, and documented fact is separated from family tradition.">
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:960px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:36px;line-height:1.22;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:720px;margin:0;}
+.block{margin-bottom:36px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:720px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:720px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:pointer;}
+.btn-primary:hover{background:var(--blue2);color:#fff;text-decoration:none;}
+.btn-secondary{background:transparent;color:var(--blue);border:1px solid var(--blue);cursor:pointer;}
+.btn-secondary.active-link{cursor:pointer;border-color:var(--blue);color:var(--blue);}
+.btn-secondary.active-link:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.related ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.related a{font-size:14.5px;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Services</span>
+</header>
+
+<div class="breadcrumb"><a href="00_kvsv_services_hub.html">Services</a> / Ancestry Research &amp; Family Tree Discovery</div>
+
+<main>
+  <section class="hero">
+    <h1>Ancestry Research &amp; Family Tree Discovery</h1>
+    <p class="headline">Build a tree you can stand behind.</p>
+    <p class="context">Online hints can grow a family tree fast — and grow it wrong just as fast. KVSV’s tree-building approach adds each person only when a record supports the connection. You work with a family tree where every relationship is sourced, uncertain links are visibly marked, and the difference between documented fact and family tradition is always clear.</p>
+  </section>
+
+  <section class="block" id="illustrative-example">
+    <h2>Illustrative Example: From Question to Next Step</h2>
+    <p>A customer’s tree shows a possible second marriage for a great-grandfather, added by a website hint. The next step is verification: pull both candidate marriage records, compare names, witnesses, and locations, then either cite the correct one or mark the link unverified. The customer ends with one corrected relationship and a citation attached — or a clearly labeled open question.</p>
+    <p class="sample-note">Illustrative example only — generic and fictional, not a real case, client, or testimonial.</p>
+  </section>
+
+  <section class="block" id="who-for">
+    <h2>Who This Service Is For</h2>
+    <p>Customers who want a verified family tree structure; people with trees full of unsourced hints who want them checked; families preparing a documented tree for a reunion, book, or professional handoff.</p>
+  </section>
+
+  <section class="block" id="helps-you-do">
+    <h2>What KVSV Helps You Do</h2>
+    <ul>
+      <li>Audit an existing tree and flag unsourced or conflicting connections.</li>
+      <li>Add new generations only with cited record support.</li>
+      <li>Mark confidence levels on every relationship link.</li>
+      <li>Separate documented lines from tradition-based lines visually and in notes.</li>
+      <li>Prepare a sourced tree export and summary for your own records.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="value">
+    <h2>What This Service Helps You Do and The Value You Receive</h2>
+    <p>This service helps you turn a hint-built tree into a source-supported family structure — or build one that way from the start. The value you receive is a tree where every connection carries its evidence, so you can share it confidently, knowing exactly which branches are solid and which still need work.</p>
+  </section>
+
+  <section class="block" id="receive">
+    <h2>What You Receive</h2>
+    <ul>
+      <li>A sourced family tree with confidence markers on each relationship.</li>
+      <li>A list of unsourced or conflicting connections that need verification.</li>
+      <li>Citation notes tied to each person and relationship.</li>
+      <li>A plain-language summary of the tree’s strengths and open questions.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="process">
+    <h2>Process</h2>
+    <ol>
+      <li><strong>Tree audit or fresh frame</strong> — we review what exists or set up a clean structure.</li>
+      <li><strong>Source-driven building</strong> — each new connection is added only with record support and a citation.</li>
+      <li><strong>Confidence marking and handoff</strong> — links are graded, open questions listed, and the tree is delivered with its documentation.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="work-examples">
+    <h2>Work Examples</h2>
+    <p class="sample-note">Illustrative and generic — not testimonials or real client cases.</p>
+    <ul>
+      <li>An audit of a 120-person online tree finds 14 unsourced parent-child links; each is flagged, and seven are confirmed or corrected using vital records.</li>
+      <li>A new tree branch is added only after two independent records support the connection; the link is marked high-confidence with both citations attached.</li>
+    </ul>
+  </section>
+
+  <section class="block callout" id="human-review">
+    <h2>Human Review, Privacy, and Limitations</h2>
+    <p>Tree work documents what records support; it does not determine legal parentage, prove biological relationships, authenticate documents, or replace DNA or legal review. Tradition-based lines are preserved and labeled — never presented as documented fact.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">Should I delete my unsourced tree?</p>
+      <p class="faq-a">No. We audit and flag it; many hints verify, and the ones that don’t become a documented to-do list.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How do you mark uncertain links?</p>
+      <p class="faq-a">Each relationship carries a confidence label and a note explaining the supporting — or missing — evidence.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can DNA results be added to the tree?</p>
+      <p class="faq-a">DNA matches can inform research leads, but DNA conclusions require qualified specialist review and are never asserted from hints alone.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <a class="btn-primary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Request Information</a>
+    <a class="btn-secondary active-link" href="01_kvsv_family_history_research.html">Explore Family History Research</a>
+    <div class="cta-note">Opens KVSV’s contact page in a new tab.</div>
+  </section>
+
+  <section class="block related" id="related">
+    <h2>Related Services</h2>
+    <ul>
+      <li><a href="01_kvsv_family_history_research.html">KVSV Family History Research</a></li>
+      <li><a href="02_genealogy_research_services.html">Genealogy Research Services</a></li>
+      <li><a href="07_military_census_immigration_research.html">Military, Census &amp; Immigration Research</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>

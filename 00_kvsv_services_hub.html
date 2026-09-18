@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KVSV Services &amp; Research Hub | KVSV</title>
+<meta name="description" content="The full KVSV service index — ten research services covering family history, genealogy, land and probate, military and immigration records, African American and Indigenous research, oral history, and legacy writing, plus links to the live KVSV archive, public search, stories, and contribute pages.">
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.preview-banner{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:0.02em;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:1040px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:38px;line-height:1.2;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:760px;margin:0 0 12px;}
+.block{margin-bottom:40px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block h3{font-family:var(--font-display);font-size:20px;color:var(--text);margin:0 0 8px;font-weight:700;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:760px;}
+.block ul, .block ol{margin:0;padding-left:22px;font-size:15px;line-height:1.7;color:var(--text);max-width:760px;}
+.block li{margin-bottom:8px;}
+.callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 26px;}
+.proprietary-note{margin-top:14px;padding:14px 16px;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;line-height:1.6;color:var(--muted);}
+.proprietary-note strong{color:var(--text);}
+.sample-note{font-family:var(--font-ui);font-size:12px;color:var(--faint);font-style:italic;margin:-4px 0 14px;}
+.faq-item{margin-bottom:16px;}
+.faq-q{font-weight:700;color:var(--text);margin:0 0 4px;font-size:15px;}
+.faq-a{color:var(--muted);margin:0;font-size:14.5px;line-height:1.65;}
+.group{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border-soft);}
+.group:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;}
+.card a.card-title{font-family:var(--font-ui);font-weight:700;font-size:14.5px;color:var(--text);display:block;margin-bottom:6px;}
+.card a.card-title:hover{color:var(--blue);text-decoration:none;}
+.card p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.55;}
+.live-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px;}
+.live-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;}
+.live-card a.card-title{font-family:var(--font-ui);font-weight:700;font-size:14.5px;color:var(--blue);display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+.live-card a.card-title:hover{color:#8ec2e2;}
+.live-card p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.55;}
+.ext-tag{font-family:var(--font-ui);font-size:10px;font-weight:700;letter-spacing:0.06em;color:var(--faint);border:1px solid var(--border-soft);border-radius:10px;padding:1px 7px;text-transform:uppercase;}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:pointer;}
+.btn-primary:hover{background:var(--blue2);color:#fff;text-decoration:none;}
+.btn-secondary{background:transparent;color:var(--blue);border:1px solid var(--blue);cursor:pointer;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .card-grid, .live-grid{grid-template-columns:1fr;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <span class="badge-pill">Services Hub</span>
+</header>
+
+<div class="breadcrumb">Services / Overview</div>
+
+<main>
+  <section class="hero">
+    <h1>KVSV Services &amp; Research Hub</h1>
+    <p class="headline">Ten research services. One evidence discipline. Every record traced to its source.</p>
+    <p class="context">KVSV is a family-records research practice built around Coosa County, Alabama and
+    the Coosa Empire, Creek and Cherokee ancestry, Freedmen's Bureau documentation, mound-builder and
+    contact-era history, and the land, probate, and heirs-property records tied to all of it. This page
+    is the index for the ten research services described in full on their own pages below, plus direct
+    links to the live KVSV platform — its public archive and search tool, its narrative articles, its
+    oral-history and private-portal features, and how to contact or contribute to the project. Every
+    service on this hub applies the same evidence-first discipline: define the question, search the
+    record systems that can actually answer it, weigh what each source really supports, document
+    conflicts and gaps honestly, and label documented fact, family tradition, and open questions as what
+    they are — never blended together.</p>
+  </section>
+
+  <section class="block" id="services-index">
+    <h2>The Ten Research Services</h2>
+    <p>Grouped by the kind of question they answer. Every card below links to that service's full
+    page, with its complete scope, process, FAQs, and limitations.</p>
+    <div class="group">
+      <h3>Core Genealogy Research</h3>
+      <p>Start here if you're building or correcting a family tree from the ground up. These three services cover the full arc of foundational genealogy work: turning loose names and stories into a structured research plan, running a disciplined evidence process on one hard question, and building or auditing a tree so every relationship carries a citation instead of an unverified hint.</p>
+      <div class="card-grid">
+      <div class="card">
+        <a class="card-title" href="01_kvsv_family_history_research.html">KVSV Family History Research</a>
+        <p>Turn scattered names, dates, and stories into an organized, source-cited family record.</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="02_genealogy_research_services.html">Genealogy Research Services</a>
+        <p>Disciplined, evidence-first research on a specific genealogy question, from parentage puzzles to missing generations.</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="03_ancestry_family_tree_discovery.html">Ancestry Research &amp; Family Tree Discovery</a>
+        <p>Build or audit a family tree where every relationship is sourced and confidence-marked.</p>
+      </div>
+      </div>
+    </div>
+    <div class="group">
+      <h3>Records, Documents &amp; Archives</h3>
+      <p>For families sitting on boxes of paper, photographs, and documents that are hard to read or hard to keep straight. These services inventory and protect what you already have, and turn handwriting, legal forms, and archaic terminology into plain-language, honestly-labeled findings.</p>
+      <div class="card-grid">
+      <div class="card">
+        <a class="card-title" href="04_family_records_archive_services.html">Family Records &amp; Archive Services</a>
+        <p>Inventory, organize, and protect the family documents and photographs you already have.</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="05_historical_document_research.html">Historical Document Research</a>
+        <p>Transcribe, interpret, and honestly assess what an old handwritten document can and cannot prove.</p>
+      </div>
+      </div>
+    </div>
+    <div class="group">
+      <h3>Specialized &amp; Land Research</h3>
+      <p>Research tracks that need extra method, extra care, or both: land, probate, and heirs-property documentary trails prepared for legal review; military, census, and immigration record sets with shifting names and borders; and African American, Indigenous, and mixed-heritage lines that cross record systems built with real gaps and real unevenness.</p>
+      <div class="card-grid">
+      <div class="card">
+        <a class="card-title" href="06_land_probate_heirs_property_research.html">Land, Probate &amp; Heirs Property Research</a>
+        <p>Organized deed chains, probate files, and estate timelines prepared for attorney or title-professional review.</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="07_military_census_immigration_research.html">Military, Census &amp; Immigration Research</a>
+        <p>Methodical search of military, census, and immigration record sets, with name and place variants tracked.</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="08_african_american_indigenous_mixed_heritage.html">African American, Indigenous &amp; Mixed-Heritage Research</a>
+        <p>Patient, respectful research for African American, Indigenous, and mixed-heritage lines with documentation gaps.</p>
+      </div>
+      </div>
+    </div>
+    <div class="group">
+      <h3>Voice, Memory &amp; Legacy</h3>
+      <p>Not every family fact lives in a courthouse. These services capture testimony directly from the people who hold it, with consent and context, and then help shape research and recorded memory into a written narrative your family will actually read — fact and tradition kept distinct throughout.</p>
+      <div class="card-grid">
+      <div class="card">
+        <a class="card-title" href="09_oral_history_family_story_preservation.html">Oral History &amp; Family Story Preservation</a>
+        <p>Record and preserve family testimony with consent, context, and clear labeling as testimony.</p>
+      </div>
+      <div class="card">
+        <a class="card-title" href="10_family_narrative_legacy_writing.html">Family Narrative &amp; Legacy Writing</a>
+        <p>Shape research and recorded memory into a written family narrative, fact and tradition clearly distinct.</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block callout" id="discipline">
+    <h2>How KVSV's Research Discipline Works</h2>
+    <p>Every entry in the KVSV archive is organized against a Collect / Analyze / Package workflow and
+    rated on a transparent, five-tier evidentiary scale — from certified or official primary sources at
+    the top, down through cross-confirmed secondary sources, family- or researcher-stated information, and
+    unverified leads or working theories at the bottom. The reasoning behind each tier is shown, not
+    buried inside an opaque score. This is the same discipline applied across all ten services on this
+    hub: a finding is only as strong as the record that supports it, and the archive says so plainly for
+    every single entry.</p>
+    <p>That discipline runs on a base of courthouse deeds, federal census and land-patent records, tribal
+    enrollment rolls, Freedmen's Bureau documentation, and logged oral testimony — cross-referenced by
+    family line rather than siloed by record type, because most real research questions cut across all of
+    them at once.</p>
+  </section>
+
+  <section class="block" id="focus">
+    <h2>Family Lines &amp; Historical Focus</h2>
+    <p>KVSV's research concentrates on Coosa County, Alabama and the wider footprint of the historical
+    Coosa Empire — including Mound Builder history, the era of early Spanish, French, and English contact
+    and exploration, and the treaties and demographic shifts that followed. Within that footprint, the
+    practice traces Creek and Cherokee ancestry, African American lines that cross enslavement-era and
+    Freedmen's Bureau record systems, and the land patents, probate files, and heirs-property questions
+    that connect all of these family lines to specific parcels of land over time. Services 06, 07, and 08
+    on this hub are built specifically for the harder record systems this focus runs through; the other
+    seven apply the same discipline to any family history question, in or out of that specific footprint.</p>
+  </section>
+
+  <section class="block callout" id="legal-context">
+    <h2>Legal &amp; Title Research Context (Not Legal Advice)</h2>
+    <p>Land, probate, and heirs-property questions — covered on Service 06 — sit next to real legal
+    questions: heirship, title, and partition. Heirs-property law varies by state and by the specific facts
+    of an estate, and KVSV does not track, cite, or apply case law or statute on this hub or on any service
+    page. What KVSV does is organize the documentary trail — deed chains, probate files, timelines — into
+    a referral-ready file so that when a legal question does need answering, it goes to a qualified
+    licensed attorney or title professional with the research already done, not before. Nothing on this
+    hub or in any linked service page is legal advice, a title opinion, or a legal determination of any
+    kind.</p>
+    <div class="proprietary-note"><strong>Proprietary boundary:</strong> Modeled after the research discipline of the KVSV platform and research portal, without disclosing or reproducing proprietary KVSV systems, internal workbooks, databases, backend systems, communications, or daily operating methods.</div>
+  </section>
+
+  <section class="block" id="live-platform">
+    <h2>Explore the Live KVSV Platform</h2>
+    <p>These links go to KVSV's real, live public site at kvsvsearch.org / kvsvsearch.github.io. They open
+    in a new tab. None of them expose any private or personal research data — the private-portal link
+    below is a public demonstration page only.</p>
+    <div class="live-grid">
+      <div class="live-card">
+        <a class="card-title" href="https://kvsvsearch.github.io/kvsv/kvsv.html" target="_blank" rel="noopener noreferrer">KVSV Family Records &amp; Archive <span class="ext-tag">Live site</span></a>
+        <p>The live KVSV platform — the family records archive and search tool this research practice is built around.</p>
+      </div>
+      <div class="live-card">
+        <a class="card-title" href="https://kvsvsearch.github.io/kvsv/about_kvsv.html" target="_blank" rel="noopener noreferrer">About KVSV <span class="ext-tag">Live site</span></a>
+        <p>Background on the KVSV project: its research focus, the families and record systems it works with, and the discipline behind the archive.</p>
+      </div>
+      <div class="live-card">
+        <a class="card-title" href="https://kvsvsearch.github.io/kvsv/public_search.html" target="_blank" rel="noopener noreferrer">KVSV Public General Search <span class="ext-tag">Live site</span></a>
+        <p>The public-facing general search tool for the KVSV archive — open record search, no account required.</p>
+      </div>
+      <div class="live-card">
+        <a class="card-title" href="https://kvsvsearch.github.io/kvsv/stories.html" target="_blank" rel="noopener noreferrer">Stories &amp; Reads <span class="ext-tag">Live site</span></a>
+        <p>Long-form narrative articles drawn from this research — including pieces on the Coosa Empire and the Hernando de Soto encounter, Coosa-era depopulation scenarios, the Edison-Bradford family line, a Fleming-Wallace Scottish line, and Creek-Cherokee kinship and conflict. Written in first-person narrative voice, sourced from the same underlying research these service pages describe.</p>
+      </div>
+      <div class="live-card">
+        <a class="card-title" href="https://kvsvsearch.github.io/kvsv/oral_history.html" target="_blank" rel="noopener noreferrer">Oral History (Coming Soon) <span class="ext-tag">Live site</span></a>
+        <p>A preview of KVSV's upcoming oral-history feature — recording and preserving family testimony directly in the teller's own voice, with consent documented before recording. See also Service 09 on this hub.</p>
+      </div>
+      <div class="live-card">
+        <a class="card-title" href="https://kvsvsearch.github.io/kvsv/private_portals.html" target="_blank" rel="noopener noreferrer">Private Family Portal (Demo) <span class="ext-tag">Live site</span></a>
+        <p>A public demonstration of what a private, permissioned family portal looks like — illustrative only, not a live account and not a view into anyone's actual private research data.</p>
+      </div>
+      <div class="live-card">
+        <a class="card-title" href="https://kvsvsearch.github.io/kvsv/contribute.html" target="_blank" rel="noopener noreferrer">Contribute to KVSV <span class="ext-tag">Live site</span></a>
+        <p>How families can contribute records, corrections, or documentation to the archive.</p>
+      </div>
+      <div class="live-card">
+        <a class="card-title" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Contact KVSV <span class="ext-tag">Live site</span></a>
+        <p>Direct contact information for questions about the archive or about any of the services on this hub.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="all-links">
+    <h2>Every Service, One List</h2>
+    <p>For quick reference or for a crawler indexing this page: all ten service pages, in order.</p>
+    <ul>
+      <li><a href="01_kvsv_family_history_research.html">KVSV Family History Research</a> — Turn scattered names, dates, and stories into an organized, source-cited family record.</li>
+      <li><a href="02_genealogy_research_services.html">Genealogy Research Services</a> — Disciplined, evidence-first research on a specific genealogy question, from parentage puzzles to missing generations.</li>
+      <li><a href="03_ancestry_family_tree_discovery.html">Ancestry Research &amp; Family Tree Discovery</a> — Build or audit a family tree where every relationship is sourced and confidence-marked.</li>
+      <li><a href="04_family_records_archive_services.html">Family Records &amp; Archive Services</a> — Inventory, organize, and protect the family documents and photographs you already have.</li>
+      <li><a href="05_historical_document_research.html">Historical Document Research</a> — Transcribe, interpret, and honestly assess what an old handwritten document can and cannot prove.</li>
+      <li><a href="06_land_probate_heirs_property_research.html">Land, Probate &amp; Heirs Property Research</a> — Organized deed chains, probate files, and estate timelines prepared for attorney or title-professional review.</li>
+      <li><a href="07_military_census_immigration_research.html">Military, Census &amp; Immigration Research</a> — Methodical search of military, census, and immigration record sets, with name and place variants tracked.</li>
+      <li><a href="08_african_american_indigenous_mixed_heritage.html">African American, Indigenous &amp; Mixed-Heritage Research</a> — Patient, respectful research for African American, Indigenous, and mixed-heritage lines with documentation gaps.</li>
+      <li><a href="09_oral_history_family_story_preservation.html">Oral History &amp; Family Story Preservation</a> — Record and preserve family testimony with consent, context, and clear labeling as testimony.</li>
+      <li><a href="10_family_narrative_legacy_writing.html">Family Narrative &amp; Legacy Writing</a> — Shape research and recorded memory into a written family narrative, fact and tradition clearly distinct.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <p class="faq-q">Which service do I actually need?</p>
+      <p class="faq-a">Most people start with Family History Research (01) or Genealogy Research Services (02) if they're early in the process, or jump straight to a specialized track — Land, Probate &amp; Heirs Property (06), Military, Census &amp; Immigration (07), or African American, Indigenous &amp; Mixed-Heritage (08) — if they already know which record systems their question runs through.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can I combine more than one service?</p>
+      <p class="faq-a">Yes. Most real research questions touch more than one track — a land question often needs Historical Document Research (05) to read the deed itself, and a difficult family line often pairs Oral History (09) with African American, Indigenous &amp; Mixed-Heritage Research (08). Each service page names related services for exactly this reason.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does KVSV provide legal advice or make legal determinations?</p>
+      <p class="faq-a">No. Research organizes documentary evidence and prepares files for review; it never provides legal advice, title opinions, heirship determinations, or legal representation. Legal and title questions are always referred to a qualified licensed attorney or title professional — see Service 06 for the full boundary language.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does KVSV determine tribal citizenship, enrollment, or identity?</p>
+      <p class="faq-a">No. Citizenship and enrollment are determined solely by each nation or tribe through its own process. KVSV organizes documentation and testimony and clearly labels what is documented fact, what is tradition, and what remains an open question — see Service 08 for the full boundary language.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Is anything on this hub connected to a live account, form, or payment system?</p>
+      <p class="faq-a">There's no separate form, payment processor, or account system built into these pages. The "Request Information" and "Schedule a Consultation" buttons on every page open KVSV's live Contact page in a new tab, and that's where an actual inquiry happens. No analytics or tracking scripts run on any of these eleven pages themselves.</p>
+    </div>
+  </section>
+
+  <section class="block ctas" id="ctas">
+    <a class="btn-primary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Request Information</a>
+    <a class="btn-secondary active-link" href="https://kvsvsearch.github.io/kvsv/contact.html" target="_blank" rel="noopener noreferrer">Schedule a Consultation</a>
+    <div class="cta-note">Opens KVSV’s contact page in a new tab.</div>
+  </section>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>
