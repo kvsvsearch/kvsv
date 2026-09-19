@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unreadable Ancestor | KVSV</title>
+<meta name="description" content="A blank search result is not the end of a family story. Learn how KVSV reads records, archival silence, uncertainty, and evidence responsibly.">
+<style>
+:root{
+  --bg:#111013; --surface:#1a191d; --surface2:#211f24; --border:#34323a; --border-soft:#2a2830;
+  --text:#f5f2ec; --muted:#a7a3ab; --faint:#77737c;
+  --accent:#c1453d; --accent2:#8f322b;
+  --blue:#5b9bc0; --blue2:#3f7593; --blue-soft:#182228;
+  --radius-sm:6px; --radius-md:10px;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:#8ec2e2;text-decoration:underline;}
+a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+.page{display:flex;flex-direction:column;min-height:100%;max-width:1040px;margin:0 auto;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 10px;flex-wrap:wrap;gap:10px;}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand-name{font-size:22px;letter-spacing:0.06em;color:var(--accent);font-weight:700;font-family:var(--font-ui);}
+.brand-sub{font-size:10.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-family:var(--font-ui);}
+.badge-pill{display:inline-block;background:var(--blue);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:700;padding:5px 13px;border-radius:14px;white-space:nowrap;text-decoration:none;}
+.badge-pill:hover{color:#fff;text-decoration:none;background:var(--blue2);}
+.breadcrumb{padding:0 32px;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);margin-bottom:6px;}
+main{padding:0 32px 40px;}
+.hero{padding:18px 0 30px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.hero h1{font-family:var(--font-display);font-size:38px;line-height:1.2;margin:0 0 14px;font-weight:700;letter-spacing:-0.01em;}
+.headline{font-family:var(--font-ui);font-size:18px;font-weight:700;color:var(--blue);margin:0 0 16px;}
+.context{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:760px;margin:0 0 12px;}
+.block{margin-bottom:40px;}
+.block h2{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);font-weight:700;margin:0 0 14px;}
+.block p{font-size:15px;line-height:1.75;color:var(--text);margin:0 0 12px;max-width:760px;}
+.pull-quote{font-family:var(--font-display);font-size:19px;line-height:1.5;font-style:italic;color:var(--blue);border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:0 0 20px;max-width:760px;}
+.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px;}
+.layer-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 18px;display:flex;align-items:center;gap:14px;}
+.layer-num{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--accent);flex-shrink:0;min-width:24px;}
+.layer-label{font-family:var(--font-ui);font-weight:700;font-size:14px;color:var(--text);}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+.btn-primary, .btn-secondary{font-family:var(--font-ui);font-weight:700;font-size:14px;padding:12px 24px;border-radius:4px;}
+.btn-primary{background:var(--blue);color:#fff;border:1px solid var(--blue);cursor:pointer;}
+.btn-primary:hover{background:var(--blue2);color:#fff;text-decoration:none;}
+.btn-secondary{background:transparent;color:var(--blue);border:1px solid var(--blue);cursor:pointer;}
+.btn-secondary:hover{background:var(--blue-soft);color:#8ec2e2;text-decoration:none;}
+.cta-note{font-family:var(--font-ui);font-size:11.5px;color:var(--faint);margin-top:2px;width:100%;}
+.disclaimer{margin:0 0 24px;padding:16px 0 0;border-top:1px solid var(--border-soft);font-family:var(--font-ui);font-size:12.5px;line-height:1.65;color:var(--faint);max-width:760px;}
+.disclaimer strong{color:var(--muted);}
+.footer{padding:26px 32px;border-top:1px solid var(--border);margin-top:auto;font-family:var(--font-ui);font-size:12.5px;color:var(--faint);text-align:center;}
+@media (max-width:700px){
+  .nav{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 20px 8px;}
+  .breadcrumb{padding:0 20px;}
+  main{padding:0 20px 32px;}
+  .hero h1{font-size:27px;}
+  .card-grid{grid-template-columns:1fr;}
+  .ctas{flex-direction:column;align-items:stretch;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="nav">
+  <div class="brand">
+    <span class="brand-name">KVSV</span>
+    <span class="brand-sub">Family Records Search</span>
+  </div>
+  <a class="badge-pill" href="00_kvsv_services_hub.html">&larr; Services Hub</a>
+</header>
+
+<div class="breadcrumb">
+  <a href="00_kvsv_services_hub.html">Services Hub</a> / The Unreadable Ancestor
+</div>
+
+<main>
+  <section class="hero">
+    <h1>The Unreadable Ancestor</h1>
+    <p class="headline">How KVSV Reads the Record, the Silence, and the Story</p>
+    <p class="context">A blank search result is not the end of a family story.</p>
+  </section>
+
+  <section class="block">
+    <h2>The Blank Screen</h2>
+    <p>A blank search result is not proof that an ancestor did not exist, did not matter, or left no trace. It may mean a record was never created, was not kept, was lost, damaged, misfiled, indexed under another spelling, cataloged in another language, digitized poorly, or processed by a machine that could not read it accurately.</p>
+    <p>This is the unreadable ancestor.</p>
+  </section>
+
+  <section class="block">
+    <h2>The Funnel of History</h2>
+    <p>Historical records pass through a funnel of history: created, kept, accepted, preserved, described, digitized, indexed, and found. At every stage, people can disappear from view. Archives are not neutral mirrors. They are shaped by survival, collection, description, access, funding, language, and power. A record can be authentic and still incomplete.</p>
+  </section>
+
+  <section class="block">
+    <h2>The Life of a Record</h2>
+    <p>KVSV treats records as evidence of human lives. A signature, letter, photograph, land deed, Bible entry, oral account, or family artifact can say: &ldquo;We were here. We belong here.&rdquo;</p>
+    <p>An index helps you find. A transcription helps you read. An original source helps you evaluate. They are not interchangeable. Indexes miss names. Clerks make mistakes. Transcripts can normalize spelling. Machines can turn surnames into something else.</p>
+  </section>
+
+  <section class="block">
+    <h2>Type What You See</h2>
+    <p>Historical handwriting is a language of its own. Letterforms change. Spelling shifts. Names move through accents, migration, translation, and memory. KVSV&rsquo;s rule is simple: Type what you see. Do not silently repair a spelling or turn an uncertain word into a confident guess. Honest uncertainty is better than an airbrushed record.</p>
+  </section>
+
+  <section class="block">
+    <h2>When Machines Read History</h2>
+    <p>OCR and HTR can assist discovery, but machine output is not the record itself. It can misread faded print, newspapers, cursive, old scripts, forms, and historical spelling. Keep the original image connected to machine text. Label machine output until reviewed. Compare it to the source. Separate faithful transcription from normalized search text and interpretation.</p>
+  </section>
+
+  <section class="block">
+    <h2>Evidentiary Testimony</h2>
+    <p>Families inherit history through voices, letters, photographs, Bibles, objects, maps, records, and testimony. KVSV organizes evidence through eight layers: original source, faithful transcription, search mechanics, contextual metadata, testimony, corroboration, uncertainty documentation, and professional review.</p>
+  </section>
+
+  <section class="block">
+    <h2>The Eight-Layer KVSV Method</h2>
+    <div class="card-grid">
+      <div class="layer-card"><span class="layer-num">1</span><span class="layer-label">Original source</span></div>
+      <div class="layer-card"><span class="layer-num">2</span><span class="layer-label">Faithful transcription</span></div>
+      <div class="layer-card"><span class="layer-num">3</span><span class="layer-label">Search mechanics</span></div>
+      <div class="layer-card"><span class="layer-num">4</span><span class="layer-label">Contextual metadata</span></div>
+      <div class="layer-card"><span class="layer-num">5</span><span class="layer-label">Testimony</span></div>
+      <div class="layer-card"><span class="layer-num">6</span><span class="layer-label">Corroboration</span></div>
+      <div class="layer-card"><span class="layer-num">7</span><span class="layer-label">Uncertainty documentation</span></div>
+      <div class="layer-card"><span class="layer-num">8</span><span class="layer-label">Professional review</span></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Closing</h2>
+    <p class="pull-quote">&ldquo;Your ancestor may be unreadable to one machine, in one database, under one spelling, today. That is not the same as being gone.&rdquo;</p>
+    <p>Preserve the original. Document the search. Keep uncertainty visible. Because every record has a life. And every life deserves a record.</p>
+  </section>
+
+  <section class="block" id="ctas">
+    <h2>Where to Go Next</h2>
+    <div class="ctas">
+      <a class="btn-primary" href="00_kvsv_services_hub.html">Explore the KVSV Services Hub</a>
+      <a class="btn-secondary" href="01_kvsv_family_history_research.html">Family History Research</a>
+      <a class="btn-secondary" href="02_genealogy_research_services.html">Genealogy Research Services</a>
+      <a class="btn-secondary" href="04_family_records_archive_services.html">Family Records &amp; Archive Services</a>
+      <a class="btn-secondary" href="05_historical_document_research.html">Historical Document Research</a>
+      <a class="btn-secondary" href="09_oral_history_family_story_preservation.html">Oral History &amp; Family Story Preservation</a>
+      <div class="cta-note">All links open in this tab. Explore the full Services Hub index or jump directly to a specific research track.</div>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Editorial &amp; Legal Disclaimer:</strong> AI assists KVSV with organization, drafting, comparison, and planning. AI does not independently prove ancestry, establish legal rights, determine tribal citizenship, authenticate documents, or replace qualified professional review. The KVSV Method provides a transparent framework for organizing historical evidence and documenting uncertainty; matters involving legal, property, probate, citizenship, or lineage determinations require qualified professional guidance.
+  </div>
+</main>
+
+<footer class="footer">KVSVsearch.org | 216-510-3455 | Your roots don't end where the paper trail stops</footer>
+
+</div>
+</body>
+</html>
